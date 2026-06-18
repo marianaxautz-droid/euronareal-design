@@ -1134,7 +1134,22 @@
 
     .modulo:hover .modulo__img {
       transform: scale(1.05);
-      filter: brightness(0.98) saturate(0.95);
+      filter: brightness(0.85) saturate(0.9);
+    }
+
+    .modulo__img-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(65,78,65,0.45);
+      opacity: 0;
+      transition: opacity 0.4s;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .modulo:hover .modulo__img-wrap::before {
+      opacity: 1;
     }
 
     /* gradiente sobre a imagem */
@@ -1156,8 +1171,8 @@
       font-size: 0.55rem;
       font-weight: 600;
       letter-spacing: 0.12em;
-      color: rgba(245,245,242,0.7);
-      background: rgba(28,36,34,0.35);
+      color: rgba(245,245,242,0.95);
+      background: rgba(176,138,61,0.55);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       border: 1px solid rgba(245,245,242,0.12);
@@ -1168,7 +1183,7 @@
 
     .modulo:hover .modulo__num {
       color: var(--gold);
-      background: rgba(28,36,34,0.55);
+      background: rgba(245,245,242,1);
     }
 
     /* corpo do card */
@@ -1182,10 +1197,11 @@
     .modulo__title {
       font-family: 'Bricolage', sans-serif;
       font-variation-settings: 'wght' 600;
-      font-size: 0.88rem;
+      font-size: 1.125rem;
       letter-spacing: -0.012em;
-      color: var(--carbon);
+      color: var(--granite);
       line-height: 1.3;
+      text-align: center;
       transition: color 0.3s;
     }
 
@@ -1251,13 +1267,13 @@
     }
 
     .oferta__wrap {
-      max-width: 1060px;
+      max-width: 1300px;
       margin: 0 auto;
       padding: 0 4.5rem;
       display: grid;
-      grid-template-columns: 1.15fr 1fr;
+      grid-template-columns: 1.5fr 1fr;
       gap: 5rem;
-      align-items: center;
+      align-items: stretch;
       position: relative;
       z-index: 2;
     }
@@ -1274,7 +1290,7 @@
     }
 
     .oferta__hl .lw { display: block; overflow: hidden; }
-    .oferta__hl .li { display: block; }
+    .oferta__hl .li { display: block; white-space: nowrap; }
 
     .oferta__sub {
       font-size: 0.85rem;
@@ -1344,6 +1360,9 @@
       border: 1px solid rgba(176,138,61,0.22);
       border-radius: 1.5rem;
       padding: 2.75rem 2.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     /* linha dourada topo */
@@ -1368,7 +1387,7 @@
     .oferta__card-title {
       font-family: 'Bricolage', sans-serif;
       font-variation-settings: 'wght' 600;
-      font-size: 1.1rem;
+      font-size: 1.375rem;
       letter-spacing: -0.02em;
       color: var(--smoke);
       margin-bottom: 0.4rem;
@@ -1376,7 +1395,7 @@
     }
 
     .oferta__card-desc {
-      font-size: 0.78rem;
+      font-size: 1.125rem;
       font-weight: 400;
       line-height: 1.6;
       color: rgba(200,207,205,0.45);
@@ -1497,7 +1516,7 @@
       justify-content: center;
       gap: 0.5rem;
       margin-top: 1.25rem;
-      font-size: 0.7rem;
+      font-size: 1rem;
       font-weight: 400;
       color: rgba(200,207,205,0.35);
     }
@@ -2069,10 +2088,10 @@
     }
 
     .sobre__bio {
-      font-size: 0.875rem;
-      font-weight: 400;
+      font-size: 1rem;
+      font-weight: 300;
       line-height: 1.8;
-      color: rgba(200,207,205,0.58);
+      color: var(--smoke);
       margin-bottom: 2.5rem;
     }
 
@@ -2886,7 +2905,7 @@
           Um programa de acompanhamento focado em organização financeira para brasileiros que vivem na Europa e buscam mais tranquilidade e clareza na gestão do seu dinheiro.
         </p>
         <div>
-          <a href="#matricula" class="hero__cta">
+          <a href="#matricula" class="hero__cta" onclick="event.preventDefault(); document.getElementById('matricula').scrollIntoView({behavior:'smooth'})">
             <span class="cta__text">Quero me matricular</span>
             <span class="cta__circle">
               <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
@@ -3316,14 +3335,8 @@
 
       <div class="oferta__card-divider"></div>
 
-      <div class="oferta__card-bullets">
-        <span class="oferta__card-bullet">8 módulos + material de apoio</span>
-        <span class="oferta__card-bullet">Templates de organização incluídos</span>
-        <span class="oferta__card-bullet">Comunidade exclusiva de alunos</span>
-        <span class="oferta__card-bullet">Acesso vitalício garantido</span>
-      </div>
 
-      <a href="#" class="oferta__btn">
+      <a href="https://clubedosplanejados.circle.so/checkout/euronareal" target="_blank" rel="noopener noreferrer" class="oferta__btn">
         <span class="oferta__btn-text">Quero garantir meu acesso</span>
         <span class="oferta__btn-arrow">
           <svg width="14" height="14" viewBox="0 0 14 14">
@@ -3334,7 +3347,7 @@
 
       <p class="oferta__guarantee">
         <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        7 dias de garantia — sem perguntas
+        15 dias de garantia
       </p>
 
     </div>
@@ -3530,7 +3543,7 @@
         <p class="cta-mid__sub" id="c9-sub">
           Sua vida financeira não precisa continuar no improviso. Organizar seu mês e construir uma reserva em euro começa com uma decisão simples: começar.
         </p>
-        <a href="#matricula" class="cta-mid__btn" id="c9-btn">
+        <a href="https://clubedosplanejados.circle.so/checkout/euronareal" target="_blank" rel="noopener noreferrer" class="cta-mid__btn" id="c9-btn">
           <span class="cta-mid__btn-text">Garantir minha vaga</span>
           <span class="cta-mid__btn-circle">
             <svg width="15" height="15" viewBox="0 0 15 15">
