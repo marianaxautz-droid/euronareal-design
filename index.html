@@ -47,6 +47,45 @@
     }
 
     /* ══════════════════════════════════════════════
+       VECTOR SHAPE — losango dourado decorativo
+    ══════════════════════════════════════════════ */
+    .vec {
+      position: absolute;
+      pointer-events: none;
+      user-select: none;
+      background: url("data:image/svg+xml,%3Csvg width='101' height='88' viewBox='0 0 101 88' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M32.6308 26.7336C33.3553 25.4257 34.5212 24.4184 35.9198 23.8919L99.1616 0.0845897C100.258 -0.328089 101.274 0.849704 100.706 1.87484L68.2378 60.4804C67.5132 61.7883 66.3474 62.7956 64.9488 63.3221L1.707 87.1294C0.61076 87.5421 -0.405195 86.3643 0.162741 85.3391L32.6308 26.7336Z' fill='%23B08A3D'/%3E%3C/svg%3E") no-repeat center / contain;
+      animation: vec-float var(--dur, 8s) ease-in-out infinite;
+      animation-delay: var(--delay, 0s);
+    }
+
+    @keyframes vec-float {
+      0%, 100% { transform: rotate(var(--r, 0deg)) translateY(0); }
+      50%       { transform: rotate(var(--r, 0deg)) translateY(-10px); }
+    }
+
+    /* Hero shapes */
+    .vec--h1 { width: 220px; height: 192px; top: 8%;  right: 6%;  opacity: 0.055; --r: 18deg;  --dur: 9s;  --delay: 0s;   z-index: 1; }
+    .vec--h2 { width: 110px; height: 96px;  top: 55%; right: 14%; opacity: 0.04;  --r: -8deg;  --dur: 11s; --delay: 2s;   z-index: 1; }
+    .vec--h3 { width: 70px;  height: 61px;  top: 30%; right: 2%;  opacity: 0.07;  --r: 35deg;  --dur: 7s;  --delay: 1.5s; z-index: 1; }
+
+    /* Promessa shapes */
+    .vec--p1 { width: 180px; height: 157px; bottom: -2rem; left: -3rem; opacity: 0.05; --r: -15deg; --dur: 10s; --delay: 1s; z-index: 0; }
+    .vec--p2 { width: 80px;  height: 70px;  top: 2rem;     right: 0;    opacity: 0.04; --r: 25deg;  --dur: 12s; --delay: 3s; z-index: 0; }
+
+    /* Diferencial shapes */
+    .vec--d1 { width: 260px; height: 227px; bottom: -4rem; right: -3rem; opacity: 0.04; --r: -20deg; --dur: 13s; --delay: 0.5s; z-index: 0; }
+    .vec--d2 { width: 90px;  height: 79px;  top: 3rem;     left: 2rem;   opacity: 0.05; --r: 10deg;  --dur: 9s;  --delay: 2s;   z-index: 0; }
+
+    /* Sobre shapes */
+    .vec--s1 { width: 200px; height: 175px; top: 50%;  right: -2rem; opacity: 0.04; --r: -12deg; --dur: 11s; --delay: 1s;   z-index: 0; transform: translateY(-50%) rotate(-12deg); animation: none; }
+    .vec--s2 { width: 70px;  height: 61px;  top: 1rem; left: 40%;    opacity: 0.06; --r: 30deg;  --dur: 8s;  --delay: 0.5s; z-index: 0; }
+
+    /* Contato shapes */
+    .vec--c1 { width: 230px; height: 201px; bottom: 3rem; right: 2rem;  opacity: 0.05; --r: 15deg;  --dur: 10s; --delay: 0s;   z-index: 0; }
+    .vec--c2 { width: 80px;  height: 70px;  top: 2rem;    left: 1rem;   opacity: 0.04; --r: -25deg; --dur: 14s; --delay: 2.5s; z-index: 0; }
+
+
+    /* ══════════════════════════════════════════════
        GRAIN  —  SVG noise via data-URI on pseudo
     ══════════════════════════════════════════════ */
     .has-grain {
@@ -86,21 +125,6 @@
       z-index: 2;
     }
 
-    /* Large decorative watermark "€" behind content */
-    .hero__watermark {
-      position: absolute;
-      bottom: -2rem;
-      right: -1.5rem;
-      font-family: 'Bricolage', sans-serif;
-      font-variation-settings: 'wght' 800;
-      font-size: 28rem;
-      line-height: 1;
-      color: rgba(28,36,34,0.04);
-      pointer-events: none;
-      user-select: none;
-      z-index: 0;
-      letter-spacing: -0.05em;
-    }
 
     /* thin gold stripe — right edge */
     .hero__edge-line {
@@ -130,7 +154,7 @@
     }
 
     .hero__logo {
-      width: 145px;
+      width: 100px;
       display: block;
       filter: none;
       will-change: opacity, transform;
@@ -213,6 +237,13 @@
       background: var(--gold);
       transform: rotate(45deg);
       opacity: 0.7;
+      flex-shrink: 0;
+    }
+
+    .rule__gem-vec {
+      width: 22px;
+      height: auto;
+      opacity: 0.75;
       flex-shrink: 0;
     }
 
@@ -363,7 +394,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 12%;
+      object-position: center 85%;
       display: block;
       filter: brightness(0.92) contrast(1.04) saturate(0.88);
       transform: scale(1.06);
@@ -371,36 +402,8 @@
       will-change: transform;
     }
 
-    /* Gradient left — fuses photo into left panel */
-    .photo-frame::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      background: linear-gradient(
-        to right,
-        var(--smoke) 0%,
-        rgba(245,245,242,0.72) 10%,
-        rgba(245,245,242,0.18) 28%,
-        transparent 52%
-      );
-      pointer-events: none;
-    }
-
-    /* Gradient bottom — grounds the composition */
-    .photo-frame::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      background: linear-gradient(
-        to top,
-        rgba(28,36,34,0.85) 0%,
-        rgba(28,36,34,0.35) 22%,
-        transparent 45%
-      );
-      pointer-events: none;
-    }
+    .photo-frame::before,
+    .photo-frame::after { display: none; }
 
     /* ── Floating identity card ── */
     .hero__card {
@@ -573,7 +576,7 @@
     ══════════════════════════════════════════════ */
     .dores {
       background: var(--granite);
-      padding: 8rem 0 7rem;
+      padding: 8rem 0;
       position: relative;
       overflow: hidden;
     }
@@ -584,14 +587,14 @@
       position: absolute;
       inset: 0;
       pointer-events: none;
-      opacity: 0.04;
-      mix-blend-mode: overlay;
+      opacity: 0.32;
+      mix-blend-mode: soft-light;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72 0.76' numOctaves='4' seed='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
       background-size: 220px 220px;
     }
 
     .dores__wrap {
-      max-width: 960px;
+      max-width: 1400px;
       margin: 0 auto;
       padding: 0 4rem;
       text-align: center;
@@ -603,14 +606,14 @@
     .dores__q-text {
       font-family: 'Bricolage', sans-serif;
       font-variation-settings: 'wght' 500;
-      font-size: clamp(1.4rem, 2.2vw, 2.6rem);
+      font-size: clamp(2.1rem, 3.1vw, 3.5rem);
       line-height: 1.25;
       letter-spacing: -0.02em;
       color: #F5F5F2;
     }
 
     .dores__q-text .lw { display: block; overflow: hidden; }
-    .dores__q-text .li { display: block; }
+    .dores__q-text .li { display: block; white-space: nowrap; }
 
     /* "mas..." — enorme, centralizado */
     .dores__mas-row {
@@ -684,28 +687,17 @@
     .dore-row:hover::after  { opacity: 1; }
 
     /* number — top right, ghosted */
-    .dore-num {
-      position: absolute;
-      top: 1.25rem;
-      right: 1.4rem;
-      font-family: 'Poppins', sans-serif;
-      font-size: 0.55rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      color: rgba(200,207,205,0.14);
-      user-select: none;
-      transition: color 0.35s ease;
-    }
-    .dore-row:hover .dore-num { color: var(--gold); }
+    .dore-num { display: none; }
 
     .dore-text {
-      font-size: 0.875rem;
+      font-size: 1.125rem;
       font-weight: 400;
       line-height: 1.65;
       color: rgba(245,245,242,0.78);
       transition: color 0.35s ease;
       padding-right: 1.5rem; /* avoid overlap with number */
     }
+    .dore-text strong { font-weight: 600; }
     .dore-row:hover .dore-text { color: rgba(245,245,242,0.82); }
 
     /* ── Parte 3: Callout final ── */
@@ -759,17 +751,17 @@
       background: var(--smoke);
       position: relative;
       overflow: hidden;
-      padding: 5rem 0;
+      padding: 8rem 0;
     }
 
     .promessa__inner {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
-      padding: 0 2rem;
+      padding: 0 4rem;
       display: grid;
-      grid-template-columns: 1fr 1.6fr;
+      grid-template-columns: 1fr 1.4fr;
       align-items: stretch;
-      gap: 3rem;
+      gap: 4rem;
     }
 
     /* glow ambiente dourado */
@@ -791,14 +783,13 @@
       overflow: hidden;
       width: 100%;
       height: 100%;
-      min-height: 360px;
     }
 
     .promessa__img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 15%;
+      object-position: center top;
       display: block;
       filter: brightness(0.96) saturate(0.9);
       transition: transform 0.8s var(--ease-out);
@@ -927,26 +918,12 @@
       position: absolute;
       inset: 0;
       pointer-events: none;
-      opacity: 0.045;
-      mix-blend-mode: overlay;
+      opacity: 0.32;
+      mix-blend-mode: soft-light;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72 0.76' numOctaves='4' seed='7' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
       background-size: 220px 220px;
     }
 
-    /* watermark € decorativo */
-    .diferencial::after {
-      content: '€';
-      position: absolute;
-      bottom: -4rem;
-      left: -2rem;
-      font-family: 'Bricolage', sans-serif;
-      font-variation-settings: 'wght' 800;
-      font-size: 28rem;
-      line-height: 1;
-      color: rgba(245,245,242,0.022);
-      pointer-events: none;
-      user-select: none;
-    }
 
     .diferencial__wrap {
       max-width: 1060px;
@@ -1013,8 +990,8 @@
 
     .pilar {
       display: grid;
-      grid-template-columns: 3.5rem 1fr;
-      padding: 1.75rem 0;
+      grid-template-columns: 1fr;
+      padding: 1.75rem 0 1.75rem 1rem;
       border-bottom: 1px solid rgba(200,207,205,0.08);
       position: relative;
       cursor: default;
@@ -1049,12 +1026,14 @@
     }
     .pilar:hover .pilar__num { color: rgba(176,138,61,0.35); }
 
+    .pilar__vec { display: none; }
+
     .pilar__body {}
 
     .pilar__title {
       font-family: 'Bricolage', sans-serif;
-      font-variation-settings: 'wght' 600;
-      font-size: 1rem;
+      font-variation-settings: 'wght' 500;
+      font-size: 1.125rem;
       letter-spacing: -0.015em;
       color: rgba(245,245,242,0.75);
       margin-bottom: 0.4rem;
@@ -1142,13 +1121,14 @@
       overflow: hidden;
     }
 
+
     .modulo__img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center top;
       display: block;
-      filter: brightness(0.92) saturate(0.88);
+      filter: brightness(0.95) saturate(1.6);
       transition: transform 0.65s var(--ease-out), filter 0.4s;
     }
 
@@ -1224,22 +1204,35 @@
     ══════════════════════════════════════════════ */
     .oferta {
       background: var(--carbon-2);
-      padding: 9rem 0;
+      padding: 8rem 0;
       position: relative;
       overflow: hidden;
     }
 
-    /* grain */
     .oferta::before {
       content: '';
       position: absolute;
       inset: 0;
       pointer-events: none;
-      opacity: 0.05;
-      mix-blend-mode: overlay;
+      opacity: 0.32;
+      mix-blend-mode: soft-light;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72 0.76' numOctaves='4' seed='9' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
       background-size: 220px 220px;
+      z-index: 2;
     }
+
+    .oferta::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background: linear-gradient(to top, #404E41 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
 
     /* watermark € */
     .oferta__watermark {
@@ -1528,9 +1521,22 @@
       display: grid;
       grid-template-columns: 1fr 3fr;
       align-items: center;
+      padding: 8rem 0;
       min-height: 540px;
       position: relative;
       overflow: hidden;
+    }
+
+    .transformacao::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.32;
+      mix-blend-mode: soft-light;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72 0.76' numOctaves='4' seed='11' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 220px 220px;
+      z-index: 0;
     }
 
     /* ── Esquerda: título ── */
@@ -1635,18 +1641,7 @@
       opacity: 0.5;
     }
 
-    .transf-card__num {
-      display: inline-flex;
-      font-size: 0.52rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      color: var(--gold);
-      border: 1px solid rgba(176,138,61,0.3);
-      background: rgba(176,138,61,0.1);
-      border-radius: 100px;
-      padding: 0.22rem 0.65rem;
-      margin-bottom: 1.5rem;
-    }
+    .transf-card__num { display: none; }
 
     .transf-card__text {
       font-family: 'Bricolage', sans-serif;
@@ -1667,7 +1662,7 @@
     ══════════════════════════════════════════════ */
     .perfil {
       background: var(--smoke);
-      padding: 9rem 0;
+      padding: 8rem 0;
       position: relative;
       overflow: hidden;
     }
@@ -1790,7 +1785,7 @@
     ══════════════════════════════════════════════ */
     .cta-mid {
       background: var(--smoke);
-      padding: 5rem 0;
+      padding: 8rem 0;
     }
 
     .cta-mid__wrap {
@@ -1824,7 +1819,7 @@
       object-fit: cover;
       object-position: center 20%;
       display: block;
-      filter: saturate(0.55) brightness(0.45);
+      filter: saturate(0.7) brightness(0.65);
     }
 
     /* overlay */
@@ -1833,9 +1828,9 @@
       inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(17,25,23,0.5) 0%,
-        rgba(17,25,23,0.78) 60%,
-        rgba(17,25,23,0.6) 100%
+        rgba(17,25,23,0.1) 0%,
+        rgba(17,25,23,0.3) 60%,
+        rgba(17,25,23,0.15) 100%
       );
       z-index: 1;
     }
@@ -1857,7 +1852,7 @@
       position: relative;
       z-index: 3;
       padding: 4rem 3rem;
-      max-width: 560px;
+      max-width: 720px;
     }
 
     .cta-mid__hl {
@@ -1875,10 +1870,10 @@
     .cta-mid__hl .gold { color: var(--gold); }
 
     .cta-mid__sub {
-      font-size: 0.85rem;
+      font-size: 1.125rem;
       font-weight: 400;
       line-height: 1.7;
-      color: rgba(200,207,205,0.58);
+      color: rgba(245,245,242,0.85);
       margin-bottom: 2.25rem;
     }
 
@@ -1941,16 +1936,35 @@
       overflow: hidden;
     }
 
+    /* foto de fundo — esquerda com fade */
+    .sobre::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -5%;
+      width: 48%;
+      height: 100%;
+      background-image: url('Fotos pra LP/IMG_3766.JPG');
+      background-size: cover;
+      background-position: center top;
+      -webkit-mask-image: linear-gradient(to right, black 45%, transparent 100%);
+      mask-image: linear-gradient(to right, black 45%, transparent 100%);
+      opacity: 0.28;
+      pointer-events: none;
+      z-index: 0;
+    }
+
     /* grain */
     .sobre::before {
       content: '';
       position: absolute;
       inset: 0;
       pointer-events: none;
-      opacity: 0.04;
-      mix-blend-mode: overlay;
+      opacity: 0.32;
+      mix-blend-mode: soft-light;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72 0.76' numOctaves='4' seed='13' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
       background-size: 220px 220px;
+      z-index: 1;
     }
 
     .sobre__wrap {
@@ -1962,7 +1976,7 @@
       gap: 5rem;
       align-items: center;
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
 
     /* ── Bio esquerda ── */
@@ -2025,8 +2039,10 @@
       display: flex;
       flex-direction: column;
       gap: 0.2rem;
-      padding-right: 1.5rem;
+      padding: 0 1.5rem;
     }
+    .sobre__stat:first-child { padding-left: 0; }
+    .sobre__stat:last-child  { padding-right: 0; }
 
     .sobre__stat-val {
       font-family: 'Bricolage', sans-serif;
@@ -2048,7 +2064,7 @@
     .sobre__stat-div {
       width: 1px;
       background: rgba(200,207,205,0.1);
-      margin: 0 1.5rem 0 0;
+      margin: 0;
       flex-shrink: 0;
     }
 
@@ -2098,28 +2114,8 @@
       position: relative;
     }
 
-    /* borda dourada decorativa deslocada */
-    .sobre__photo-wrap::before {
-      content: '';
-      position: absolute;
-      inset: -10px;
-      border-radius: 1.5rem;
-      border: 1px solid rgba(176,138,61,0.2);
-      pointer-events: none;
-    }
-
-    /* ponto dourado corner */
-    .sobre__photo-wrap::after {
-      content: '';
-      position: absolute;
-      bottom: -14px;
-      right: -14px;
-      width: 8px;
-      height: 8px;
-      background: var(--gold);
-      border-radius: 50%;
-      opacity: 0.6;
-    }
+    .sobre__photo-wrap::before { display: none; }
+    .sobre__photo-wrap__vector { display: none; }
 
     .sobre__photo {
       width: 100%;
@@ -2132,7 +2128,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center top;
+      object-position: center 65%;
       display: block;
       filter: brightness(0.92) saturate(0.85);
       transition: transform 0.8s var(--ease-out);
@@ -2189,40 +2185,19 @@
     }
 
     /* borda dourada esquerda — visível quando aberto */
-    .faq-item::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 2px;
-      background: var(--gold);
-      transform: scaleY(0);
-      transform-origin: top;
-      transition: transform 0.4s var(--ease-out);
-    }
-
-    .faq-item.is-open::before { transform: scaleY(1); }
 
     /* pergunta (trigger) */
     .faq-item__q {
       display: grid;
-      grid-template-columns: 2.5rem 1fr auto;
+      grid-template-columns: 1fr auto;
       align-items: center;
       gap: 1rem;
-      padding: 1.4rem 0 1.4rem 0.5rem;
+      padding: 1.4rem 0;
       cursor: pointer;
       user-select: none;
     }
 
-    .faq-item__num {
-      font-family: 'Bricolage', sans-serif;
-      font-variation-settings: 'wght' 700;
-      font-size: 0.58rem;
-      letter-spacing: 0.12em;
-      color: rgba(28,36,34,0.18);
-      transition: color 0.3s;
-    }
-
-    .faq-item.is-open .faq-item__num { color: var(--gold); }
+    .faq-item__num { display: none; }
 
     .faq-item__text {
       font-family: 'Bricolage', sans-serif;
@@ -2284,7 +2259,7 @@
       font-weight: 400;
       line-height: 1.75;
       color: rgba(28,36,34,0.55);
-      padding: 0 0 1.5rem 3.5rem;
+      padding: 0 0 1.5rem 0;
     }
 
     /* ══════════════════════════════════════════════
@@ -2308,20 +2283,6 @@
       pointer-events: none;
     }
 
-    /* marca d'água € */
-    .contato__watermark {
-      position: absolute;
-      bottom: -0.15em;
-      right: -0.04em;
-      font-family: 'Bricolage', sans-serif;
-      font-variation-settings: 'wght' 800;
-      font-size: clamp(18rem, 32vw, 40rem);
-      line-height: 1;
-      color: rgba(245,245,242,0.018);
-      pointer-events: none;
-      user-select: none;
-      letter-spacing: -0.05em;
-    }
 
     .contato__wrap {
       max-width: 1200px;
@@ -2490,6 +2451,393 @@
       letter-spacing: 0.04em;
     }
 
+
+    /* ══════════════════════════════════════════════
+       RESPONSIVO — 768px
+    ══════════════════════════════════════════════ */
+    @media (max-width: 768px) {
+
+      /* ── HERO ── */
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        max-height: none;
+      }
+
+      .hero__left {
+        padding: 2rem 1.5rem 2.5rem;
+        min-height: 100svh;
+      }
+
+      .hero__right {
+        display: none;
+      }
+
+      .hero__logo {
+        width: 120px;
+      }
+
+      .hero__body {
+        padding: 1.5rem 0;
+      }
+
+      .hero__eyebrow {
+        margin-bottom: 1.5rem;
+      }
+
+      .hero__headline {
+        font-size: clamp(2rem, 8vw, 2.8rem);
+        margin-bottom: 2rem;
+      }
+
+      .hero__para {
+        max-width: 100%;
+      }
+
+      .hero__stats {
+        flex-wrap: wrap;
+        gap: 1rem;
+        padding-top: 1.5rem;
+      }
+
+      .stat {
+        flex: 0 0 auto;
+        padding-right: 0;
+      }
+
+      .stat__div {
+        display: none;
+      }
+
+      .hero__cta {
+        width: 100%;
+        justify-content: center;
+      }
+
+      /* ── VEC SHAPES — ocultar os maiores no mobile ── */
+      .vec--h1, .vec--h2, .vec--h3 { display: none; }
+
+      /* ── BLOCO 2: DORES ── */
+      .dores {
+        padding: 5rem 1.5rem;
+      }
+
+      .dores__wrap {
+        padding: 0;
+      }
+
+      .dores__q-text .li {
+        white-space: normal;
+      }
+
+      .dores__list {
+        grid-template-columns: 1fr;
+        gap: 0.7rem;
+      }
+
+      .dores__callout .li {
+        white-space: normal;
+      }
+
+      .dores__close {
+        margin-top: 3.5rem;
+      }
+
+      /* ── BLOCO 3: PROMESSA ── */
+      .promessa {
+        padding: 5rem 1.5rem;
+      }
+
+      .promessa__inner {
+        grid-template-columns: 1fr;
+        padding: 0;
+        gap: 2.5rem;
+      }
+
+      .promessa__photo {
+        order: -1;
+        height: 300px;
+        border-radius: 1rem;
+      }
+
+      .promessa__img {
+        object-position: center 20%;
+      }
+
+      .promessa__hl .li {
+        white-space: normal;
+      }
+
+      .promessa__sub {
+        max-width: 100%;
+      }
+
+      /* ── BLOCO 4: DIFERENCIAL ── */
+      .diferencial {
+        padding: 5rem 1.5rem;
+      }
+
+      .diferencial__wrap {
+        grid-template-columns: 1fr;
+        padding: 0;
+        gap: 3rem;
+      }
+
+      .diferencial__sub {
+        max-width: 100%;
+      }
+
+      .diferencial__hl .li {
+        white-space: normal;
+      }
+
+      /* ── BLOCO 5: CONTEÚDO / MÓDULOS ── */
+      .conteudo {
+        padding: 5rem 1.5rem;
+      }
+
+      .conteudo__wrap {
+        padding: 0;
+      }
+
+      #c5-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.85rem;
+      }
+
+      /* ── BLOCO 6: OFERTA ── */
+      .oferta {
+        padding: 5rem 1.5rem;
+      }
+
+      .oferta__wrap {
+        grid-template-columns: 1fr;
+        padding: 0;
+        gap: 3rem;
+      }
+
+      .oferta__sub {
+        max-width: 100%;
+      }
+
+      .oferta__hl .li {
+        white-space: normal;
+      }
+
+      .oferta__watermark {
+        font-size: 14rem;
+        right: -1rem;
+      }
+
+      /* ── BLOCO 7: TRANSFORMAÇÃO ── */
+      .transformacao {
+        grid-template-columns: 1fr;
+        padding: 0;
+        min-height: auto;
+      }
+
+      .transformacao__left {
+        padding: 4rem 1.5rem 2rem;
+      }
+
+      .transformacao__left::after {
+        display: none;
+      }
+
+      .transformacao__hl .li {
+        white-space: normal;
+      }
+
+      .transformacao__carousel {
+        padding: 1.5rem 0 4rem;
+      }
+
+      /* ── BLOCO 8: PARA QUEM É ── */
+      .perfil {
+        padding: 5rem 1.5rem;
+      }
+
+      .perfil__wrap {
+        padding: 0;
+      }
+
+      .perfil__grid {
+        grid-template-columns: 1fr;
+        gap: 0.7rem;
+      }
+
+      .perfil__hl .li {
+        white-space: normal;
+      }
+
+      /* ── BLOCO 9: CTA INTERMEDIÁRIO ── */
+      .cta-mid {
+        padding: 5rem 1.5rem;
+      }
+
+      .cta-mid__wrap {
+        padding: 0;
+      }
+
+      .cta-mid__card {
+        min-height: 380px;
+      }
+
+      .cta-mid__content {
+        padding: 2.5rem 1.5rem;
+        max-width: 100%;
+      }
+
+      .cta-mid__hl .li {
+        white-space: normal;
+      }
+
+      .cta-mid__btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      /* ── BLOCO 10: SOBRE ── */
+      .sobre {
+        padding: 5rem 1.5rem;
+      }
+
+      .sobre__wrap {
+        grid-template-columns: 1fr;
+        padding: 0;
+        gap: 3rem;
+      }
+
+      /* foto vai abaixo do texto */
+      .sobre__photo-wrap {
+        order: 1;
+      }
+
+      .sobre__name .li {
+        white-space: normal;
+      }
+
+      .sobre__stats {
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .sobre__stat {
+        flex: 0 0 auto;
+        padding-right: 0;
+      }
+
+      .sobre__stat-div {
+        display: none;
+      }
+
+      .sobre__photo {
+        aspect-ratio: 4 / 3;
+      }
+
+      /* ── BLOCO 11: FAQ ── */
+      .faq {
+        padding: 5rem 1.5rem;
+      }
+
+      .faq__wrap {
+        padding: 0;
+      }
+
+      .faq__hl .li {
+        white-space: normal;
+      }
+
+      .faq-item__q {
+        grid-template-columns: 1fr auto;
+        gap: 0.75rem;
+        padding: 1.25rem 0;
+      }
+
+      .faq-item__a {
+        padding: 0 0 1.25rem 0;
+      }
+
+      /* ── BLOCO 12: CONTATO ── */
+      .contato {
+        padding: 5rem 1.5rem 0;
+      }
+
+      .contato__wrap {
+        padding: 0;
+      }
+
+      .contato__body {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .contato__hl .li {
+        white-space: normal;
+      }
+
+      .contato__footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+        margin-top: 4rem;
+      }
+
+    }
+
+
+    /* ══════════════════════════════════════════════
+       RESPONSIVO — 480px (telas muito pequenas)
+    ══════════════════════════════════════════════ */
+    @media (max-width: 480px) {
+
+      /* Headline mínimo em telas muito pequenas */
+      .hero__headline {
+        font-size: clamp(1.75rem, 7.5vw, 2.4rem);
+        line-height: 1.12;
+      }
+
+      /* Módulos: 1 coluna em tela muito pequena */
+      #c5-list {
+        grid-template-columns: 1fr;
+      }
+
+      /* Transformação: cards menores */
+      .transf-card {
+        width: 220px;
+      }
+
+      /* FAQ: sem número no mobile pequeno */
+      .faq-item__q {
+        grid-template-columns: 1fr auto;
+      }
+
+      .faq-item__num {
+        display: none;
+      }
+
+      .faq-item__a {
+        padding: 0 0 1.25rem 0;
+      }
+
+      /* Contato: e-mail longo sem overflow */
+      .contato__link-value {
+        font-size: 0.78rem;
+        word-break: break-all;
+      }
+
+      /* Stats do hero */
+      .hero__stats {
+        gap: 0.75rem;
+      }
+
+      /* Sobre stats */
+      .sobre__stats {
+        gap: 0.75rem;
+      }
+
+    }
+
   </style>
 </head>
 <body>
@@ -2502,14 +2850,16 @@
   <!-- ── LEFT PANEL ── -->
   <div class="hero__left has-grain">
 
-    <!-- watermark -->
-    <span class="hero__watermark" aria-hidden="true">€</span>
+    <!-- vector shapes -->
+    <span class="vec vec--h1" aria-hidden="true"></span>
+    <span class="vec vec--h2" aria-hidden="true"></span>
+    <span class="vec vec--h3" aria-hidden="true"></span>
     <!-- edge line -->
     <div class="hero__edge-line" aria-hidden="true"></div>
 
     <!-- Header -->
     <header class="hero__header" id="j-header">
-      <img src="Logo/logo horizontal.png" alt="Euro na Real" class="hero__logo" id="j-logo">
+      <img src="Logo/logo tipografico.png" alt="Euro na Real" class="hero__logo" id="j-logo">
     </header>
 
     <!-- Body -->
@@ -2528,7 +2878,7 @@
 
       <div class="hero__rule" id="j-rule">
         <div class="rule__line"></div>
-        <div class="rule__gem"></div>
+        <img src="Vector.svg" alt="" class="rule__gem-vec" aria-hidden="true">
       </div>
 
       <div class="hero__sub" id="j-sub">
@@ -2549,23 +2899,6 @@
 
     </div>
 
-    <!-- Stats footer -->
-    <footer class="hero__stats" id="j-stats">
-      <div class="stat">
-        <span class="stat__num" data-count="14">0</span>
-        <span class="stat__label">Anos de Experiência</span>
-      </div>
-      <div class="stat__div"></div>
-      <div class="stat">
-        <span class="stat__num">EFA</span>
-        <span class="stat__label">EFPA Espanha</span>
-      </div>
-      <div class="stat__div"></div>
-      <div class="stat">
-        <span class="stat__num">€</span>
-        <span class="stat__label">Foco na Europa</span>
-      </div>
-    </footer>
 
   </div>
 
@@ -2574,7 +2907,7 @@
 
     <div class="photo-frame">
       <img
-        src="Fotos pra LP/IMG-HERO.png"
+        src="Fotos pra LP/IMG_3769.JPG"
         alt="Rafael Nobrega, Planejador Financeiro"
         class="hero__img"
         id="j-photo"
@@ -2582,35 +2915,12 @@
     </div>
 
     <!-- Floating identity card -->
-    <div class="hero__card" id="j-card">
-      <div class="card__avatar-row">
-        <div class="card__initials">RN</div>
-        <div>
-          <p class="card__name">Rafael Nobrega</p>
-          <p class="card__role">Planejador Financeiro Certificado</p>
-        </div>
-      </div>
-      <div class="card__divider"></div>
-      <div class="card__tags">
-        <span class="card__tag">EFA</span>
-        <span class="card__tag">EFPA Espanha</span>
-        <span class="card__tag">14+ anos</span>
-        <span class="card__tag">Brasil &amp; Europa</span>
-      </div>
-    </div>
 
-    <p class="hero__vert" aria-hidden="true">
-      Rafael Nobrega &nbsp;·&nbsp; Euro na Real &nbsp;·&nbsp; 2025
-    </p>
 
   </div>
 
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee__track" id="j-marquee"></div>
-</div>
 
 
 <!-- ═══════════════════════════════════════════════
@@ -2637,42 +2947,42 @@
 
       <div class="dore-row">
         <span class="dore-num">01</span>
-        <p class="dore-text">O dinheiro entra e sai e você não sabe exatamente para onde foi</p>
+        <p class="dore-text">O dinheiro <strong>entra e sai</strong> e você não sabe exatamente <strong>para onde foi</strong></p>
       </div>
 
       <div class="dore-row">
         <span class="dore-num">02</span>
-        <p class="dore-text">Você sente que todo mês começa do zero</p>
+        <p class="dore-text">Você sente que <strong>todo mês começa do zero</strong></p>
       </div>
 
       <div class="dore-row">
         <span class="dore-num">03</span>
-        <p class="dore-text">Tenta se organizar, mas nunca consegue manter constância</p>
+        <p class="dore-text">Tenta se organizar, mas nunca consegue <strong>manter constância</strong></p>
       </div>
 
       <div class="dore-row">
         <span class="dore-num">04</span>
-        <p class="dore-text">Guarda dinheiro por um tempo, mas acaba precisando mexer na reserva</p>
+        <p class="dore-text">Guarda dinheiro por um tempo, mas acaba <strong>precisando mexer na reserva</strong></p>
       </div>
 
       <div class="dore-row">
         <span class="dore-num">05</span>
-        <p class="dore-text">Evita olhar conta, cartão ou extrato porque isso sempre gera ansiedade</p>
+        <p class="dore-text">Evita olhar <strong>conta, cartão ou extrato</strong> porque isso sempre gera <strong>ansiedade</strong></p>
       </div>
 
       <div class="dore-row">
         <span class="dore-num">06</span>
-        <p class="dore-text">Quer começar a construir segurança financeira, mas não sabe por onde começar</p>
+        <p class="dore-text">Quer começar a construir <strong>segurança financeira</strong>, mas não sabe <strong>por onde começar</strong></p>
       </div>
 
       <div class="dore-row">
         <span class="dore-num">07</span>
-        <p class="dore-text">Sente que ganha melhor do que ganhava no Brasil, mas ainda assim não consegue se sentir em paz financeiramente</p>
+        <p class="dore-text">Sente que <strong>ganha melhor</strong> do que ganhava no Brasil, mas ainda assim não consegue se sentir <strong>em paz financeiramente</strong></p>
       </div>
 
       <div class="dore-row">
         <span class="dore-num">08</span>
-        <p class="dore-text">Tudo parece complicado demais, então você acaba adiando</p>
+        <p class="dore-text">Tudo parece <strong>complicado demais</strong>, então você acaba <strong>adiando</strong></p>
       </div>
 
     </div>
@@ -2692,12 +3002,14 @@
      BLOCO 3 — PROMESSA
 ═══════════════════════════════════════════════ -->
 <section class="promessa" id="promessa">
+  <span class="vec vec--p1" aria-hidden="true"></span>
+  <span class="vec vec--p2" aria-hidden="true"></span>
   <div class="promessa__inner">
 
   <!-- Foto esquerda -->
   <div class="promessa__photo">
     <img
-      src="Fotos pra LP/IMG_3765.JPG"
+      src="Fotos pra LP/IMG_1466.jpg"
       alt="Rafael Nobrega em ambiente descontraído"
       class="promessa__img"
       id="p3-photo"
@@ -2769,6 +3081,8 @@
      BLOCO 4 — DIFERENCIAL
 ═══════════════════════════════════════════════ -->
 <section class="diferencial" id="diferencial">
+  <span class="vec vec--d1" aria-hidden="true"></span>
+  <span class="vec vec--d2" aria-hidden="true"></span>
   <div class="diferencial__wrap">
 
     <!-- Esquerda -->
@@ -2793,35 +3107,35 @@
     <div class="diferencial__right" id="d4-pilares">
 
       <div class="pilar">
-        <span class="pilar__num">01</span>
+        <img src="Vector.svg" class="pilar__vec" aria-hidden="true">
         <div class="pilar__body">
           <p class="pilar__title">Foco na realidade de quem vive na Europa</p>
         </div>
       </div>
 
       <div class="pilar">
-        <span class="pilar__num">02</span>
+        <img src="Vector.svg" class="pilar__vec" aria-hidden="true">
         <div class="pilar__body">
           <p class="pilar__title">Estrutura prática para organizar, poupar e planejar</p>
         </div>
       </div>
 
       <div class="pilar">
-        <span class="pilar__num">03</span>
+        <img src="Vector.svg" class="pilar__vec" aria-hidden="true">
         <div class="pilar__body">
           <p class="pilar__title">Baseado em comportamento financeiro, não em fórmulas mágicas</p>
         </div>
       </div>
 
       <div class="pilar">
-        <span class="pilar__num">04</span>
+        <img src="Vector.svg" class="pilar__vec" aria-hidden="true">
         <div class="pilar__body">
           <p class="pilar__title">Autonomia para tomar decisões com mais segurança</p>
         </div>
       </div>
 
       <div class="pilar">
-        <span class="pilar__num">05</span>
+        <img src="Vector.svg" class="pilar__vec" aria-hidden="true">
         <div class="pilar__body">
           <p class="pilar__title">Organização financeira sem culpa, obsessão ou complicação</p>
         </div>
@@ -2849,7 +3163,7 @@
 
       <div class="modulo">
         <div class="modulo__img-wrap">
-          <img src="Imagens Modulos/modulo-01.png" alt="Módulo 01" class="modulo__img">
+          <img src="Imagens Modulos/modulo-01.png" alt="Módulo 01" class="modulo__img" style="object-position: 30% 60%;">
           <span class="modulo__num">01</span>
         </div>
         <div class="modulo__body">
@@ -2889,7 +3203,7 @@
 
       <div class="modulo">
         <div class="modulo__img-wrap">
-          <img src="Imagens Modulos/modulo-05.png" alt="Módulo 05" class="modulo__img">
+          <img src="Imagens Modulos/modulo-05.png" alt="Módulo 05" class="modulo__img" style="object-position: center center;">
           <span class="modulo__num">05</span>
         </div>
         <div class="modulo__body">
@@ -2937,7 +3251,6 @@
      BLOCO 6 — OFERTA
 ═══════════════════════════════════════════════ -->
 <section class="oferta" id="matricula">
-  <span class="oferta__watermark" aria-hidden="true">€</span>
 
   <div class="oferta__wrap">
 
@@ -3205,7 +3518,7 @@
     <div class="cta-mid__card">
 
       <div class="cta-mid__bg">
-        <img src="Fotos pra LP/IMG_3763.JPG" alt="">
+        <img src="Fotos pra LP/IMG_3770.JPG" alt="">
       </div>
       <div class="cta-mid__overlay"></div>
       <div class="cta-mid__grain"></div>
@@ -3215,7 +3528,7 @@
           <span class="lw"><span class="li">Comece <span class="gold">hoje</span></span></span>
         </h2>
         <p class="cta-mid__sub" id="c9-sub">
-          Sua vida financeira não precisa continuar no improviso.<br>Organizar seu mês e construir uma reserva em euro começa com uma decisão simples: começar.
+          Sua vida financeira não precisa continuar no improviso. Organizar seu mês e construir uma reserva em euro começa com uma decisão simples: começar.
         </p>
         <a href="#matricula" class="cta-mid__btn" id="c9-btn">
           <span class="cta-mid__btn-text">Garantir minha vaga</span>
@@ -3236,6 +3549,8 @@
      BLOCO 10 — SOBRE O RAFAEL
 ═══════════════════════════════════════════════ -->
 <section class="sobre" id="sobre">
+  <span class="vec vec--s1" aria-hidden="true"></span>
+  <span class="vec vec--s2" aria-hidden="true"></span>
   <div class="sobre__wrap">
 
     <!-- Bio esquerda -->
@@ -3250,17 +3565,17 @@
       <div class="sobre__stats" id="s10-creds">
         <div class="sobre__stat">
           <span class="sobre__stat-val">14+</span>
-          <span class="sobre__stat-label">Anos de experiência</span>
+          <span class="sobre__stat-label">Mais de 14 anos<br>de experiência</span>
         </div>
         <div class="sobre__stat-div"></div>
         <div class="sobre__stat">
           <span class="sobre__stat-val">EFA</span>
-          <span class="sobre__stat-label">EFPA Espanha</span>
+          <span class="sobre__stat-label">Certificação EFA (European Financial Advisor)</span>
         </div>
         <div class="sobre__stat-div"></div>
         <div class="sobre__stat">
-          <span class="sobre__stat-val">2</span>
-          <span class="sobre__stat-label">Países — Brasil & Europa</span>
+          <span class="sobre__stat-val">+150</span>
+          <span class="sobre__stat-label">Brasileiros atendidos na Europa</span>
         </div>
       </div>
 
@@ -3275,8 +3590,9 @@
     <!-- Foto direita -->
     <div class="sobre__photo-wrap" id="s10-photo">
       <div class="sobre__photo">
-        <img src="Fotos pra LP/IMG_3773.JPG" alt="Rafael Nobrega — Planejador Financeiro">
+        <img src="Fotos pra LP/IMG_3767.JPG" alt="Rafael Nobrega — Planejador Financeiro">
       </div>
+      <img src="Vector.svg" alt="" class="sobre__photo-wrap__vector" aria-hidden="true">
     </div>
 
   </div>
@@ -3461,7 +3777,8 @@
 ═══════════════════════════════════════════════ -->
 <section class="contato" id="contato">
 
-  <span class="contato__watermark" aria-hidden="true">€</span>
+  <span class="vec vec--c1" aria-hidden="true"></span>
+  <span class="vec vec--c2" aria-hidden="true"></span>
 
   <div class="contato__wrap">
 
@@ -3522,7 +3839,7 @@
     <!-- footer -->
     <footer class="contato__footer" id="c12-footer">
       <img src="Logo/logo tipografico.png" alt="Euro na Real" class="contato__footer-logo">
-      <span class="contato__footer-copy">© 2024 Rafael Nobrega · Todos os direitos reservados</span>
+      <span class="contato__footer-copy">© 2026 Rafael Nobrega · Todos os direitos reservados</span>
     </footer>
 
   </div><!-- /contato__wrap -->
@@ -3570,7 +3887,7 @@
   const mHTML  = ITEMS.map(i =>
     `<span class="m-item${i.g?' au':''}">${i.t}<span class="m-gem"></span></span>`
   ).join('');
-  mTrack.innerHTML = mHTML + mHTML + mHTML + mHTML; /* 4× for smooth loop */
+  if (mTrack) mTrack.innerHTML = mHTML + mHTML + mHTML + mHTML; /* 4× for smooth loop */
 
   gsap.registerPlugin(ScrollTrigger);
 
