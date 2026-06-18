@@ -255,11 +255,11 @@
     }
 
     .hero__para {
-      font-size: 0.82rem;
+      font-size: 1rem;
       font-weight: 400;
       line-height: 1.75;
       color: rgba(28,36,34,0.52);
-      max-width: 440px;
+      max-width: 560px;
     }
 
     /* CTA */
@@ -304,8 +304,8 @@
     .hero__cta:hover::before { left: 130%; }
 
     .cta__text {
-      font-size: 0.82rem;
-      font-weight: 600;
+      font-size: 1rem;
+      font-weight: 400;
       letter-spacing: 0.04em;
       color: #fff;
       white-space: nowrap;
@@ -690,7 +690,7 @@
     .dore-num { display: none; }
 
     .dore-text {
-      font-size: 1.125rem;
+      font-size: 1rem;
       font-weight: 400;
       line-height: 1.65;
       color: rgba(245,245,242,0.78);
@@ -1474,9 +1474,9 @@
     .oferta__btn:hover::before { left: 130%; }
 
     .oferta__btn-text {
-      font-family: 'Bricolage', sans-serif;
-      font-variation-settings: 'wght' 600;
-      font-size: 0.92rem;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      font-size: 1rem;
       letter-spacing: 0.02em;
       color: #fff;
       position: relative;
@@ -1923,9 +1923,9 @@
     .cta-mid__btn:hover::before { left: 130%; }
 
     .cta-mid__btn-text {
-      font-family: 'Bricolage', sans-serif;
-      font-variation-settings: 'wght' 600;
-      font-size: 0.92rem;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      font-size: 1rem;
       letter-spacing: 0.02em;
       color: #fff;
       position: relative;
@@ -1993,9 +1993,15 @@
       display: grid;
       grid-template-columns: 1.25fr 1fr;
       gap: 5rem;
-      align-items: center;
+      align-items: stretch;
       position: relative;
       z-index: 2;
+    }
+
+    .sobre__left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     /* ── Bio esquerda ── */
@@ -2073,7 +2079,7 @@
     }
 
     .sobre__stat-label {
-      font-size: 0.6rem;
+      font-size: 0.5rem;
       font-weight: 400;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -2138,7 +2144,7 @@
 
     .sobre__photo {
       width: 100%;
-      aspect-ratio: 3 / 4;
+      height: 100%;
       border-radius: 1.25rem;
       overflow: hidden;
     }
@@ -2485,7 +2491,6 @@
 
       .hero__left {
         padding: 2rem 1.5rem 2.5rem;
-        min-height: 100svh;
       }
 
       .hero__right {
@@ -2493,11 +2498,12 @@
       }
 
       .hero__logo {
-        width: 120px;
+        width: 72px;
       }
 
       .hero__body {
         padding: 1.5rem 0;
+        justify-content: flex-start;
       }
 
       .hero__eyebrow {
@@ -2505,8 +2511,17 @@
       }
 
       .hero__headline {
-        font-size: clamp(2rem, 8vw, 2.8rem);
+        font-size: clamp(2.25rem, 9.6vw, 2.8rem);
         margin-bottom: 2rem;
+      }
+
+      .hero__headline .lw {
+        display: block;
+        overflow: visible;
+      }
+
+      .hero__headline .li {
+        display: block;
       }
 
       .hero__para {
@@ -2533,10 +2548,37 @@
         justify-content: center;
       }
 
+      /* ── HEADINGS — tamanho único no mobile ── */
+      .dores__q-text,
+      .promessa__hl,
+      .diferencial__hl,
+      .conteudo__hl,
+      .oferta__hl,
+      .transformacao__hl,
+      .perfil__hl,
+      .cta-mid__hl,
+      .sobre__name,
+      .faq__hl,
+      .contato__hl {
+        font-size: 2.1rem;
+      }
+
+      /* evita corte de texto quando quebra linha no mobile */
+      .dores__q-text .lw, .promessa__hl .lw, .diferencial__hl .lw,
+      .conteudo__hl .lw, .oferta__hl .lw, .transformacao__hl .lw,
+      .perfil__hl .lw, .cta-mid__hl .lw, .sobre__name .lw,
+      .faq__hl .lw, .contato__hl .lw, .hero__headline .lw {
+        overflow: visible;
+      }
+
       /* ── VEC SHAPES — ocultar os maiores no mobile ── */
       .vec--h1, .vec--h2, .vec--h3 { display: none; }
 
       /* ── BLOCO 2: DORES ── */
+      .dore-row {
+        padding: 1.25rem;
+      }
+
       .dores {
         padding: 5rem 1.5rem;
       }
@@ -2610,6 +2652,19 @@
         white-space: normal;
       }
 
+      .diferencial__hl .lw {
+        display: block;
+        overflow: visible;
+      }
+
+      .diferencial__hl .li {
+        display: block;
+      }
+
+      .pilar {
+        padding: 1rem 0;
+      }
+
       /* ── BLOCO 5: CONTEÚDO / MÓDULOS ── */
       .conteudo {
         padding: 5rem 1.5rem;
@@ -2622,6 +2677,10 @@
       #c5-list {
         grid-template-columns: repeat(2, 1fr);
         gap: 0.85rem;
+      }
+
+      .modulo__title {
+        font-size: 1.125rem;
       }
 
       /* ── BLOCO 6: OFERTA ── */
@@ -2667,6 +2726,10 @@
         white-space: normal;
       }
 
+      .transformacao__hl {
+        text-align: center;
+      }
+
       .transformacao__carousel {
         padding: 1.5rem 0 4rem;
       }
@@ -2683,6 +2746,10 @@
       .perfil__grid {
         grid-template-columns: 1fr;
         gap: 0.7rem;
+      }
+
+      .perfil-item {
+        padding: 0.9rem 1.2rem;
       }
 
       .perfil__hl .li {
@@ -2737,17 +2804,17 @@
       }
 
       .sobre__stats {
-        flex-wrap: wrap;
-        gap: 1rem;
+        flex-wrap: nowrap;
+        gap: 0;
       }
 
       .sobre__stat {
-        flex: 0 0 auto;
+        flex: 1;
         padding-right: 0;
       }
 
       .sobre__stat-div {
-        display: none;
+        display: block;
       }
 
       .sobre__photo {
@@ -2812,7 +2879,7 @@
 
       /* Headline mínimo em telas muito pequenas */
       .hero__headline {
-        font-size: clamp(1.75rem, 7.5vw, 2.4rem);
+        font-size: 2.1rem;
         line-height: 1.12;
       }
 
