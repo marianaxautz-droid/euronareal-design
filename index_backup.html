@@ -1,0 +1,4234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Euro na Real — Organização Financeira para Brasileiros na Europa</title>
+
+  <style>
+    /* ─── FONTES ─── */
+    @font-face {
+      font-family: 'Bricolage';
+      src: url('Fontes/BricolageGrotesque-VariableFont_opsz,wdth,wght.ttf') format('truetype');
+      font-weight: 100 900;
+      font-display: swap;
+    }
+    @font-face { font-family: 'Poppins'; src: url('Fontes/Poppins/Poppins-Light.ttf') format('truetype'); font-weight: 300; font-display: swap; }
+    @font-face { font-family: 'Poppins'; src: url('Fontes/Poppins/Poppins-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+    @font-face { font-family: 'Poppins'; src: url('Fontes/Poppins/Poppins-Medium.ttf') format('truetype'); font-weight: 500; font-display: swap; }
+    @font-face { font-family: 'Poppins'; src: url('Fontes/Poppins/Poppins-SemiBold.ttf') format('truetype'); font-weight: 600; font-display: swap; }
+    @font-face { font-family: 'Poppins'; src: url('Fontes/Poppins/Poppins-Bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+
+    /* ─── RESET ─── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    /* ─── TOKENS ─── */
+    :root {
+      --granite:    #414E41;
+      --granite-2:  #364036;
+      --gold:       #B08A3D;
+      --gold-hover: #C9A356;
+      --tan:        #CFAF98;
+      --smoke:      #F5F5F2;
+      --alabaster:  #E6E8E3;
+      --silver:     #C8CFCD;
+      --carbon:     #1C2422;
+      --carbon-2:   #111917;
+
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--smoke);
+      color: var(--carbon);
+      overflow-x: hidden;
+    }
+
+    /* ══════════════════════════════════════════════
+       VECTOR SHAPE — losango dourado decorativo
+    ══════════════════════════════════════════════ */
+    .vec {
+      position: absolute;
+      pointer-events: none;
+      user-select: none;
+      background: url("data:image/svg+xml,%3Csvg width='101' height='88' viewBox='0 0 101 88' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M32.6308 26.7336C33.3553 25.4257 34.5212 24.4184 35.9198 23.8919L99.1616 0.0845897C100.258 -0.328089 101.274 0.849704 100.706 1.87484L68.2378 60.4804C67.5132 61.7883 66.3474 62.7956 64.9488 63.3221L1.707 87.1294C0.61076 87.5421 -0.405195 86.3643 0.162741 85.3391L32.6308 26.7336Z' fill='%23B08A3D'/%3E%3C/svg%3E") no-repeat center / contain;
+      animation: vec-float var(--dur, 8s) ease-in-out infinite;
+      animation-delay: var(--delay, 0s);
+    }
+
+    @keyframes vec-float {
+      0%, 100% { transform: rotate(var(--r, 0deg)) translateY(0); }
+      50%       { transform: rotate(var(--r, 0deg)) translateY(-10px); }
+    }
+
+    /* Hero shapes */
+    .vec--h1 { width: 220px; height: 192px; top: 8%;  right: 6%;  opacity: 0.055; --r: 18deg;  --dur: 9s;  --delay: 0s;   z-index: 1; }
+    .vec--h2 { width: 110px; height: 96px;  top: 55%; right: 14%; opacity: 0.04;  --r: -8deg;  --dur: 11s; --delay: 2s;   z-index: 1; }
+    .vec--h3 { width: 70px;  height: 61px;  top: 30%; right: 2%;  opacity: 0.07;  --r: 35deg;  --dur: 7s;  --delay: 1.5s; z-index: 1; }
+
+    /* Promessa shapes */
+    .vec--p1 { width: 180px; height: 157px; bottom: -2rem; left: -3rem; opacity: 0.05; --r: -15deg; --dur: 10s; --delay: 1s; z-index: 0; }
+    .vec--p2 { width: 80px;  height: 70px;  top: 2rem;     right: 0;    opacity: 0.04; --r: 25deg;  --dur: 12s; --delay: 3s; z-index: 0; }
+
+    /* Diferencial shapes */
+    .vec--d1 { width: 260px; height: 227px; bottom: -4rem; right: -3rem; opacity: 0.04; --r: -20deg; --dur: 13s; --delay: 0.5s; z-index: 0; }
+    .vec--d2 { width: 90px;  height: 79px;  top: 3rem;     left: 2rem;   opacity: 0.05; --r: 10deg;  --dur: 9s;  --delay: 2s;   z-index: 0; }
+
+    /* Sobre shapes */
+    .vec--s1 { width: 200px; height: 175px; top: 50%;  right: -2rem; opacity: 0.04; --r: -12deg; --dur: 11s; --delay: 1s;   z-index: 0; transform: translateY(-50%) rotate(-12deg); animation: none; }
+    .vec--s2 { width: 70px;  height: 61px;  top: 1rem; left: 40%;    opacity: 0.06; --r: 30deg;  --dur: 8s;  --delay: 0.5s; z-index: 0; }
+
+    /* Contato shapes */
+    .vec--c1 { width: 230px; height: 201px; bottom: 3rem; right: 2rem;  opacity: 0.05; --r: 15deg;  --dur: 10s; --delay: 0s;   z-index: 0; }
+    .vec--c2 { width: 80px;  height: 70px;  top: 2rem;    left: 1rem;   opacity: 0.04; --r: -25deg; --dur: 14s; --delay: 2.5s; z-index: 0; }
+
+
+    /* ══════════════════════════════════════════════
+       GRAIN  —  SVG noise via data-URI on pseudo
+    ══════════════════════════════════════════════ */
+    .has-grain {
+      position: relative;
+    }
+    .has-grain::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.055;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72 0.76' numOctaves='4' seed='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 240px 240px;
+    }
+
+    /* ══════════════════════════════════════════════
+       HERO
+    ══════════════════════════════════════════════ */
+    .hero {
+      display: grid;
+      grid-template-columns: 54fr 46fr;
+      min-height: 100vh;
+      max-height: 1000px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* ───────────────── LEFT ───────────────── */
+    .hero__left {
+      background-color: var(--smoke);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 2.75rem 4rem 2.75rem 4.5rem;
+      z-index: 2;
+    }
+
+
+    /* thin gold stripe — right edge */
+    .hero__edge-line {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 1.5px;
+      height: 100%;
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        var(--gold) 25%,
+        var(--gold) 75%,
+        transparent 100%
+      );
+      opacity: 0.3;
+      z-index: 5;
+    }
+
+    /* ── Header ── */
+    .hero__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 3;
+    }
+
+    .hero__logo {
+      width: 100px;
+      display: block;
+      filter: none;
+      will-change: opacity, transform;
+    }
+
+
+    /* ── Body ── */
+    .hero__body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem 0;
+      position: relative;
+      z-index: 3;
+    }
+
+    /* eyebrow */
+    .hero__eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 2.25rem;
+    }
+
+    .eyebrow__dash {
+      display: block;
+      width: 32px;
+      height: 1.5px;
+      background: linear-gradient(90deg, var(--gold), rgba(176,138,61,0));
+    }
+
+    .eyebrow__label {
+      font-size: 0.64rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ── HEADLINE ── */
+    .hero__headline {
+      font-family: 'Bricolage', sans-serif;
+      font-size: clamp(2.1rem, 3.1vw, 3.5rem);
+      line-height: 1.09;
+      letter-spacing: -0.028em;
+      color: var(--carbon);
+      margin-bottom: 2.5rem;
+    }
+
+    /* Each line sits inside an overflow:hidden mask */
+    .lw { display: block; overflow: hidden; }
+    .li { display: block; will-change: transform; }
+
+    /* peso único semibold + dourado inline */
+    .li { font-variation-settings: 'wght' 600; }
+    .hl-gold { color: var(--gold); }
+
+    /* ── Horizontal rule ── */
+    .hero__rule {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+      transform-origin: left center;
+    }
+
+    .rule__line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg,
+        rgba(28,36,34,0.15) 0%,
+        transparent 100%
+      );
+    }
+
+    .rule__gem {
+      width: 5px;
+      height: 5px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      opacity: 0.7;
+      flex-shrink: 0;
+    }
+
+    .rule__gem-vec {
+      width: 22px;
+      height: auto;
+      opacity: 0.75;
+      flex-shrink: 0;
+    }
+
+    /* ── Sub: para + CTA empilhados ── */
+    .hero__sub {
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+
+    .hero__para {
+      font-size: 0.82rem;
+      font-weight: 400;
+      line-height: 1.75;
+      color: rgba(28,36,34,0.52);
+      max-width: 440px;
+    }
+
+    /* CTA */
+    .hero__cta {
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      flex-shrink: 0;
+      background: var(--gold);
+      border-radius: 100px;
+      padding: 0.9rem 1.6rem 0.9rem 1.75rem;
+      position: relative;
+      overflow: hidden;
+      transition:
+        box-shadow 0.4s var(--ease-out),
+        transform  0.4s var(--ease-out);
+    }
+
+    /* shine sweep on hover */
+    .hero__cta::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -75%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(255,255,255,0.22) 50%,
+        transparent 100%
+      );
+      transform: skewX(-20deg);
+      transition: left 0.55s var(--ease-out);
+    }
+
+    .hero__cta:hover {
+      box-shadow: 0 14px 40px rgba(176,138,61,0.5);
+      transform: translateY(-2px);
+    }
+
+    .hero__cta:hover::before { left: 130%; }
+
+    .cta__text {
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: #fff;
+      white-space: nowrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta__circle {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+      transition: background 0.3s, transform 0.35s var(--ease-out);
+    }
+
+    .hero__cta:hover .cta__circle {
+      background: rgba(255,255,255,0.32);
+      transform: translateX(3px);
+    }
+
+    .cta__circle svg { flex-shrink: 0; }
+
+    /* ── Footer stats ── */
+    .hero__stats {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(28,36,34,0.1);
+      position: relative;
+      z-index: 3;
+    }
+
+    .stat {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      padding-right: 1.5rem;
+    }
+
+    .stat__num {
+      font-family: 'Bricolage', sans-serif;
+      font-variation-settings: 'wght' 700;
+      font-size: 1.6rem;
+      color: var(--granite);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .stat__label {
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(28,36,34,0.38);
+    }
+
+    .stat__div {
+      width: 1px;
+      background: rgba(28,36,34,0.1);
+      margin: 0 2rem 0 0;
+      flex-shrink: 0;
+    }
+
+    /* ───────────────── RIGHT ───────────────── */
+    .hero__right {
+      position: relative;
+      overflow: visible; /* allows card to overflow */
+    }
+
+    /* Photo wraps entire right column */
+    .photo-frame {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .hero__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 85%;
+      display: block;
+      filter: brightness(0.92) contrast(1.04) saturate(0.88);
+      transform: scale(1.06);
+      transform-origin: center 20%;
+      will-change: transform;
+    }
+
+    .photo-frame::before,
+    .photo-frame::after { display: none; }
+
+    /* ── Floating identity card ── */
+    .hero__card {
+      position: absolute;
+      bottom: 2.75rem;
+      right: 2.25rem;
+      z-index: 10;
+      background: rgba(18, 26, 24, 0.6);
+      backdrop-filter: blur(20px) saturate(1.6);
+      -webkit-backdrop-filter: blur(20px) saturate(1.6);
+      border: 1px solid rgba(245,245,242,0.09);
+      border-radius: 1.25rem;
+      padding: 1.4rem 1.6rem 1.4rem 1.6rem;
+      min-width: 210px;
+      will-change: opacity, transform;
+    }
+
+    /* thin gold top border on card */
+    .hero__card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 1.6rem;
+      right: 1.6rem;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      border-radius: 0;
+    }
+
+    .card__avatar-row {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .card__initials {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), rgba(176,138,61,0.5));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bricolage', sans-serif;
+      font-variation-settings: 'wght' 700;
+      font-size: 0.85rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .card__name {
+      font-family: 'Bricolage', sans-serif;
+      font-variation-settings: 'wght' 600;
+      font-size: 0.95rem;
+      color: var(--smoke);
+      line-height: 1.2;
+    }
+
+    .card__role {
+      font-size: 0.62rem;
+      font-weight: 400;
+      color: rgba(200,207,205,0.55);
+      margin-top: 0.15rem;
+    }
+
+    .card__divider {
+      height: 1px;
+      background: rgba(200,207,205,0.1);
+      margin-bottom: 0.9rem;
+    }
+
+    .card__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .card__tag {
+      font-size: 0.58rem;
+      font-weight: 500;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(176,138,61,0.28);
+      background: rgba(176,138,61,0.1);
+      border-radius: 100px;
+      padding: 0.22rem 0.65rem;
+    }
+
+    /* ── Vertical editorial label ── */
+    .hero__vert {
+      position: absolute;
+      top: 50%;
+      right: 0.9rem;
+      transform: translateY(-50%) rotate(90deg);
+      transform-origin: center;
+      font-size: 0.5rem;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(200,207,205,0.18);
+      white-space: nowrap;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    /* ══════════════════════════════════════════════
+       MARQUEE
+    ══════════════════════════════════════════════ */
+    .marquee {
+      background: var(--carbon-2);
+      padding: 0.95rem 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .marquee::before,
+    .marquee::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 8rem;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .marquee::before { left: 0;  background: linear-gradient(to right,  var(--carbon-2), transparent); }
+    .marquee::after  { right: 0; background: linear-gradient(to left, var(--carbon-2), transparent); }
+
+    .marquee__track {
+      display: flex;
+      width: max-content;
+      animation: roll 32s linear infinite;
+    }
+    .marquee__track:hover { animation-play-state: paused; }
+
+    @keyframes roll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    .m-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.2rem;
+      padding-right: 1.2rem;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(245,245,242,0.38);
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .m-item.au { color: var(--gold); }
+
+    .m-gem {
+      width: 5px;
+      height: 5px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      opacity: 0.45;
+      flex-shrink: 0;
+    }
+
+    /* ══════════════════════════════════════════════
+       BLOCO 2 — DORES
+    ══════════════════════════════════════════════ */
+    .dores {
+      background: var(--granite);
+      padding: 8rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* grain */
+    .dores::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.32;
+      mix-blend-mode: soft-light;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72 0.76' numOctaves='4' seed='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 220px 220px;
+    }
+
+    .dores__wrap {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 4rem;
+      text-align: center;
+    }
+
+    /* ── Parte 1: Pergunta ── */
+    .dores__question { margin-bottom: 0; }
+
+    .dores__q-text {
+      font-family: 'Bricolage', sans-serif;
+      font-variation-settings: 'wght' 500;
+      font-size: clamp(2.1rem, 3.1vw, 3.5rem);
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      color: #F5F5F2;
+    }
+
+    .dores__q-text .lw { display: block; overflow: hidden; }
+    .dores__q-text .li { display: block; white-space: nowrap; }
+
+    /* "mas..." — enorme, centralizado */
+    .dores__mas-row {
+      display: flex;
+      justify-content: center;
+      padding: 1.2rem 0 3.5rem;
+      overflow: hidden;
+    }
+
+    .dores__mas-text {
+      font-family: 'Bricolage', sans-serif;
+      font-variation-settings: 'wght' 600;
+      font-size: clamp(2.1rem, 3.1vw, 3.5rem);
+      line-height: 1.09;
+      letter-spacing: -0.028em;
+      color: var(--gold);
+      display: block;
+    }
+
+    /* ── Parte 2: Grid de cards ── */
+    .dores__list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+      text-align: left;
+    }
+
+    .dore-row {
+      position: relative;
+      background: rgba(245,245,242,0.03);
+      border: 1px solid rgba(200,207,205,0.07);
+      border-radius: 1.25rem;
+      padding: 1.75rem 1.6rem 1.6rem;
+      cursor: default;
+      transition:
+        border-color 0.4s var(--ease-out),
+        background   0.4s var(--ease-out),
+        box-shadow   0.4s var(--ease-out);
+      overflow: hidden;
+    }
+
+    /* gold shimmer line on top edge — appears on hover */
+    .dore-row::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 1.5rem; right: 1.5rem;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0;
+      transition: opacity 0.45s var(--ease-out);
+    }
+
+    /* subtle inner gold glow corner */
+    .dore-row::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 1.25rem;
+      background: radial-gradient(ellipse at 0% 0%, rgba(176,138,61,0.07) 0%, transparent 65%);
+      opacity: 0;
+      transition: opacity 0.45s var(--ease-out);
+      pointer-events: none;
+    }
+
+    .dore-row:hover {
+      border-color: rgba(176,138,61,0.22);
+      background: rgba(245,245,242,0.05);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    }
+    .dore-row:hover::before { opacity: 1; }
+    .dore-row:hover::after  { opacity: 1; }
+
+    /* number — top right, ghosted */
+    .dore-num { display: none; }
+
+    .dore-text {
+      font-size: 1.125rem;
+      font-weight: 400;
+      line-height: 1.65;
+      color: rgba(245,245,242,0.78);
+      transition: color 0.35s ease;
+      padding-right: 1.5rem; /* avoid overlap with number */
+    }
+    .dore-text strong { font-weight: 600; }
+    .dore-row:hover .dore-text { color: rgba(245,245,242,0.82); }
+
+    /* ── Parte 3: Callout final ── */
+    .dores__close {
+      margin-top: 5.5rem;
+    }
+
+    .dores__close-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.9rem;
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(200,207,205,0.25);
+      margin-bottom: 1.5rem;
+    }
+
+    .dores__close-label::before,
+    .dores__close-label::after {
+      content: '';
+      display: block;
+      width: 36px;
+      height: 1px;
+      background: rgba(200,207,205,0.15);
+    }
+
+    .dores__callout {
+      font-family: 'Bricolage', sans-serif;
+      font-variation-settings: 'wght' 600;
+      font-size: clamp(2.1rem, 3.1vw, 3.5rem);
+      line-height: 1.09;
+      letter-spacing: -0.028em;
+      color: var(--smoke);
+      text-align: center;
+    }
+
+    .dores__callout .lw { display: block; overflow: hidden; }
+    .dores__callout .li { display: block; }
+
+    .dores__callout em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    /* ══════════════════════════════════════════════
+       BLOCO 3 — PROMESSA
+    ══════════════════════════════════════════════ */
+    .promessa {
+      background: var(--smoke);
+      position: relative;
+      overflow: hidden;
+      padding: 8rem 0;
+    }
+
+    .promessa__inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      align-items: stretch;
+      gap: 4rem;
+    }
+
+    /* glow ambiente dourado */
+    .promessa::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle at center, rgba(176,138,61,0.055) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    /* ── Foto esquerda ── */
+    .promessa__photo {
+      border-radius: 1.25rem;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+    }
+
+    .promessa__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: brightness(0.96) saturate(0.9);
+      transition: transform 0.8s var(--ease-out);
+    }
+
+    .promessa__photo:hover .promessa__img { transform: scale(1.04); }
+
+    /* ── Conteúdo direito ── */
+    .promessa__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* headline */
+    .promessa__hl {
+      font-family: 'Bricolage', sans-serif;
+      font-variation-settings: 'wght' 600;
+      font-size: clamp(2.1rem, 3.1vw, 3.5rem);
+      line-height: 1.09;
+      letter-spacing: -0.028em;
+      color: var(--carbon);
+      margin-bottom: 2rem;
+    }
+
+    .promessa__hl .lw { display: block; overflow: hidden; }
+    .promessa__hl .li { display: block; white-space: nowrap; }
+
+    .promessa__sub {
+      font-size: 0.88rem;
+      font-weight: 400;
+      line-height: 1.75;
+      color: rgba(28,36,34,0.55);
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+    }
+
+    /* "planilha" — riscado em dourado no scroll */
+    .promessa__strike {
+      color: rgba(28,36,34,0.28);
+      position: relative;
+      display: inline-block;
+    }
+
+    .promessa__strike::after {
+      content: '';
+      position: absolute;
+      left: -2px;
+      right: -2px;
+      top: 53%;
+      height: 1.5px;
+      background: var(--gold);
+      opacity: 0.7;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.75s var(--ease-out);
+    }
+
+    .promessa__strike.is-struck::after { transform: scaleX(1); }
+
+    /* grid de benefícios */
+    .promessa__grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .beneficio {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    /* ícone dourado */
+    .beneficio__icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background: rgba(176,138,61,0.09);
+      border: 1px solid rgba(176,138,61,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .beneficio:hover .beneficio__icon {
+      background: rgba(176,138,61,0.16);
+      border-color: rgba(176,138,61,0.35);
+    }
+
+    .beneficio__icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--gold);
+      stroke-width: 1.6;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .beneficio__text {
+      font-size: 0.82rem;
+      font-weight: 400;
+      line-height: 1.6;
+      color: rgba(28,36,34,0.58);
+      transition: color 0.3s;
+    }
+
+    .beneficio:hover .beneficio__text { color: rgba(28,36,34,0.82); }
+
+    /* ══════════════════════════════════════════════
+       BLOCO 4 — DIFERENCIAL
+    ══════════════════════════════════════════════ */
+    .diferencial {
+      background: var(--granite);
+      padding: 8rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* grain */
+    .diferencial::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.32;
+      mix-blend-mode: soft-light;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72 0.76' numOctaves='4' seed='7' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 220px 220px;
+    }
+
+
+    .diferencial__wrap {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 4.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 5rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ── Lado esquerdo ── */
+    .diferencial__left {}
+
+    .diferencial__tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.58rem;
+      font-weight: 500;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2.25rem;
+    }
+
+    .diferencial__tag-line {
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.5;
+    }
+
+    .diferencial__hl {
+      font-family: 'Bricolage', sans-serif;
+      font-variation-settings: 'wght' 600;
+      font-size: clamp(2.1rem, 3.1vw, 3.5rem);
+      line-height: 1.09;
+      letter-spacing: -0.028em;
+      color: var(--smoke);
+      margin-bottom: 2rem;
+    }
+
+    .diferencial__hl .lw { display: block; overflow: hidden; }
+    .diferencial__hl .li { display: block; }
+    .diferencial__hl .hl-gold { color: var(--gold); }
+
+    .diferencial__sub {
+      font-size: 0.85rem;
+      font-weight: 400;
+      line-height: 1.75;
+      color: rgba(200,207,205,0.55);
+      max-width: 360px;
+    }
+
+    /* ── Lado direito: pilares ── */
+    .diferencial__right {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pilar {
+      display: grid;
+      grid-template-columns: 1fr;
+      padding: 1.75rem 0 1.75rem 1rem;
+      border-bottom: 1px solid rgba(200,207,205,0.08);
+      position: relative;
+      cursor: default;
+      transition: background 0.35s;
+    }
+
+    .pilar:first-child { border-top: 1px solid rgba(200,207,205,0.08); }
+
+    /* gold left accent */
+    .pilar::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: var(--gold);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.4s var(--ease-out);
+    }
+    .pilar:hover::before { transform: scaleY(1); }
+
+    .pilar__num {
+      font-family: 'Bricolage', sans-serif;
+      font-variation-settings: 'wght' 700;
+      font-size: 1.4rem;
+      line-height: 1;
+      color: rgba(200,207,205,0.1);
+      letter-spacing: -0.04em;
+      padding-top: 0.1rem;
+      transition: color 0.35s;
+      user-select: none;
+    }
+    .pilar:hover .pilar__num { color: rgba(176,138,61,0.35); }
+
+    .pilar__vec { display: none; }
+
+    .pilar__body {}
+
+    .pilar__title {
+      font-family: 'Bricolage', sans-serif;
+      font-variation-settings: 'wght' 500;
+      font-size: 1.125rem;
+      letter-spacing: -0.015em;
+      color: rgba(245,245,242,0.75);
+      margin-bottom: 0.4rem;
+      line-height: 1.2;
+      transition: color 0.35s;
+    }
+    .pilar:hover .pilar__title { color: var(--smoke); }
+
+    .pilar__text {
+      font-size: 0.8rem;
+      font-weight: 400;
+      line-height: 1.6;
+      color: rgba(200,207,205,0.42);
+      transition: color 0.35s;
+    }
+    .pilar:hover .pilar__text { color: rgba(200,207,205,0.7); }
+
+    /* ══════════════════════════════════════════════
+       BLOCO 5 — CONTEÚDO
+    ══════════════════════════════════════════════ */
+    .conteudo {
+      background: var(--alabaster);
+      padding: 8rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .conteudo__wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 4rem;
+    }
+
+    /* headline + intro */
+    .conteudo__header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .conteudo__hl {
+      font-family: 'Bricolage', sans-serif;
+      font-variation-settings: 'wght' 600;
+      font-size: clamp(2.1rem, 3.1vw, 3.5rem);
+      line-height: 1.09;
+      letter-spacing: -0.028em;
+      color: var(--carbon);
+    }
+
+    .conteudo__hl .lw { display: block; overflow: hidden; }
+    .conteudo__hl .li { display: block; }
+
+    .conteudo__intro {
+      font-size: 0.85rem;
+      font-weight: 400;
+      line-height: 1.75;
+      color: rgba(28,36,34,0.52);
+      padding-bottom: 0.25rem;
+    }
+
+    /* grid 4×2 */
+    #c5-list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    /* card */
+    .modulo {
+      background: var(--smoke);
+      border-radius: 1rem;
+      overflow: hidden;
+      cursor: default;
+      transition: box-shadow 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+    }
+
+    .modulo:hover {
+      box-shadow: 0 12px 40px rgba(28,36,34,0.12);
+      transform: translateY(-4px);
+    }
+
+    /* imagem */
+    .modulo__img-wrap {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+    }
+
+
+    .modulo__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: brightness(0.95) saturate(1.6);
+      transition: transform 0.65s var(--ease-out), filter 0.4s;
+    }
+
+    .modulo:hover .modulo__img {
+      transform: scale(1.05);
+      filter: brightness(0.98) saturate(0.95);
+    }
+
+    /* gradiente sobre a imagem */
+    .modulo__img-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(28,36,34,0.45) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* número sobre a imagem */
+    .modulo__num {
+      position: absolute;
+      top: 0.85rem;
+      left: 0.85rem;
+      z-index: 2;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.55rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: rgba(245,245,242,0.7);
+      background: rgba(28,36,34,0.35);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(245,245,242,0.12);
+      border-radius: 100px;
+      padding: 0.28rem 0.65rem;
+      transition: color 0.3s, background 0.3s;
+    }
+
+    .modulo:hover .modulo__num {
+      color: var(--gold);
+      background: rgba(28,36,34,0.55);
+    }
+
+    /* corpo do card */
+    .modulo__body {
+      padding: 1rem 1.1rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .modulo__title {
+      font-family: 'Bricolage', sans-serif;
+      font-variation-settings: 'wght' 600;
+      font-size: 0.88rem;
+      letter-spacing: -0.012em;
+      color: var(--carbon);
+      line-height: 1.3;
+      transition: color 0.3s;
+    }
+
+    .modulo__desc {
+      font-size: 0.73rem;
+      font-weight: 400;
+      line-height: 1.55;
+      color: rgba(28,36,34,0.45);
+      transition: color 0.3s;
+    }
+
+    .modulo:hover .modulo__desc { color: rgba(28,36,34,0.65); }
+
+    /* ══════════════════════════════════════════════
+       BLOCO 6 — OFERTA
+    ══════════════════════════════════════════════ */
+    .oferta {
+      background: var(--carbon-2);
+      padding: 8rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .oferta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.32;
+      mix-blend-mode: soft-light;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72 0.76' numOctaves='4' seed='9' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 220px 220px;
+      z-index: 2;
+    }
+
+    .oferta::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background: linear-gradient(to top, #404E41 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+
+    /* watermark € */
+    .oferta__watermark {
+      position: absolute;
+      top: 50%;
+      right: -3rem;
+      transform: translateY(-50%);
+      font-family: 'Bricolage', sans-serif;
+      font-variation-settings: 'wght' 800;
+      font-size: 30rem;
+      line-height: 1;
+      color: rgba(245,245,242,0.018);
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.05em;
+    }
+
+    .oferta__wrap {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 4.5rem;
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ── Esquerda ── */
+    .oferta__hl {
+      font-family: 'Bricolage', sans-serif;
+      font-variation-settings: 'wght' 600;
+      font-size: clamp(2.1rem, 3.1vw, 3.5rem);
+      line-height: 1.09;
+      letter-spacing: -0.028em;
+      color: var(--smoke);
+      margin-bottom: 0.85rem;
+    }
+
+    .oferta__hl .lw { display: block; overflow: hidden; }
+    .oferta__hl .li { display: block; }
+
+    .oferta__sub {
+      font-size: 0.85rem;
+      font-weight: 400;
+      line-height: 1.7;
+      color: rgba(200,207,205,0.5);
+      margin-bottom: 2.75rem;
+      max-width: 400px;
+    }
+
+    /* lista de itens */
+    .oferta__items {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .oferta-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.95rem 0;
+      border-bottom: 1px solid rgba(200,207,205,0.07);
+    }
+
+    .oferta-item:first-child { border-top: 1px solid rgba(200,207,205,0.07); }
+
+    .oferta-item__check {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(176,138,61,0.1);
+      border: 1px solid rgba(176,138,61,0.28);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .oferta-item__check svg {
+      width: 10px;
+      height: 10px;
+      stroke: var(--gold);
+      stroke-width: 2.2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .oferta-item__text {
+      font-size: 0.85rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: rgba(200,207,205,0.65);
+    }
+
+    .oferta-item__text strong {
+      font-weight: 600;
+      color: rgba(245,245,242,0.85);
+    }
+
+    /* ── Card CTA direita ── */
+    .oferta__card {
+      position: relative;
+      background: rgba(20,28,26,0.75);
+      backdrop-filter: blur(24px) saturate(1.5);
+      -webkit-backdrop-filter: blur(24px) saturate(1.5);
+      border: 1px solid rgba(176,138,61,0.22);
+      border-radius: 1.5rem;
+      padding: 2.75rem 2.25rem;
+    }
+
+    /* linha dourada topo */
+    .oferta__card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 1.75rem; right: 1.75rem;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    /* glow dourado interno */
+    .oferta__card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 1.5rem;
+      background: radial-gradient(ellipse at 50% 0%, rgba(176,138,61,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .oferta__card-title {
+      font-family: 'Bricolage', sans-serif;
+      font-variation-settings: 'wght' 600;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+      color: var(--smoke);
+      margin-bottom: 0.4rem;
+      line-height: 1.25;
+    }
+
+    .oferta__card-desc {
+      font-size: 0.78rem;
+      font-weight: 400;
+      line-height: 1.6;
+      color: rgba(200,207,205,0.45);
+      margin-bottom: 2rem;
+    }
+
+    .oferta__card-divider {
+      height: 1px;
+      background: rgba(200,207,205,0.08);
+      margin-bottom: 2rem;
+    }
+
+    /* bullet resumo dentro do card */
+    .oferta__card-bullets {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 2.25rem;
+    }
+
+    .oferta__card-bullet {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: rgba(200,207,205,0.5);
+    }
+
+    .oferta__card-bullet::before {
+      content: '';
+      display: block;
+      width: 4px;
+      height: 4px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+      opacity: 0.7;
+    }
+
+    /* botão CTA principal */
+    .oferta__btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      width: 100%;
+      background: var(--gold);
+      border: none;
+      border-radius: 100px;
+      padding: 1.1rem 2rem;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition:
+        box-shadow 0.4s var(--ease-out),
+        transform  0.4s var(--ease-out);
+    }
+
+    .oferta__btn::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -75%;
+      width: 50%; height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.22), transparent);
+      transform: skewX(-20deg);
+      transition: left 0.55s var(--ease-out);
+    }
+
+    .oferta__btn:hover {
+      box-shadow: 0 16px 48px rgba(176,138,61,0.55);
+      transform: translateY(-2px);
+    }
+
+    .oferta__btn:hover::before { left: 130%; }
+
+    .oferta__btn-text {
+      font-family: 'Bricolage', sans-serif;
+      font-variation-settings: 'wght' 600;
+      font-size: 0.92rem;
+      letter-spacing: 0.02em;
+      color: #fff;
+      position: relative;
+      z-index: 1;
+    }
+
+    .oferta__btn-arrow {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+      transition: transform 0.35s var(--ease-out), background 0.3s;
+    }
+
+    .oferta__btn:hover .oferta__btn-arrow {
+      transform: translateX(3px);
+      background: rgba(255,255,255,0.32);
+    }
+
+    .oferta__btn-arrow svg {
+      stroke: white;
+      stroke-width: 1.8;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .oferta__guarantee {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+      font-size: 0.7rem;
+      font-weight: 400;
+      color: rgba(200,207,205,0.35);
+    }
+
+    .oferta__guarantee svg {
+      width: 13px;
+      height: 13px;
+      stroke: rgba(200,207,205,0.35);
+      fill: none;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    /* ══════════════════════════════════════════════
+       BLOCO 7 — TRANSFORMAÇÃO
+    ══════════════════════════════════════════════ */
+    .transformacao {
+      background: var(--granite);
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      align-items: center;
+      padding: 8rem 0;
+      min-height: 540px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .transformacao::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.32;
+      mix-blend-mode: soft-light;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72 0.76' numOctaves='4' seed='11' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 220px 220px;
+      z-index: 0;
+    }
+
+    /* ── Esquerda: título ── */
+    .transformacao__left {
+      padding: 5rem 3rem 5rem 4.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* linha vertical separadora */
+    .transformacao__left::after {
+      content: '';
+      position: absolute;
+      top: 15%;
+      right: 0;
+      bottom: 15%;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(200,207,205,0.15), transparent);
+    }
+
+    .transformacao__hl {
+      font-family: 'Bricolage', sans-serif;
+      font-variation-settings: 'wght' 600;
+      font-size: clamp(2.1rem, 3.1vw, 3.5rem);
+      line-height: 1.09;
+      letter-spacing: -0.028em;
+      color: var(--smoke);
+      margin-bottom: 1.25rem;
+    }
+
+    .transformacao__hl .lw { display: block; overflow: hidden; }
+    .transformacao__hl .li { display: block; }
+
+    .transformacao__intro {
+      font-size: 0.82rem;
+      font-weight: 400;
+      line-height: 1.7;
+      color: rgba(200,207,205,0.55);
+    }
+
+    /* ── Direita: carrossel ── */
+    .transformacao__carousel {
+      overflow: hidden;
+      padding: 4rem 0;
+      /* fade nas bordas */
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    }
+
+    .transf-track {
+      display: flex;
+      gap: 1rem;
+      width: max-content;
+      animation: transf-scroll 28s linear infinite;
+    }
+
+    .transf-track:hover { animation-play-state: paused; }
+
+    @keyframes transf-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* card individual */
+    .transf-card {
+      width: 260px;
+      flex-shrink: 0;
+      background: var(--granite-2);
+      border-radius: 1.25rem;
+      padding: 1.75rem 1.6rem 1.75rem;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+      transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+      border: 1px solid rgba(200,207,205,0.07);
+    }
+
+    .transf-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(28,36,34,0.18);
+    }
+
+    /* grain sobre o card */
+    .transf-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.04;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' seed='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 160px 160px;
+    }
+
+    /* linha dourada topo do card */
+    .transf-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 1.25rem; right: 1.25rem;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0.5;
+    }
+
+    .transf-card__num { display: none; }
+
+    .transf-card__text {
+      font-family: 'Bricolage', sans-serif;
+      font-variation-settings: 'wght' 500;
+      font-size: 1rem;
+      line-height: 1.4;
+      letter-spacing: -0.015em;
+      color: rgba(245,245,242,0.72);
+    }
+
+    .transf-card__text .g {
+      color: var(--smoke);
+      font-variation-settings: 'wght' 600;
+    }
+
+    /* ══════════════════════════════════════════════
+       BLOCO 8 — PARA QUEM É
+    ══════════════════════════════════════════════ */
+    .perfil {
+      background: var(--smoke);
+      padding: 8rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .perfil__wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 4.5rem;
+    }
+
+    /* header: headline + sub em split */
+    .perfil__header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .perfil__hl {
+      font-family: 'Bricolage', sans-serif;
+      font-variation-settings: 'wght' 600;
+      font-size: clamp(2.1rem, 3.1vw, 3.5rem);
+      line-height: 1.09;
+      letter-spacing: -0.028em;
+      color: var(--carbon);
+    }
+
+    .perfil__hl .lw { display: block; overflow: hidden; }
+    .perfil__hl .li { display: block; }
+
+    .perfil__sub {
+      font-size: 0.85rem;
+      font-weight: 400;
+      line-height: 1.75;
+      color: rgba(28,36,34,0.48);
+      padding-bottom: 0.2rem;
+    }
+
+    /* grid 2×3 */
+    .perfil__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.9rem;
+    }
+
+    /* card */
+    .perfil-item {
+      background: var(--alabaster);
+      border: 1px solid rgba(28,36,34,0.07);
+      border-radius: 1.25rem;
+      padding: 1.6rem 1.6rem 1.6rem 1.5rem;
+      display: flex;
+      gap: 1.1rem;
+      align-items: center;
+      transition: border-color 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+    }
+
+    .perfil-item:hover {
+      border-color: rgba(176,138,61,0.25);
+      box-shadow: 0 6px 24px rgba(28,36,34,0.07);
+    }
+
+    /* checkbox */
+    .perfil-item__check {
+      width: 26px;
+      height: 26px;
+      border-radius: 7px;
+      border: 1.5px solid rgba(28,36,34,0.18);
+      flex-shrink: 0;
+      position: relative;
+      margin-top: 0.05rem;
+      transition: border-color 0.4s, background 0.4s;
+      overflow: hidden;
+    }
+
+    .perfil-item__check svg {
+      position: absolute;
+      inset: 3px;
+      width: calc(100% - 6px);
+      height: calc(100% - 6px);
+      overflow: visible;
+    }
+
+    .perfil-item__check polyline {
+      fill: none;
+      stroke: var(--gold);
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 22;
+      stroke-dashoffset: 22;
+      transition: stroke-dashoffset 0s; /* controlled by GSAP */
+    }
+
+    /* checked state */
+    .perfil-item.is-checked .perfil-item__check {
+      border-color: var(--gold);
+      background: rgba(176,138,61,0.08);
+    }
+
+    .perfil-item__body {}
+
+    .perfil-item__title {
+      font-family: 'Bricolage', sans-serif;
+      font-variation-settings: 'wght' 600;
+      font-size: 0.95rem;
+      letter-spacing: -0.012em;
+      color: var(--carbon);
+      line-height: 1.3;
+      margin-bottom: 0.3rem;
+    }
+
+    .perfil-item__desc {
+      font-size: 0.78rem;
+      font-weight: 400;
+      line-height: 1.55;
+      color: rgba(28,36,34,0.45);
+    }
+
+    /* ══════════════════════════════════════════════
+       BLOCO 9 — CTA INTERMEDIÁRIO
+    ══════════════════════════════════════════════ */
+    .cta-mid {
+      background: var(--smoke);
+      padding: 8rem 0;
+    }
+
+    .cta-mid__wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 4.5rem;
+    }
+
+    /* card */
+    .cta-mid__card {
+      position: relative;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    /* foto de fundo do card */
+    .cta-mid__bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .cta-mid__bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+      filter: saturate(0.7) brightness(0.65);
+    }
+
+    /* overlay */
+    .cta-mid__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(17,25,23,0.1) 0%,
+        rgba(17,25,23,0.3) 60%,
+        rgba(17,25,23,0.15) 100%
+      );
+      z-index: 1;
+    }
+
+    /* grain */
+    .cta-mid__grain {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      opacity: 0.05;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72 0.76' numOctaves='4' seed='11' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 220px 220px;
+    }
+
+    /* conteúdo centralizado */
+    .cta-mid__content {
+      position: relative;
+      z-index: 3;
+      padding: 4rem 3rem;
+      max-width: 720px;
+    }
+
+    .cta-mid__hl {
+      font-family: 'Bricolage', sans-serif;
+      font-variation-settings: 'wght' 600;
+      font-size: clamp(2.1rem, 3.1vw, 3.5rem);
+      line-height: 1.09;
+      letter-spacing: -0.028em;
+      color: var(--smoke);
+      margin-bottom: 1.25rem;
+    }
+
+    .cta-mid__hl .lw { display: block; overflow: hidden; }
+    .cta-mid__hl .li { display: block; }
+    .cta-mid__hl .gold { color: var(--gold); }
+
+    .cta-mid__sub {
+      font-size: 1.125rem;
+      font-weight: 400;
+      line-height: 1.7;
+      color: rgba(245,245,242,0.85);
+      margin-bottom: 2.25rem;
+    }
+
+    .cta-mid__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--gold);
+      border-radius: 100px;
+      padding: 1rem 1.75rem 1rem 2rem;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+    }
+
+    .cta-mid__btn::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -75%;
+      width: 50%; height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.22), transparent);
+      transform: skewX(-20deg);
+      transition: left 0.55s var(--ease-out);
+    }
+
+    .cta-mid__btn:hover { box-shadow: 0 16px 48px rgba(176,138,61,0.55); transform: translateY(-2px); }
+    .cta-mid__btn:hover::before { left: 130%; }
+
+    .cta-mid__btn-text {
+      font-family: 'Bricolage', sans-serif;
+      font-variation-settings: 'wght' 600;
+      font-size: 0.92rem;
+      letter-spacing: 0.02em;
+      color: #fff;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-mid__btn-circle {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      position: relative; z-index: 1;
+      transition: background 0.3s, transform 0.35s var(--ease-out);
+    }
+
+    .cta-mid__btn:hover .cta-mid__btn-circle { background: rgba(255,255,255,0.32); transform: translateX(3px); }
+    .cta-mid__btn-circle svg { stroke: white; stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ══════════════════════════════════════════════
+       BLOCO 10 — SOBRE O RAFAEL
+    ══════════════════════════════════════════════ */
+    .sobre {
+      background: var(--carbon);
+      padding: 8rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* foto de fundo — esquerda com fade */
+    .sobre::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -5%;
+      width: 48%;
+      height: 100%;
+      background-image: url('Fotos pra LP/IMG_3766.JPG');
+      background-size: cover;
+      background-position: center top;
+      -webkit-mask-image: linear-gradient(to right, black 45%, transparent 100%);
+      mask-image: linear-gradient(to right, black 45%, transparent 100%);
+      opacity: 0.28;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* grain */
+    .sobre::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.32;
+      mix-blend-mode: soft-light;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72 0.76' numOctaves='4' seed='13' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 220px 220px;
+      z-index: 1;
+    }
+
+    .sobre__wrap {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 4.5rem;
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ── Bio esquerda ── */
+    .sobre__pre {
+      font-size: 0.58rem;
+      font-weight: 500;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .sobre__pre::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.5;
+    }
+
+    .sobre__pre-name {
+      font-size: 0.64rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .sobre__name {
+      font-family: 'Bricolage', sans-serif;
+      font-variation-settings: 'wght' 600;
+      font-size: clamp(2.1rem, 3.1vw, 3.5rem);
+      line-height: 1.09;
+      letter-spacing: -0.028em;
+      color: var(--smoke);
+      margin-bottom: 1.5rem;
+    }
+
+    .sobre__name .lw { display: block; overflow: hidden; }
+    .sobre__name .li { display: block; }
+
+    /* credenciais stats */
+    .sobre__stats {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      padding: 1.5rem 0;
+      border-top: 1px solid rgba(200,207,205,0.08);
+      border-bottom: 1px solid rgba(200,207,205,0.08);
+      margin-bottom: 2rem;
+    }
+
+    .sobre__stat {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      padding: 0 1.5rem;
+    }
+    .sobre__stat:first-child { padding-left: 0; }
+    .sobre__stat:last-child  { padding-right: 0; }
+
+    .sobre__stat-val {
+      font-family: 'Bricolage', sans-serif;
+      font-variation-settings: 'wght' 700;
+      font-size: 1.5rem;
+      color: var(--smoke);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .sobre__stat-label {
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(200,207,205,0.38);
+    }
+
+    .sobre__stat-div {
+      width: 1px;
+      background: rgba(200,207,205,0.1);
+      margin: 0;
+      flex-shrink: 0;
+    }
+
+    .sobre__bio {
+      font-size: 0.875rem;
+      font-weight: 400;
+      line-height: 1.8;
+      color: rgba(200,207,205,0.58);
+      margin-bottom: 2.5rem;
+    }
+
+    .sobre__bio p + p { margin-top: 1em; }
+
+    /* links sociais */
+    .sobre__socials {
+      display: flex;
+      gap: 1.25rem;
+      align-items: center;
+    }
+
+    .sobre__social {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: rgba(200,207,205,0.45);
+      transition: color 0.3s;
+    }
+
+    .sobre__social:hover { color: var(--gold); }
+
+    .sobre__social svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    /* ── Foto direita ── */
+    .sobre__photo-wrap {
+      position: relative;
+    }
+
+    .sobre__photo-wrap::before { display: none; }
+    .sobre__photo-wrap__vector { display: none; }
+
+    .sobre__photo {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      border-radius: 1.25rem;
+      overflow: hidden;
+    }
+
+    .sobre__photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 65%;
+      display: block;
+      filter: brightness(0.92) saturate(0.85);
+      transition: transform 0.8s var(--ease-out);
+    }
+
+    .sobre__photo:hover img { transform: scale(1.03); }
+
+    /* ══════════════════════════════════════════════
+       BLOCO 11 — FAQ
+    ══════════════════════════════════════════════ */
+    .faq {
+      background: var(--alabaster);
+      padding: 8rem 0;
+      position: relative;
+    }
+
+    .faq__wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 4.5rem;
+    }
+
+    .faq__header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .faq__hl {
+      font-family: 'Bricolage', sans-serif;
+      font-variation-settings: 'wght' 600;
+      font-size: clamp(2.1rem, 3.1vw, 3.5rem);
+      line-height: 1.09;
+      letter-spacing: -0.028em;
+      color: var(--carbon);
+    }
+
+    .faq__hl .lw { display: block; overflow: hidden; }
+    .faq__hl .li { display: block; }
+
+    .faq__intro {
+      font-size: 0.85rem;
+      font-weight: 400;
+      line-height: 1.75;
+      color: rgba(28,36,34,0.48);
+      padding-bottom: 0.2rem;
+    }
+
+    /* acordeão */
+    .faq__list { border-top: 1px solid rgba(28,36,34,0.08); }
+
+    .faq-item {
+      border-bottom: 1px solid rgba(28,36,34,0.08);
+      position: relative;
+    }
+
+    /* borda dourada esquerda — visível quando aberto */
+
+    /* pergunta (trigger) */
+    .faq-item__q {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.4rem 0;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .faq-item__num { display: none; }
+
+    .faq-item__text {
+      font-family: 'Bricolage', sans-serif;
+      font-variation-settings: 'wght' 500;
+      font-size: 0.98rem;
+      letter-spacing: -0.012em;
+      line-height: 1.35;
+      color: rgba(28,36,34,0.72);
+      transition: color 0.3s;
+    }
+
+    .faq-item.is-open .faq-item__text,
+    .faq-item__q:hover .faq-item__text { color: var(--carbon); }
+
+    /* ícone + */
+    .faq-item__icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid rgba(28,36,34,0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: border-color 0.3s, background 0.3s, transform 0.4s var(--ease-out);
+    }
+
+    .faq-item__icon svg {
+      width: 11px;
+      height: 11px;
+      stroke: rgba(28,36,34,0.45);
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      transition: stroke 0.3s;
+    }
+
+    .faq-item.is-open .faq-item__icon {
+      border-color: var(--gold);
+      background: rgba(176,138,61,0.08);
+      transform: rotate(45deg);
+    }
+
+    .faq-item.is-open .faq-item__icon svg { stroke: var(--gold); }
+
+    /* resposta (colapsável) */
+    .faq-item__body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .faq-item.is-open .faq-item__body {
+      max-height: 600px;
+    }
+
+    .faq-item__a {
+      font-size: 0.85rem;
+      font-weight: 400;
+      line-height: 1.75;
+      color: rgba(28,36,34,0.55);
+      padding: 0 0 1.5rem 0;
+    }
+
+    /* ══════════════════════════════════════════════
+       BLOCO 12 — CONTATO FINAL
+    ══════════════════════════════════════════════ */
+    .contato {
+      background: var(--carbon);
+      padding: 8rem 0 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* grain escuro */
+    .contato::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      background-size: 160px;
+      opacity: 0.03;
+      pointer-events: none;
+    }
+
+
+    .contato__wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 4.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contato__body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    /* linha dourada superior */
+    .contato__rule {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .contato__rule-line {
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.5;
+    }
+
+    .contato__rule-gem {
+      width: 5px;
+      height: 5px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      opacity: 0.7;
+    }
+
+    /* headline */
+    .contato__hl {
+      font-family: 'Bricolage', sans-serif;
+      font-variation-settings: 'wght' 600;
+      font-size: clamp(2.1rem, 3.1vw, 3.5rem);
+      line-height: 1.09;
+      letter-spacing: -0.028em;
+      color: var(--smoke);
+      margin-bottom: 1.25rem;
+    }
+
+    .contato__hl .lw { display: block; overflow: hidden; }
+    .contato__hl .li { display: block; white-space: nowrap; }
+
+    /* sub */
+    .contato__sub {
+      font-size: 0.88rem;
+      font-weight: 400;
+      line-height: 1.75;
+      color: rgba(200,207,205,0.42);
+    }
+
+    /* links de contato */
+    .contato__links {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-top: 1px solid rgba(200,207,205,0.07);
+    }
+
+    .contato__link {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      padding: 1.3rem 0;
+      border-bottom: 1px solid rgba(200,207,205,0.07);
+      text-decoration: none;
+      color: rgba(200,207,205,0.5);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      transition: color 0.35s, gap 0.35s;
+      position: relative;
+    }
+
+    .contato__link:hover {
+      color: var(--smoke);
+      gap: 1.5rem;
+    }
+
+    .contato__link-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(200,207,205,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: border-color 0.35s, background 0.35s;
+    }
+
+    .contato__link:hover .contato__link-icon {
+      border-color: var(--gold);
+      background: rgba(176,138,61,0.1);
+    }
+
+    .contato__link-icon svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.35s;
+    }
+
+    .contato__link:hover .contato__link-icon svg { stroke: var(--gold); }
+
+    .contato__link-info { display: flex; flex-direction: column; gap: 0.15rem; }
+    .contato__link-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(200,207,205,0.25); }
+    .contato__link-value { font-size: 0.9rem; font-weight: 400; }
+
+    /* arrow */
+    .contato__link-arrow {
+      margin-left: auto;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity 0.35s, transform 0.35s;
+    }
+
+    .contato__link:hover .contato__link-arrow {
+      opacity: 0.4;
+      transform: translateX(0);
+    }
+
+    .contato__link-arrow svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--silver);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ─── FOOTER ─── */
+    .contato__footer {
+      margin-top: 6rem;
+      padding: 2rem 0;
+      border-top: 1px solid rgba(200,207,205,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .contato__footer-logo {
+      height: 22px;
+      opacity: 0.28;
+      filter: brightness(10);
+    }
+
+    .contato__footer-copy {
+      font-size: 0.68rem;
+      color: rgba(200,207,205,0.2);
+      letter-spacing: 0.04em;
+    }
+
+
+    /* ══════════════════════════════════════════════
+       RESPONSIVO — 768px
+    ══════════════════════════════════════════════ */
+    @media (max-width: 768px) {
+
+      /* ── HERO ── */
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        max-height: none;
+      }
+
+      .hero__left {
+        padding: 2rem 1.5rem 2.5rem;
+        min-height: 100svh;
+      }
+
+      .hero__right {
+        display: none;
+      }
+
+      .hero__logo {
+        width: 120px;
+      }
+
+      .hero__body {
+        padding: 1.5rem 0;
+      }
+
+      .hero__eyebrow {
+        margin-bottom: 1.5rem;
+      }
+
+      .hero__headline {
+        font-size: clamp(2rem, 8vw, 2.8rem);
+        margin-bottom: 2rem;
+      }
+
+      .hero__para {
+        max-width: 100%;
+      }
+
+      .hero__stats {
+        flex-wrap: wrap;
+        gap: 1rem;
+        padding-top: 1.5rem;
+      }
+
+      .stat {
+        flex: 0 0 auto;
+        padding-right: 0;
+      }
+
+      .stat__div {
+        display: none;
+      }
+
+      .hero__cta {
+        width: 100%;
+        justify-content: center;
+      }
+
+      /* ── VEC SHAPES — ocultar os maiores no mobile ── */
+      .vec--h1, .vec--h2, .vec--h3 { display: none; }
+
+      /* ── BLOCO 2: DORES ── */
+      .dores {
+        padding: 5rem 1.5rem;
+      }
+
+      .dores__wrap {
+        padding: 0;
+      }
+
+      .dores__q-text .li {
+        white-space: normal;
+      }
+
+      .dores__list {
+        grid-template-columns: 1fr;
+        gap: 0.7rem;
+      }
+
+      .dores__callout .li {
+        white-space: normal;
+      }
+
+      .dores__close {
+        margin-top: 3.5rem;
+      }
+
+      /* ── BLOCO 3: PROMESSA ── */
+      .promessa {
+        padding: 5rem 1.5rem;
+      }
+
+      .promessa__inner {
+        grid-template-columns: 1fr;
+        padding: 0;
+        gap: 2.5rem;
+      }
+
+      .promessa__photo {
+        order: -1;
+        height: 300px;
+        border-radius: 1rem;
+      }
+
+      .promessa__img {
+        object-position: center 20%;
+      }
+
+      .promessa__hl .li {
+        white-space: normal;
+      }
+
+      .promessa__sub {
+        max-width: 100%;
+      }
+
+      /* ── BLOCO 4: DIFERENCIAL ── */
+      .diferencial {
+        padding: 5rem 1.5rem;
+      }
+
+      .diferencial__wrap {
+        grid-template-columns: 1fr;
+        padding: 0;
+        gap: 3rem;
+      }
+
+      .diferencial__sub {
+        max-width: 100%;
+      }
+
+      .diferencial__hl .li {
+        white-space: normal;
+      }
+
+      /* ── BLOCO 5: CONTEÚDO / MÓDULOS ── */
+      .conteudo {
+        padding: 5rem 1.5rem;
+      }
+
+      .conteudo__wrap {
+        padding: 0;
+      }
+
+      #c5-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.85rem;
+      }
+
+      /* ── BLOCO 6: OFERTA ── */
+      .oferta {
+        padding: 5rem 1.5rem;
+      }
+
+      .oferta__wrap {
+        grid-template-columns: 1fr;
+        padding: 0;
+        gap: 3rem;
+      }
+
+      .oferta__sub {
+        max-width: 100%;
+      }
+
+      .oferta__hl .li {
+        white-space: normal;
+      }
+
+      .oferta__watermark {
+        font-size: 14rem;
+        right: -1rem;
+      }
+
+      /* ── BLOCO 7: TRANSFORMAÇÃO ── */
+      .transformacao {
+        grid-template-columns: 1fr;
+        padding: 0;
+        min-height: auto;
+      }
+
+      .transformacao__left {
+        padding: 4rem 1.5rem 2rem;
+      }
+
+      .transformacao__left::after {
+        display: none;
+      }
+
+      .transformacao__hl .li {
+        white-space: normal;
+      }
+
+      .transformacao__carousel {
+        padding: 1.5rem 0 4rem;
+      }
+
+      /* ── BLOCO 8: PARA QUEM É ── */
+      .perfil {
+        padding: 5rem 1.5rem;
+      }
+
+      .perfil__wrap {
+        padding: 0;
+      }
+
+      .perfil__grid {
+        grid-template-columns: 1fr;
+        gap: 0.7rem;
+      }
+
+      .perfil__hl .li {
+        white-space: normal;
+      }
+
+      /* ── BLOCO 9: CTA INTERMEDIÁRIO ── */
+      .cta-mid {
+        padding: 5rem 1.5rem;
+      }
+
+      .cta-mid__wrap {
+        padding: 0;
+      }
+
+      .cta-mid__card {
+        min-height: 380px;
+      }
+
+      .cta-mid__content {
+        padding: 2.5rem 1.5rem;
+        max-width: 100%;
+      }
+
+      .cta-mid__hl .li {
+        white-space: normal;
+      }
+
+      .cta-mid__btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      /* ── BLOCO 10: SOBRE ── */
+      .sobre {
+        padding: 5rem 1.5rem;
+      }
+
+      .sobre__wrap {
+        grid-template-columns: 1fr;
+        padding: 0;
+        gap: 3rem;
+      }
+
+      /* foto vai abaixo do texto */
+      .sobre__photo-wrap {
+        order: 1;
+      }
+
+      .sobre__name .li {
+        white-space: normal;
+      }
+
+      .sobre__stats {
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .sobre__stat {
+        flex: 0 0 auto;
+        padding-right: 0;
+      }
+
+      .sobre__stat-div {
+        display: none;
+      }
+
+      .sobre__photo {
+        aspect-ratio: 4 / 3;
+      }
+
+      /* ── BLOCO 11: FAQ ── */
+      .faq {
+        padding: 5rem 1.5rem;
+      }
+
+      .faq__wrap {
+        padding: 0;
+      }
+
+      .faq__hl .li {
+        white-space: normal;
+      }
+
+      .faq-item__q {
+        grid-template-columns: 1fr auto;
+        gap: 0.75rem;
+        padding: 1.25rem 0;
+      }
+
+      .faq-item__a {
+        padding: 0 0 1.25rem 0;
+      }
+
+      /* ── BLOCO 12: CONTATO ── */
+      .contato {
+        padding: 5rem 1.5rem 0;
+      }
+
+      .contato__wrap {
+        padding: 0;
+      }
+
+      .contato__body {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .contato__hl .li {
+        white-space: normal;
+      }
+
+      .contato__footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+        margin-top: 4rem;
+      }
+
+    }
+
+
+    /* ══════════════════════════════════════════════
+       RESPONSIVO — 480px (telas muito pequenas)
+    ══════════════════════════════════════════════ */
+    @media (max-width: 480px) {
+
+      /* Headline mínimo em telas muito pequenas */
+      .hero__headline {
+        font-size: clamp(1.75rem, 7.5vw, 2.4rem);
+        line-height: 1.12;
+      }
+
+      /* Módulos: 1 coluna em tela muito pequena */
+      #c5-list {
+        grid-template-columns: 1fr;
+      }
+
+      /* Transformação: cards menores */
+      .transf-card {
+        width: 220px;
+      }
+
+      /* FAQ: sem número no mobile pequeno */
+      .faq-item__q {
+        grid-template-columns: 1fr auto;
+      }
+
+      .faq-item__num {
+        display: none;
+      }
+
+      .faq-item__a {
+        padding: 0 0 1.25rem 0;
+      }
+
+      /* Contato: e-mail longo sem overflow */
+      .contato__link-value {
+        font-size: 0.78rem;
+        word-break: break-all;
+      }
+
+      /* Stats do hero */
+      .hero__stats {
+        gap: 0.75rem;
+      }
+
+      /* Sobre stats */
+      .sobre__stats {
+        gap: 0.75rem;
+      }
+
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════ -->
+<section class="hero">
+
+  <!-- ── LEFT PANEL ── -->
+  <div class="hero__left has-grain">
+
+    <!-- vector shapes -->
+    <span class="vec vec--h1" aria-hidden="true"></span>
+    <span class="vec vec--h2" aria-hidden="true"></span>
+    <span class="vec vec--h3" aria-hidden="true"></span>
+    <!-- edge line -->
+    <div class="hero__edge-line" aria-hidden="true"></div>
+
+    <!-- Header -->
+    <header class="hero__header" id="j-header">
+      <img src="Logo/logo tipografico.png" alt="Euro na Real" class="hero__logo" id="j-logo">
+    </header>
+
+    <!-- Body -->
+    <div class="hero__body">
+
+      <div class="hero__eyebrow" id="j-eyebrow">
+        <span class="eyebrow__label">Programa de Organização Financeira</span>
+      </div>
+
+      <h1 class="hero__headline" id="j-hl">
+        <span class="lw"><span class="li">Um método simples e prático</span></span>
+        <span class="lw"><span class="li">para <span class="hl-gold">brasileiros</span> que querem</span></span>
+        <span class="lw"><span class="li">finalmente se organizar</span></span>
+        <span class="lw"><span class="li"><span class="hl-gold">financeiramente na Europa</span></span></span>
+      </h1>
+
+      <div class="hero__rule" id="j-rule">
+        <div class="rule__line"></div>
+        <img src="Vector.svg" alt="" class="rule__gem-vec" aria-hidden="true">
+      </div>
+
+      <div class="hero__sub" id="j-sub">
+        <p class="hero__para">
+          Um programa de acompanhamento focado em organização financeira para brasileiros que vivem na Europa e buscam mais tranquilidade e clareza na gestão do seu dinheiro.
+        </p>
+        <div>
+          <a href="#matricula" class="hero__cta">
+            <span class="cta__text">Quero me matricular</span>
+            <span class="cta__circle">
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+                <path d="M2.5 7.5H12.5M12.5 7.5L8 3M12.5 7.5L8 12" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+
+  <!-- ── RIGHT PANEL ── -->
+  <div class="hero__right">
+
+    <div class="photo-frame">
+      <img
+        src="Fotos pra LP/IMG_3769.JPG"
+        alt="Rafael Nobrega, Planejador Financeiro"
+        class="hero__img"
+        id="j-photo"
+      >
+    </div>
+
+    <!-- Floating identity card -->
+
+
+  </div>
+
+</section>
+
+
+
+<!-- ═══════════════════════════════════════════════
+     BLOCO 2 — DORES
+═══════════════════════════════════════════════ -->
+<section class="dores" id="dores">
+  <div class="dores__wrap">
+
+    <!-- Parte 1: Pergunta -->
+    <div class="dores__question" id="d-pre">
+      <p class="dores__q-text">
+        <span class="lw"><span class="li">Se você acreditou que era só vir para a Europa</span></span>
+        <span class="lw"><span class="li">para resolver sua vida financeira,</span></span>
+      </p>
+    </div>
+
+    <!-- "mas..." — enorme, alinhado à direita -->
+    <div class="dores__mas-row">
+      <span class="dores__mas-text" id="d-mas">mas...</span>
+    </div>
+
+    <!-- Lista numerada de dores -->
+    <div class="dores__list" id="d-list">
+
+      <div class="dore-row">
+        <span class="dore-num">01</span>
+        <p class="dore-text">O dinheiro <strong>entra e sai</strong> e você não sabe exatamente <strong>para onde foi</strong></p>
+      </div>
+
+      <div class="dore-row">
+        <span class="dore-num">02</span>
+        <p class="dore-text">Você sente que <strong>todo mês começa do zero</strong></p>
+      </div>
+
+      <div class="dore-row">
+        <span class="dore-num">03</span>
+        <p class="dore-text">Tenta se organizar, mas nunca consegue <strong>manter constância</strong></p>
+      </div>
+
+      <div class="dore-row">
+        <span class="dore-num">04</span>
+        <p class="dore-text">Guarda dinheiro por um tempo, mas acaba <strong>precisando mexer na reserva</strong></p>
+      </div>
+
+      <div class="dore-row">
+        <span class="dore-num">05</span>
+        <p class="dore-text">Evita olhar <strong>conta, cartão ou extrato</strong> porque isso sempre gera <strong>ansiedade</strong></p>
+      </div>
+
+      <div class="dore-row">
+        <span class="dore-num">06</span>
+        <p class="dore-text">Quer começar a construir <strong>segurança financeira</strong>, mas não sabe <strong>por onde começar</strong></p>
+      </div>
+
+      <div class="dore-row">
+        <span class="dore-num">07</span>
+        <p class="dore-text">Sente que <strong>ganha melhor</strong> do que ganhava no Brasil, mas ainda assim não consegue se sentir <strong>em paz financeiramente</strong></p>
+      </div>
+
+      <div class="dore-row">
+        <span class="dore-num">08</span>
+        <p class="dore-text">Tudo parece <strong>complicado demais</strong>, então você acaba <strong>adiando</strong></p>
+      </div>
+
+    </div>
+
+    <!-- Fechamento -->
+    <div class="dores__close" id="d-close">
+<h3 class="dores__callout">
+        <span class="lw"><span class="li">Esse programa é <em>pra você!</em></span></span>
+      </h3>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     BLOCO 3 — PROMESSA
+═══════════════════════════════════════════════ -->
+<section class="promessa" id="promessa">
+  <span class="vec vec--p1" aria-hidden="true"></span>
+  <span class="vec vec--p2" aria-hidden="true"></span>
+  <div class="promessa__inner">
+
+  <!-- Foto esquerda -->
+  <div class="promessa__photo">
+    <img
+      src="Fotos pra LP/IMG_1466.jpg"
+      alt="Rafael Nobrega em ambiente descontraído"
+      class="promessa__img"
+      id="p3-photo"
+    >
+  </div>
+
+  <!-- Conteúdo direito -->
+  <div class="promessa__content">
+
+    <h2 class="promessa__hl" id="p3-hl">
+      <span class="lw"><span class="li">Organize sua vida financeira</span></span>
+      <span class="lw"><span class="li">sem transformá-la</span></span>
+      <span class="lw"><span class="li">em uma <span class="promessa__strike" id="p3-strike">planilha</span></span></span>
+    </h2>
+
+    <p class="promessa__sub" id="p3-sub">Você não precisa controlar cada centavo nem virar especialista em finanças. Precisa de uma estrutura simples, prática e sustentável para finalmente se sentir no controle do seu dinheiro e construir segurança na Europa sem abrir mão da sua vida hoje.</p>
+
+    <div class="promessa__grid" id="p3-grid">
+
+      <div class="beneficio">
+        <span class="beneficio__icon">
+          <!-- olho / clareza para onde o dinheiro vai -->
+          <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </span>
+        <p class="beneficio__text">Clareza sobre para onde seu dinheiro está indo</p>
+      </div>
+
+      <div class="beneficio">
+        <span class="beneficio__icon">
+          <!-- guarda-chuva / tranquilidade com imprevistos -->
+          <svg viewBox="0 0 24 24"><path d="M23 12a11.05 11.05 0 0 0-22 0zm-5 7a3 3 0 0 1-6 0v-7"/></svg>
+        </span>
+        <p class="beneficio__text">Mais tranquilidade para lidar com imprevistos</p>
+      </div>
+
+      <div class="beneficio">
+        <span class="beneficio__icon">
+          <!-- escudo / segurança e reserva -->
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </span>
+        <p class="beneficio__text">Segurança para começar a construir sua reserva em euro</p>
+      </div>
+
+      <div class="beneficio">
+        <span class="beneficio__icon">
+          <!-- calendário / previsibilidade no mês -->
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </span>
+        <p class="beneficio__text">Menos improviso e mais previsibilidade no mês</p>
+      </div>
+
+      <div class="beneficio">
+        <span class="beneficio__icon">
+          <!-- tendência de alta / decisões com confiança -->
+          <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </span>
+        <p class="beneficio__text">Mais liberdade para tomar decisões financeiras com confiança</p>
+      </div>
+
+    </div>
+
+  </div>
+
+  </div><!-- /.promessa__inner -->
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     BLOCO 4 — DIFERENCIAL
+═══════════════════════════════════════════════ -->
+<section class="diferencial" id="diferencial">
+  <span class="vec vec--d1" aria-hidden="true"></span>
+  <span class="vec vec--d2" aria-hidden="true"></span>
+  <div class="diferencial__wrap">
+
+    <!-- Esquerda -->
+    <div class="diferencial__left">
+
+      <h2 class="diferencial__hl" id="d4-hl">
+        <span class="lw"><span class="li">Um programa</span></span>
+        <span class="lw"><span class="li">pensado para</span></span>
+        <span class="lw"><span class="li">a vida real</span></span>
+        <span class="lw"><span class="li">na <span class="hl-gold">Europa</span></span></span>
+      </h2>
+
+      <p class="diferencial__sub" id="d4-sub">
+        O Euro na Real foi criado para brasileiros que vivem na Europa e percebem que quase nenhum conteúdo financeiro realmente conversa com a realidade de quem imigrou.<br><br>
+        Aqui, a organização financeira considera o custo de vida europeu, os desafios emocionais da imigração e a realidade de quem está tentando construir estabilidade financeira fora do Brasil.<br><br>
+        Tudo isso através de um método simples, prático e aplicável à vida real.
+      </p>
+
+    </div>
+
+    <!-- Direita: pilares -->
+    <div class="diferencial__right" id="d4-pilares">
+
+      <div class="pilar">
+        <img src="Vector.svg" class="pilar__vec" aria-hidden="true">
+        <div class="pilar__body">
+          <p class="pilar__title">Foco na realidade de quem vive na Europa</p>
+        </div>
+      </div>
+
+      <div class="pilar">
+        <img src="Vector.svg" class="pilar__vec" aria-hidden="true">
+        <div class="pilar__body">
+          <p class="pilar__title">Estrutura prática para organizar, poupar e planejar</p>
+        </div>
+      </div>
+
+      <div class="pilar">
+        <img src="Vector.svg" class="pilar__vec" aria-hidden="true">
+        <div class="pilar__body">
+          <p class="pilar__title">Baseado em comportamento financeiro, não em fórmulas mágicas</p>
+        </div>
+      </div>
+
+      <div class="pilar">
+        <img src="Vector.svg" class="pilar__vec" aria-hidden="true">
+        <div class="pilar__body">
+          <p class="pilar__title">Autonomia para tomar decisões com mais segurança</p>
+        </div>
+      </div>
+
+      <div class="pilar">
+        <img src="Vector.svg" class="pilar__vec" aria-hidden="true">
+        <div class="pilar__body">
+          <p class="pilar__title">Organização financeira sem culpa, obsessão ou complicação</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     BLOCO 5 — CONTEÚDO
+═══════════════════════════════════════════════ -->
+<section class="conteudo" id="conteudo">
+  <div class="conteudo__wrap">
+
+    <div class="conteudo__header">
+      <h2 class="conteudo__hl" id="c5-hl">
+        <span class="lw"><span class="li">O que você vai aprender</span></span>
+      </h2>
+    </div>
+
+    <div id="c5-list">
+
+      <div class="modulo">
+        <div class="modulo__img-wrap">
+          <img src="Imagens Modulos/modulo-01.png" alt="Módulo 01" class="modulo__img" style="object-position: 30% 60%;">
+          <span class="modulo__num">01</span>
+        </div>
+        <div class="modulo__body">
+          <p class="modulo__title">Organizar suas contas e cartões na Europa sem complicação</p>
+        </div>
+      </div>
+
+      <div class="modulo">
+        <div class="modulo__img-wrap">
+          <img src="Imagens Modulos/modulo-02.png" alt="Módulo 02" class="modulo__img">
+          <span class="modulo__num">02</span>
+        </div>
+        <div class="modulo__body">
+          <p class="modulo__title">Entender exatamente para onde seu dinheiro está indo todos os meses</p>
+        </div>
+      </div>
+
+      <div class="modulo">
+        <div class="modulo__img-wrap">
+          <img src="Imagens Modulos/modulo-03.png" alt="Módulo 03" class="modulo__img">
+          <span class="modulo__num">03</span>
+        </div>
+        <div class="modulo__body">
+          <p class="modulo__title">Criar uma rotina financeira simples e sustentável</p>
+        </div>
+      </div>
+
+      <div class="modulo">
+        <div class="modulo__img-wrap">
+          <img src="Imagens Modulos/modulo-04.png" alt="Módulo 04" class="modulo__img">
+          <span class="modulo__num">04</span>
+        </div>
+        <div class="modulo__body">
+          <p class="modulo__title">Lidar com dívidas sem culpa nem desespero</p>
+        </div>
+      </div>
+
+      <div class="modulo">
+        <div class="modulo__img-wrap">
+          <img src="Imagens Modulos/modulo-05.png" alt="Módulo 05" class="modulo__img" style="object-position: center center;">
+          <span class="modulo__num">05</span>
+        </div>
+        <div class="modulo__body">
+          <p class="modulo__title">Construir uma reserva em euro para parar de viver com medo de imprevistos</p>
+        </div>
+      </div>
+
+      <div class="modulo">
+        <div class="modulo__img-wrap">
+          <img src="Imagens Modulos/modulo-06.png" alt="Módulo 06" class="modulo__img">
+          <span class="modulo__num">06</span>
+        </div>
+        <div class="modulo__body">
+          <p class="modulo__title">Ganhar previsibilidade financeira e sair do improviso</p>
+        </div>
+      </div>
+
+      <div class="modulo">
+        <div class="modulo__img-wrap">
+          <img src="Imagens Modulos/modulo-07.png" alt="Módulo 07" class="modulo__img">
+          <span class="modulo__num">07</span>
+        </div>
+        <div class="modulo__body">
+          <p class="modulo__title">Construir hábitos financeiros mais saudáveis no longo prazo</p>
+        </div>
+      </div>
+
+      <div class="modulo">
+        <div class="modulo__img-wrap">
+          <img src="Imagens Modulos/modulo-08.png" alt="Módulo 08" class="modulo__img">
+          <span class="modulo__num">08</span>
+        </div>
+        <div class="modulo__body">
+          <p class="modulo__title">Acompanhar sua evolução sem depender de motivação o tempo todo</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     BLOCO 6 — OFERTA
+═══════════════════════════════════════════════ -->
+<section class="oferta" id="matricula">
+
+  <div class="oferta__wrap">
+
+    <!-- Esquerda: itens incluídos -->
+    <div class="oferta__left">
+
+      <h2 class="oferta__hl" id="o6-hl">
+        <span class="lw"><span class="li">O que você vai receber</span></span>
+      </h2>
+
+      <div class="oferta__items" id="o6-items">
+
+        <div class="oferta-item">
+          <span class="oferta-item__check">
+            <svg viewBox="0 0 10 10"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg>
+          </span>
+          <p class="oferta-item__text">12 meses de acesso ao programa e futuras atualizações</p>
+        </div>
+
+        <div class="oferta-item">
+          <span class="oferta-item__check">
+            <svg viewBox="0 0 10 10"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg>
+          </span>
+          <p class="oferta-item__text">Plantões mensais de dúvidas ao vivo</p>
+        </div>
+
+        <div class="oferta-item">
+          <span class="oferta-item__check">
+            <svg viewBox="0 0 10 10"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg>
+          </span>
+          <p class="oferta-item__text">Comunidade exclusiva de alunos</p>
+        </div>
+
+        <div class="oferta-item">
+          <span class="oferta-item__check">
+            <svg viewBox="0 0 10 10"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg>
+          </span>
+          <p class="oferta-item__text">Suporte por e-mail e dentro da plataforma</p>
+        </div>
+
+        <div class="oferta-item">
+          <span class="oferta-item__check">
+            <svg viewBox="0 0 10 10"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg>
+          </span>
+          <p class="oferta-item__text">Trilhas guiadas conforme seu momento financeiro</p>
+        </div>
+
+        <div class="oferta-item">
+          <span class="oferta-item__check">
+            <svg viewBox="0 0 10 10"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg>
+          </span>
+          <p class="oferta-item__text">Desafios práticos para aplicar o conteúdo no dia a dia</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Direita: card CTA -->
+    <div class="oferta__card" id="o6-card">
+
+      <p class="oferta__card-title">Euro na Real</p>
+      <p class="oferta__card-desc">Programa de Organização Financeira para Brasileiros na Europa</p>
+
+      <div class="oferta__card-divider"></div>
+
+      <div class="oferta__card-bullets">
+        <span class="oferta__card-bullet">8 módulos + material de apoio</span>
+        <span class="oferta__card-bullet">Templates de organização incluídos</span>
+        <span class="oferta__card-bullet">Comunidade exclusiva de alunos</span>
+        <span class="oferta__card-bullet">Acesso vitalício garantido</span>
+      </div>
+
+      <a href="#" class="oferta__btn">
+        <span class="oferta__btn-text">Quero garantir meu acesso</span>
+        <span class="oferta__btn-arrow">
+          <svg width="14" height="14" viewBox="0 0 14 14">
+            <path d="M2 7h10M8 3l4 4-4 4"/>
+          </svg>
+        </span>
+      </a>
+
+      <p class="oferta__guarantee">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        7 dias de garantia — sem perguntas
+      </p>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     BLOCO 7 — TRANSFORMAÇÃO
+═══════════════════════════════════════════════ -->
+<section class="transformacao" id="transformacao">
+
+  <!-- 1/4 esquerda: título -->
+  <div class="transformacao__left">
+    <h2 class="transformacao__hl" id="t7-hl">
+      <span class="lw"><span class="li">O que vai mudar</span></span>
+      <span class="lw"><span class="li">na sua vida</span></span>
+    </h2>
+  </div>
+
+  <!-- 3/4 direita: carrossel infinito -->
+  <div class="transformacao__carousel">
+    <div class="transf-track" id="t7-track">
+
+      <!-- set 1 -->
+      <div class="transf-card">
+        <span class="transf-card__num">01</span>
+        <p class="transf-card__text">Parar de sentir <span class="g">ansiedade toda vez que pensa em dinheiro</span></p>
+      </div>
+      <div class="transf-card">
+        <span class="transf-card__num">02</span>
+        <p class="transf-card__text">Ter clareza sobre <span class="g">o que entra, o que sai e o que realmente sobra</span></p>
+      </div>
+      <div class="transf-card">
+        <span class="transf-card__num">03</span>
+        <p class="transf-card__text">Construir <span class="g">segurança financeira</span> sem abrir mão da sua vida hoje</p>
+      </div>
+      <div class="transf-card">
+        <span class="transf-card__num">04</span>
+        <p class="transf-card__text">Sentir que sua vida financeira <span class="g">finalmente saiu do improviso</span></p>
+      </div>
+      <div class="transf-card">
+        <span class="transf-card__num">05</span>
+        <p class="transf-card__text">Ter mais <span class="g">tranquilidade para construir sua vida na Europa</span> no longo prazo</p>
+      </div>
+      <div class="transf-card">
+        <span class="transf-card__num">06</span>
+        <p class="transf-card__text">Fazer escolhas financeiras com <span class="g">mais confiança e menos culpa</span></p>
+      </div>
+
+      <!-- set 2 (duplicado para loop seamless) -->
+      <div class="transf-card">
+        <span class="transf-card__num">01</span>
+        <p class="transf-card__text">Parar de sentir <span class="g">ansiedade toda vez que pensa em dinheiro</span></p>
+      </div>
+      <div class="transf-card">
+        <span class="transf-card__num">02</span>
+        <p class="transf-card__text">Ter clareza sobre <span class="g">o que entra, o que sai e o que realmente sobra</span></p>
+      </div>
+      <div class="transf-card">
+        <span class="transf-card__num">03</span>
+        <p class="transf-card__text">Construir <span class="g">segurança financeira</span> sem abrir mão da sua vida hoje</p>
+      </div>
+      <div class="transf-card">
+        <span class="transf-card__num">04</span>
+        <p class="transf-card__text">Sentir que sua vida financeira <span class="g">finalmente saiu do improviso</span></p>
+      </div>
+      <div class="transf-card">
+        <span class="transf-card__num">05</span>
+        <p class="transf-card__text">Ter mais <span class="g">tranquilidade para construir sua vida na Europa</span> no longo prazo</p>
+      </div>
+      <div class="transf-card">
+        <span class="transf-card__num">06</span>
+        <p class="transf-card__text">Fazer escolhas financeiras com <span class="g">mais confiança e menos culpa</span></p>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     BLOCO 8 — PARA QUEM É
+═══════════════════════════════════════════════ -->
+<section class="perfil" id="perfil">
+  <div class="perfil__wrap">
+
+    <div class="perfil__header">
+      <h2 class="perfil__hl" id="p8-hl">
+        <span class="lw"><span class="li">Como sei se esse</span></span>
+        <span class="lw"><span class="li">curso é pra mim?</span></span>
+      </h2>
+    </div>
+
+    <div class="perfil__grid" id="p8-grid">
+
+      <div class="perfil-item">
+        <div class="perfil-item__check">
+          <svg viewBox="0 0 20 20"><polyline points="3 10 8 15 17 5" class="p8-check"/></svg>
+        </div>
+        <div class="perfil-item__body">
+          <p class="perfil-item__title">Você vive na Europa</p>
+        </div>
+      </div>
+
+      <div class="perfil-item">
+        <div class="perfil-item__check">
+          <svg viewBox="0 0 20 20"><polyline points="3 10 8 15 17 5" class="p8-check"/></svg>
+        </div>
+        <div class="perfil-item__body">
+          <p class="perfil-item__title">Quer organizar o dinheiro sem depender de banco ou assessor</p>
+        </div>
+      </div>
+
+      <div class="perfil-item">
+        <div class="perfil-item__check">
+          <svg viewBox="0 0 20 20"><polyline points="3 10 8 15 17 5" class="p8-check"/></svg>
+        </div>
+        <div class="perfil-item__body">
+          <p class="perfil-item__title">Quer montar sua reserva em moeda forte</p>
+        </div>
+      </div>
+
+      <div class="perfil-item">
+        <div class="perfil-item__check">
+          <svg viewBox="0 0 20 20"><polyline points="3 10 8 15 17 5" class="p8-check"/></svg>
+        </div>
+        <div class="perfil-item__body">
+          <p class="perfil-item__title">Busca mais autonomia e tranquilidade financeira</p>
+        </div>
+      </div>
+
+      <div class="perfil-item">
+        <div class="perfil-item__check">
+          <svg viewBox="0 0 20 20"><polyline points="3 10 8 15 17 5" class="p8-check"/></svg>
+        </div>
+        <div class="perfil-item__body">
+          <p class="perfil-item__title">Ainda não se sente seguro com sua vida financeira na Europa</p>
+        </div>
+      </div>
+
+      <div class="perfil-item">
+        <div class="perfil-item__check">
+          <svg viewBox="0 0 20 20"><polyline points="3 10 8 15 17 5" class="p8-check"/></svg>
+        </div>
+        <div class="perfil-item__body">
+          <p class="perfil-item__title">Vive adiando sua organização financeira porque tudo parece complexo demais</p>
+        </div>
+      </div>
+
+      <div class="perfil-item">
+        <div class="perfil-item__check">
+          <svg viewBox="0 0 20 20"><polyline points="3 10 8 15 17 5" class="p8-check"/></svg>
+        </div>
+        <div class="perfil-item__body">
+          <p class="perfil-item__title">Está em um relacionamento e sente dificuldade para organizar as finanças sem gerar estresse</p>
+        </div>
+      </div>
+
+      <div class="perfil-item">
+        <div class="perfil-item__check">
+          <svg viewBox="0 0 20 20"><polyline points="3 10 8 15 17 5" class="p8-check"/></svg>
+        </div>
+        <div class="perfil-item__body">
+          <p class="perfil-item__title">Nunca teve educação financeira prática e quer aprender de forma simples e aplicável</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     BLOCO 9 — CTA INTERMEDIÁRIO
+═══════════════════════════════════════════════ -->
+<section class="cta-mid" id="cta-mid">
+  <div class="cta-mid__wrap">
+    <div class="cta-mid__card">
+
+      <div class="cta-mid__bg">
+        <img src="Fotos pra LP/IMG_3770.JPG" alt="">
+      </div>
+      <div class="cta-mid__overlay"></div>
+      <div class="cta-mid__grain"></div>
+
+      <div class="cta-mid__content">
+        <h2 class="cta-mid__hl" id="c9-hl">
+          <span class="lw"><span class="li">Comece <span class="gold">hoje</span></span></span>
+        </h2>
+        <p class="cta-mid__sub" id="c9-sub">
+          Sua vida financeira não precisa continuar no improviso. Organizar seu mês e construir uma reserva em euro começa com uma decisão simples: começar.
+        </p>
+        <a href="#matricula" class="cta-mid__btn" id="c9-btn">
+          <span class="cta-mid__btn-text">Garantir minha vaga</span>
+          <span class="cta-mid__btn-circle">
+            <svg width="15" height="15" viewBox="0 0 15 15">
+              <path d="M2.5 7.5H12.5M12.5 7.5L8 3M12.5 7.5L8 12"/>
+            </svg>
+          </span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     BLOCO 10 — SOBRE O RAFAEL
+═══════════════════════════════════════════════ -->
+<section class="sobre" id="sobre">
+  <span class="vec vec--s1" aria-hidden="true"></span>
+  <span class="vec vec--s2" aria-hidden="true"></span>
+  <div class="sobre__wrap">
+
+    <!-- Bio esquerda -->
+    <div class="sobre__left">
+
+      <p class="sobre__pre-name">Quem está por trás do curso?</p>
+
+      <h2 class="sobre__name" id="s10-name">
+        <span class="lw"><span class="li">Rafael Nobrega</span></span>
+      </h2>
+
+      <div class="sobre__stats" id="s10-creds">
+        <div class="sobre__stat">
+          <span class="sobre__stat-val">14+</span>
+          <span class="sobre__stat-label">Mais de 14 anos<br>de experiência</span>
+        </div>
+        <div class="sobre__stat-div"></div>
+        <div class="sobre__stat">
+          <span class="sobre__stat-val">EFA</span>
+          <span class="sobre__stat-label">Certificação EFA (European Financial Advisor)</span>
+        </div>
+        <div class="sobre__stat-div"></div>
+        <div class="sobre__stat">
+          <span class="sobre__stat-val">+150</span>
+          <span class="sobre__stat-label">Brasileiros atendidos na Europa</span>
+        </div>
+      </div>
+
+      <div class="sobre__bio" id="s10-bio">
+        <p>Sou Rafael, planejador financeiro certificado EFA pela EFPA Espanha, com mais de 14 anos de experiência entre Brasil e Europa.</p>
+        <p>Criei o Euro na Real para ajudar brasileiros que vivem fora a tomarem decisões financeiras com método, clareza e responsabilidade, com uma metodologia amparada na Psicologia Econômica e na Economia Comportamental.</p>
+      </div>
+
+
+    </div>
+
+    <!-- Foto direita -->
+    <div class="sobre__photo-wrap" id="s10-photo">
+      <div class="sobre__photo">
+        <img src="Fotos pra LP/IMG_3767.JPG" alt="Rafael Nobrega — Planejador Financeiro">
+      </div>
+      <img src="Vector.svg" alt="" class="sobre__photo-wrap__vector" aria-hidden="true">
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     BLOCO 11 — FAQ
+═══════════════════════════════════════════════ -->
+<section class="faq" id="faq">
+  <div class="faq__wrap">
+
+    <div class="faq__header">
+      <h2 class="faq__hl" id="f11-hl">
+        <span class="lw"><span class="li">Perguntas frequentes</span></span>
+      </h2>
+    </div>
+
+    <div class="faq__list" id="f11-list">
+
+      <!-- 01 -->
+      <div class="faq-item">
+        <div class="faq-item__q">
+          <span class="faq-item__num">01</span>
+          <span class="faq-item__text">Preciso já ter investimentos para participar?</span>
+          <div class="faq-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 11 11"><line x1="5.5" y1="1" x2="5.5" y2="10"/><line x1="1" y1="5.5" x2="10" y2="5.5"/></svg>
+          </div>
+        </div>
+        <div class="faq-item__body">
+          <p class="faq-item__a">Não. O Euro na Real foi criado justamente para quem ainda está organizando a vida financeira, construindo reserva e buscando mais clareza e segurança com o próprio dinheiro na Europa.</p>
+        </div>
+      </div>
+
+      <!-- 02 -->
+      <div class="faq-item">
+        <div class="faq-item__q">
+          <span class="faq-item__num">02</span>
+          <span class="faq-item__text">Ganho pouco. Vale a pena entrar mesmo assim?</span>
+          <div class="faq-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 11 11"><line x1="5.5" y1="1" x2="5.5" y2="10"/><line x1="1" y1="5.5" x2="10" y2="5.5"/></svg>
+          </div>
+        </div>
+        <div class="faq-item__body">
+          <p class="faq-item__a">Sim, e talvez até mais. Quando cada euro pesa no mês, ter clareza e organização faz ainda mais diferença. O programa foi criado para ajudar brasileiros na Europa a saírem do improviso financeiro e construírem segurança aos poucos, sem precisar ganhar muito para começar.</p>
+        </div>
+      </div>
+
+      <!-- 03 -->
+      <div class="faq-item">
+        <div class="faq-item__q">
+          <span class="faq-item__num">03</span>
+          <span class="faq-item__text">Serve para o meu país na Europa?</span>
+          <div class="faq-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 11 11"><line x1="5.5" y1="1" x2="5.5" y2="10"/><line x1="1" y1="5.5" x2="10" y2="5.5"/></svg>
+          </div>
+        </div>
+        <div class="faq-item__body">
+          <p class="faq-item__a">Sim. O Euro na Real foi pensado para brasileiros que vivem em qualquer país europeu, considerando os desafios reais de organizar a vida financeira em euro.</p>
+        </div>
+      </div>
+
+      <!-- 04 -->
+      <div class="faq-item">
+        <div class="faq-item__q">
+          <span class="faq-item__num">04</span>
+          <span class="faq-item__text">Não gosto de números e finanças. Vou conseguir acompanhar?</span>
+          <div class="faq-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 11 11"><line x1="5.5" y1="1" x2="5.5" y2="10"/><line x1="1" y1="5.5" x2="10" y2="5.5"/></svg>
+          </div>
+        </div>
+        <div class="faq-item__body">
+          <p class="faq-item__a">Sim. O programa foi feito para ser simples, direto e fácil de aplicar na vida real. Sem economês, fórmulas complicadas ou planilhas impossíveis. Você não precisa ser "bom com números" para conseguir organizar sua vida financeira.</p>
+        </div>
+      </div>
+
+      <!-- 05 -->
+      <div class="faq-item">
+        <div class="faq-item__q">
+          <span class="faq-item__num">05</span>
+          <span class="faq-item__text">Não tenho muito tempo livre. Quanto preciso me dedicar?</span>
+          <div class="faq-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 11 11"><line x1="5.5" y1="1" x2="5.5" y2="10"/><line x1="1" y1="5.5" x2="10" y2="5.5"/></svg>
+          </div>
+        </div>
+        <div class="faq-item__body">
+          <p class="faq-item__a">As aulas são curtas e você pode assistir no seu ritmo, no horário que fizer sentido para sua rotina. Com cerca de 30 a 60 minutos por semana, já é possível começar a aplicar o conteúdo e evoluir de forma consistente.</p>
+        </div>
+      </div>
+
+      <!-- 06 -->
+      <div class="faq-item">
+        <div class="faq-item__q">
+          <span class="faq-item__num">06</span>
+          <span class="faq-item__text">Qual o formato das aulas?</span>
+          <div class="faq-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 11 11"><line x1="5.5" y1="1" x2="5.5" y2="10"/><line x1="1" y1="5.5" x2="10" y2="5.5"/></svg>
+          </div>
+        </div>
+        <div class="faq-item__body">
+          <p class="faq-item__a">As aulas são em vídeo, organizadas em módulos curtos e práticos. Você também terá acesso a materiais complementares, exercícios e conteúdos de apoio para aplicar o aprendizado no dia a dia.</p>
+        </div>
+      </div>
+
+      <!-- 07 -->
+      <div class="faq-item">
+        <div class="faq-item__q">
+          <span class="faq-item__num">07</span>
+          <span class="faq-item__text">Como faço para tirar dúvidas?</span>
+          <div class="faq-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 11 11"><line x1="5.5" y1="1" x2="5.5" y2="10"/><line x1="1" y1="5.5" x2="10" y2="5.5"/></svg>
+          </div>
+        </div>
+        <div class="faq-item__body">
+          <p class="faq-item__a">Todos os meses acontece um plantão de dúvidas ao vivo em grupo para revisar decisões, esclarecer questões e acompanhar sua evolução. Você também pode enviar perguntas por e-mail ou diretamente pela plataforma.</p>
+        </div>
+      </div>
+
+      <!-- 08 -->
+      <div class="faq-item">
+        <div class="faq-item__q">
+          <span class="faq-item__num">08</span>
+          <span class="faq-item__text">Por quanto tempo terei acesso?</span>
+          <div class="faq-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 11 11"><line x1="5.5" y1="1" x2="5.5" y2="10"/><line x1="1" y1="5.5" x2="10" y2="5.5"/></svg>
+          </div>
+        </div>
+        <div class="faq-item__body">
+          <p class="faq-item__a">O acesso ao programa e ao suporte é válido por 12 meses. Durante esse período, você poderá rever as aulas, acompanhar atualizações e acessar os conteúdos no seu ritmo.</p>
+        </div>
+      </div>
+
+      <!-- 09 -->
+      <div class="faq-item">
+        <div class="faq-item__q">
+          <span class="faq-item__num">09</span>
+          <span class="faq-item__text">O curso ensina sobre impostos do país onde moro?</span>
+          <div class="faq-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 11 11"><line x1="5.5" y1="1" x2="5.5" y2="10"/><line x1="1" y1="5.5" x2="10" y2="5.5"/></svg>
+          </div>
+        </div>
+        <div class="faq-item__body">
+          <p class="faq-item__a">O curso não substitui um contador local, já que as regras mudam de país para país.</p>
+        </div>
+      </div>
+
+      <!-- 10 -->
+      <div class="faq-item">
+        <div class="faq-item__q">
+          <span class="faq-item__num">10</span>
+          <span class="faq-item__text">Vou aprender a investir em ações ou ativos específicos?</span>
+          <div class="faq-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 11 11"><line x1="5.5" y1="1" x2="5.5" y2="10"/><line x1="1" y1="5.5" x2="10" y2="5.5"/></svg>
+          </div>
+        </div>
+        <div class="faq-item__body">
+          <p class="faq-item__a">Não. O Euro na Real foi criado para quem ainda está organizando a base da vida financeira, construindo reserva e buscando mais clareza e segurança no dia a dia. Se você já possui uma reserva estruturada e quer começar a investir de forma mais estratégica, a consultoria individual provavelmente faz mais sentido para o seu momento.</p>
+        </div>
+      </div>
+
+      <!-- 11 -->
+      <div class="faq-item">
+        <div class="faq-item__q">
+          <span class="faq-item__num">11</span>
+          <span class="faq-item__text">E se eu não gostar do programa?</span>
+          <div class="faq-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 11 11"><line x1="5.5" y1="1" x2="5.5" y2="10"/><line x1="1" y1="5.5" x2="10" y2="5.5"/></svg>
+          </div>
+        </div>
+        <div class="faq-item__body">
+          <p class="faq-item__a">Você pode solicitar reembolso integral em até 15 dias após a compra, caso sinta que o programa não é para você.</p>
+        </div>
+      </div>
+
+    </div><!-- /faq__list -->
+  </div><!-- /faq__wrap -->
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     BLOCO 12 — CONTATO FINAL
+═══════════════════════════════════════════════ -->
+<section class="contato" id="contato">
+
+  <span class="vec vec--c1" aria-hidden="true"></span>
+  <span class="vec vec--c2" aria-hidden="true"></span>
+
+  <div class="contato__wrap">
+
+    <div class="contato__body">
+
+      <!-- coluna esquerda: texto -->
+      <div>
+        <h2 class="contato__hl" id="c12-hl">
+          <span class="lw"><span class="li">Ainda em dúvida</span></span>
+          <span class="lw"><span class="li">se é <span style="color:var(--gold)">para você?</span></span></span>
+        </h2>
+
+        <p class="contato__sub" id="c12-sub">
+          É normal querer ter certeza antes de investir em algo assim. Por isso, envie um e-mail ou mande uma mensagem no Instagram. Ficarei feliz em ajudar você a entender se o Euro na Real é o programa certo para o seu momento.
+        </p>
+      </div>
+
+      <!-- coluna direita: links de contato -->
+      <div class="contato__links" id="c12-links">
+
+        <a href="mailto:info@rafaelnobrega.com" class="contato__link">
+          <div class="contato__link-icon">
+            <svg viewBox="0 0 24 24">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <polyline points="2,4 12,14 22,4"/>
+            </svg>
+          </div>
+          <div class="contato__link-info">
+            <span class="contato__link-label">Email</span>
+            <span class="contato__link-value">info@rafaelnobrega.com</span>
+          </div>
+          <div class="contato__link-arrow">
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
+          </div>
+        </a>
+
+        <a href="https://www.instagram.com/rafaelplaneja" target="_blank" rel="noopener" class="contato__link">
+          <div class="contato__link-icon">
+            <svg viewBox="0 0 24 24">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="contato__link-info">
+            <span class="contato__link-label">Instagram</span>
+            <span class="contato__link-value">@rafaelplaneja</span>
+          </div>
+          <div class="contato__link-arrow">
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
+          </div>
+        </a>
+
+      </div><!-- /contato__links -->
+
+    </div><!-- /contato__body -->
+
+    <!-- footer -->
+    <footer class="contato__footer" id="c12-footer">
+      <img src="Logo/logo tipografico.png" alt="Euro na Real" class="contato__footer-logo">
+      <span class="contato__footer-copy">© 2026 Rafael Nobrega · Todos os direitos reservados</span>
+    </footer>
+
+  </div><!-- /contato__wrap -->
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     JS
+═══════════════════════════════════════════════ -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  /* ── LENIS SMOOTH SCROLL ── */
+  try {
+    const lenis = new Lenis({
+      lerp: 0.04,
+      smoothWheel: true,
+      wheelMultiplier: 1.1,
+      touchMultiplier: 2.0,
+    });
+    gsap.ticker.add(time => lenis.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
+    lenis.on('scroll', ScrollTrigger.update);
+  } catch(e) {
+    /* Lenis não carregou — scroll nativo continua funcionando */
+  }
+
+  /* ── MARQUEE BUILD ── */
+  const ITEMS = [
+    { t:'Euro na Real',           g:true  },
+    { t:'Organização Financeira', g:false },
+    { t:'Reserva em Euro',        g:true  },
+    { t:'Rafael Nobrega',         g:false },
+    { t:'Vida na Europa',         g:true  },
+    { t:'Método Prático',         g:false },
+    { t:'Clareza Financeira',     g:true  },
+    { t:'EFPA Espanha',           g:false },
+  ];
+
+  const mTrack = document.getElementById('j-marquee');
+  const mHTML  = ITEMS.map(i =>
+    `<span class="m-item${i.g?' au':''}">${i.t}<span class="m-gem"></span></span>`
+  ).join('');
+  if (mTrack) mTrack.innerHTML = mHTML + mHTML + mHTML + mHTML; /* 4× for smooth loop */
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const E = 'power4.out';
+
+  /* ─────────────────────────────
+     HERO — animações de entrada
+  ───────────────────────────── */
+  gsap.set('#j-logo',          { opacity:0, y:14 });
+  gsap.set('#j-eyebrow',       { opacity:0, y:18 });
+  gsap.set('.hero__left .li',  { y:'112%' });
+  gsap.set('#j-rule',          { opacity:0, scaleX:0, transformOrigin:'left center' });
+  gsap.set('#j-sub',           { opacity:0, y:22 });
+  gsap.set('#j-stats',         { opacity:0, y:16 });
+  gsap.set('#j-photo',         { scale:1.1, opacity:0 });
+  gsap.set('#j-card',          { opacity:0, y:28 });
+
+  const tl = gsap.timeline({ defaults:{ ease:E } });
+
+  tl
+    .to('#j-photo',          { opacity:1, scale:1,  duration:2.0, ease:'power2.out' }, 0.0)
+    .to('#j-logo',           { opacity:1, y:0,      duration:0.85 }, 0.15)
+    .to('#j-eyebrow',        { opacity:1, y:0,      duration:0.75 }, 0.55)
+    .to('.hero__left .li',   { y:0, duration:1.1, stagger:0.095  }, 0.72)
+    .to('#j-rule',           { opacity:1, scaleX:1, duration:0.9  }, 1.45)
+    .to('#j-sub',            { opacity:1, y:0,      duration:0.85 }, 1.6 )
+    .to('#j-stats',          { opacity:1, y:0,      duration:0.75 }, 1.85)
+    .to('#j-card',           { opacity:1, y:0,      duration:0.85, ease:'power3.out' }, 2.05);
+
+  /* counter 14+ */
+  const counterEl = document.querySelector('[data-count]');
+  if (counterEl) {
+    const target = parseInt(counterEl.dataset.count, 10);
+    tl.to({}, {
+      duration:1.2, ease:'power2.out',
+      onUpdate: function () {
+        counterEl.textContent = Math.round(this.progress() * target) + '+';
+      },
+    }, 1.85);
+  }
+
+  /* ─────────────────────────────
+     BLOCO 2 — DORES (scroll)
+  ───────────────────────────── */
+  gsap.set('#d-pre .li',          { y:'110%' });
+  gsap.set('#d-mas',              { y:'110%' });
+  gsap.set('.dore-row',           { opacity:0, y:18 });
+  gsap.set('#d-close .li',        { y:'110%' });
+  gsap.set('.dores__close-label', { opacity:0 });
+
+  /* headline "Se você acreditou..." + mas... */
+  ScrollTrigger.create({
+    trigger: '#d-pre',
+    start: 'top 82%',
+    onEnter: () => {
+      gsap.timeline({ defaults:{ ease:E } })
+        .to('#d-pre .li', { y:0, duration:1.0, stagger:0.1 }, 0)
+        .to('#d-mas',     { y:0, duration:1.1, ease:E       }, 0.3);
+    },
+    once: true,
+  });
+
+  /* lista numerada — stagger sequencial */
+  ScrollTrigger.create({
+    trigger: '#d-list',
+    start: 'top 78%',
+    onEnter: () => {
+      gsap.to('.dore-row', {
+        opacity:1, y:0,
+        duration:0.55,
+        stagger:0.08,
+        ease:'power3.out',
+      });
+    },
+    once: true,
+  });
+
+  /* callout final */
+  ScrollTrigger.create({
+    trigger: '#d-close',
+    start: 'top 82%',
+    onEnter: () => {
+      gsap.timeline({ defaults:{ ease:E } })
+        .to('.dores__close-label', { opacity:1, duration:0.5 }, 0)
+        .to('#d-close .li',        { y:0, duration:1.0, stagger:0.12 }, 0.2);
+    },
+    once: true,
+  });
+
+  /* ─────────────────────────────
+     BLOCO 3 — PROMESSA (scroll)
+  ───────────────────────────── */
+  gsap.set('#p3-photo',         { scale:1.06, opacity:0 });
+  gsap.set('.promessa__hl .li', { y:'110%' });
+  gsap.set('.beneficio',        { opacity:0, y:22 });
+
+  ScrollTrigger.create({
+    trigger: '.promessa',
+    start: 'top 78%',
+    onEnter: () => {
+      gsap.timeline({ defaults:{ ease:E } })
+        .to('#p3-photo',           { opacity:1, scale:1,  duration:1.4, ease:'power2.out' }, 0)
+        .to('.promessa__hl .li',   { y:0, duration:1.05,  stagger:0.13 }, 0.25)
+        .call(() => {
+          document.getElementById('p3-strike')?.classList.add('is-struck');
+        }, null, 0.75)
+        .to('.beneficio',          { opacity:1, y:0, duration:0.55, stagger:0.09, ease:'power3.out' }, 0.95);
+    },
+    once: true,
+  });
+
+  /* ─────────────────────────────
+     BLOCO 4 — DIFERENCIAL (scroll)
+  ───────────────────────────── */
+  gsap.set('#d4-tag',             { opacity:0, x:-16 });
+  gsap.set('.diferencial__hl .li',{ y:'110%' });
+  gsap.set('#d4-sub',             { opacity:0, y:18 });
+  gsap.set('.pilar',              { opacity:0, y:24 });
+
+  ScrollTrigger.create({
+    trigger: '.diferencial',
+    start: 'top 78%',
+    onEnter: () => {
+      gsap.timeline({ defaults:{ ease:E } })
+        .to('#d4-tag',               { opacity:1, x:0,  duration:0.6              }, 0)
+        .to('.diferencial__hl .li',  { y:0, duration:1.05, stagger:0.11           }, 0.2)
+        .to('#d4-sub',               { opacity:1, y:0,  duration:0.7              }, 0.75)
+        .to('.pilar',                { opacity:1, y:0, duration:0.55, stagger:0.1, ease:'power3.out' }, 0.5);
+    },
+    once: true,
+  });
+
+  /* ─────────────────────────────
+     BLOCO 5 — CONTEÚDO (scroll)
+  ───────────────────────────── */
+  gsap.set('.conteudo__hl .li', { y:'110%' });
+  gsap.set('#c5-intro',         { opacity:0, y:18 });
+  gsap.set('.conteudo__sep',    { scaleX:0, transformOrigin:'left center' });
+  gsap.set('.modulo',           { opacity:0, y:20 });
+
+  ScrollTrigger.create({
+    trigger: '.conteudo',
+    start: 'top 78%',
+    onEnter: () => {
+      gsap.timeline({ defaults:{ ease:E } })
+        .to('.conteudo__hl .li', { y:0, duration:1.0, stagger:0.12      }, 0)
+        .to('#c5-intro',         { opacity:1, y:0, duration:0.7         }, 0.25)
+        .to('.conteudo__sep',    { scaleX:1, duration:1.0               }, 0.5)
+        .to('.modulo',           { opacity:1, y:0, duration:0.5, stagger:0.07, ease:'power3.out' }, 0.65);
+    },
+    once: true,
+  });
+
+  /* ─────────────────────────────
+     BLOCO 6 — OFERTA (scroll)
+  ───────────────────────────── */
+  gsap.set('.oferta__hl .li', { y:'110%' });
+  gsap.set('#o6-sub',         { opacity:0, y:18 });
+  gsap.set('.oferta-item',    { opacity:0, x:-20 });
+  gsap.set('#o6-card',        { opacity:0, y:32 });
+
+  ScrollTrigger.create({
+    trigger: '.oferta',
+    start: 'top 78%',
+    onEnter: () => {
+      gsap.timeline({ defaults:{ ease:E } })
+        .to('.oferta__hl .li', { y:0, duration:1.0, stagger:0.12          }, 0)
+        .to('#o6-sub',         { opacity:1, y:0, duration:0.7             }, 0.3)
+        .to('.oferta-item',    { opacity:1, x:0, duration:0.5, stagger:0.08, ease:'power3.out' }, 0.5)
+        .to('#o6-card',        { opacity:1, y:0, duration:0.9, ease:'power3.out' }, 0.45);
+    },
+    once: true,
+  });
+
+  /* ─────────────────────────────
+     BLOCO 7 — TRANSFORMAÇÃO (scroll)
+  ───────────────────────────── */
+  gsap.set('.transformacao__hl .li', { y:'110%' });
+  gsap.set('#t7-intro',              { opacity:0, y:18 });
+  gsap.set('.transformacao__carousel', { opacity:0, x:40 });
+
+  ScrollTrigger.create({
+    trigger: '.transformacao',
+    start: 'top 78%',
+    onEnter: () => {
+      gsap.timeline({ defaults:{ ease:E } })
+        .to('.transformacao__hl .li',    { y:0, duration:1.0, stagger:0.12 }, 0)
+        .to('#t7-intro',                 { opacity:1, y:0, duration:0.7    }, 0.3)
+        .to('.transformacao__carousel',  { opacity:1, x:0, duration:0.9, ease:'power3.out' }, 0.2);
+    },
+    once: true,
+  });
+
+  /* ─────────────────────────────
+     BLOCO 8 — PARA QUEM É (scroll)
+  ───────────────────────────── */
+  gsap.set('.perfil__hl .li', { y:'110%' });
+  gsap.set('#p8-sub',         { opacity:0, y:18 });
+  gsap.set('.perfil-item',    { opacity:0, y:24 });
+
+  ScrollTrigger.create({
+    trigger: '.perfil',
+    start: 'top 78%',
+    onEnter: () => {
+      const tl = gsap.timeline({ defaults:{ ease:E } });
+
+      tl
+        .to('.perfil__hl .li', { y:0, duration:1.0, stagger:0.12 }, 0)
+        .to('#p8-sub',         { opacity:1, y:0, duration:0.7    }, 0.3)
+        .to('.perfil-item',    { opacity:1, y:0, duration:0.5, stagger:0.1, ease:'power3.out' }, 0.55);
+
+      /* checkmarks desenham em sequência */
+      document.querySelectorAll('.p8-check').forEach((el, i) => {
+        gsap.to(el, {
+          strokeDashoffset: 0,
+          duration: 0.45,
+          ease: 'power2.out',
+          delay: 0.85 + i * 0.12,
+          onStart: () => el.closest('.perfil-item').classList.add('is-checked'),
+        });
+      });
+    },
+    once: true,
+  });
+
+  /* ─────────────────────────────
+     BLOCO 9 — CTA MID (scroll)
+  ───────────────────────────── */
+  gsap.set('.cta-mid__hl .li', { y:'110%' });
+  gsap.set('#c9-sub',          { opacity:0, y:20 });
+  gsap.set('#c9-btn',          { opacity:0, y:20, scale:0.96 });
+
+  ScrollTrigger.create({
+    trigger: '.cta-mid',
+    start: 'top 78%',
+    onEnter: () => {
+      gsap.timeline({ defaults:{ ease:E } })
+        .to('.cta-mid__hl .li', { y:0, duration:1.1, stagger:0.15       }, 0)
+        .to('#c9-sub',          { opacity:1, y:0, duration:0.75         }, 0.45)
+        .to('#c9-btn',          { opacity:1, y:0, scale:1, duration:0.7, ease:'back.out(1.4)' }, 0.7);
+    },
+    once: true,
+  });
+
+  /* ─────────────────────────────
+     BLOCO 10 — SOBRE (scroll)
+  ───────────────────────────── */
+  gsap.set('#s10-pre',         { opacity:0, x:-16 });
+  gsap.set('.sobre__name .li', { y:'110%' });
+  gsap.set('#s10-creds',       { opacity:0, y:14 });
+  gsap.set('#s10-bio',         { opacity:0, y:20 });
+  gsap.set('#s10-socials',     { opacity:0, y:14 });
+  gsap.set('#s10-photo',       { opacity:0, x:30 });
+
+  ScrollTrigger.create({
+    trigger: '.sobre',
+    start: 'top 78%',
+    onEnter: () => {
+      gsap.timeline({ defaults:{ ease:E } })
+        .to('#s10-pre',          { opacity:1, x:0,  duration:0.6              }, 0)
+        .to('.sobre__name .li',  { y:0, duration:1.0, stagger:0.12            }, 0.15)
+        .to('#s10-creds',        { opacity:1, y:0,  duration:0.6              }, 0.5)
+        .to('#s10-bio',          { opacity:1, y:0,  duration:0.75             }, 0.7)
+        .to('#s10-socials',      { opacity:1, y:0,  duration:0.55             }, 0.95)
+        .to('#s10-photo',        { opacity:1, x:0,  duration:1.0, ease:'power3.out' }, 0.2);
+    },
+    once: true,
+  });
+
+  /* ─────────────────────────────
+     BLOCO 11 — FAQ (scroll + accordion)
+  ───────────────────────────── */
+  gsap.set('.faq__hl .li', { y:'110%' });
+  gsap.set('#f11-intro',   { opacity:0, y:18 });
+  gsap.set('.faq-item',    { opacity:0, y:16 });
+
+  ScrollTrigger.create({
+    trigger: '.faq',
+    start: 'top 78%',
+    onEnter: () => {
+      gsap.timeline({ defaults:{ ease:E } })
+        .to('.faq__hl .li', { y:0, duration:1.0, stagger:0.12        }, 0)
+        .to('#f11-intro',   { opacity:1, y:0, duration:0.7           }, 0.3)
+        .to('.faq-item',    { opacity:1, y:0, duration:0.45, stagger:0.06, ease:'power3.out' }, 0.5);
+    },
+    once: true,
+  });
+
+  /* ─────────────────────────────
+     BLOCO 12 — CONTATO (scroll)
+  ───────────────────────────── */
+  gsap.set('.contato__hl .li', { y:'110%' });
+  gsap.set('#c12-sub',         { opacity:0, y:18 });
+  gsap.set('.contato__link',   { opacity:0, y:20 });
+  gsap.set('#c12-footer',      { opacity:0 });
+
+  ScrollTrigger.create({
+    trigger: '.contato',
+    start: 'top 78%',
+    onEnter: () => {
+      gsap.timeline({ defaults:{ ease:E } })
+        .to('.contato__hl .li', { y:0, duration:1.0, stagger:0.12               }, 0)
+        .to('#c12-sub',         { opacity:1, y:0, duration:0.7                  }, 0.55)
+        .to('.contato__link',   { opacity:1, y:0, duration:0.5, stagger:0.12, ease:'power3.out' }, 0.75)
+        .to('#c12-footer',      { opacity:1, duration:0.6                       }, 1.1);
+    },
+    once: true,
+  });
+
+  /* accordion */
+  document.querySelectorAll('.faq-item__body').forEach(function(b) {
+    b.style.maxHeight = '0px';
+    b.style.overflow  = 'hidden';
+    b.style.transition = 'max-height 0.42s cubic-bezier(0.16,1,0.3,1)';
+  });
+
+  var faqList = document.getElementById('f11-list');
+  if (faqList) faqList.addEventListener('click', function(e) {
+    var q = e.target.closest('.faq-item__q');
+    if (!q) return;
+
+    var item   = q.closest('.faq-item');
+    var body   = item.querySelector('.faq-item__body');
+    var isOpen = item.classList.contains('is-open');
+
+    /* fecha todos */
+    document.querySelectorAll('.faq-item').forEach(function(i) {
+      i.classList.remove('is-open');
+      i.querySelector('.faq-item__body').style.maxHeight = '0px';
+    });
+
+    /* abre o clicado */
+    if (!isOpen) {
+      item.classList.add('is-open');
+      body.style.maxHeight = body.scrollHeight + 'px';
+    }
+  });
+
+})();
+
+</script>
+
+</body>
+</html>
