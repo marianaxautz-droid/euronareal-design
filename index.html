@@ -9,15 +9,15 @@
     /* ─── FONTES ─── */
     @font-face {
       font-family: 'Bricolage';
-      src: url('Fontes/BricolageGrotesque-VariableFont_opsz,wdth,wght.ttf') format('truetype');
+      src: url('Assets/Fontes/BricolageGrotesque-VariableFont_opsz,wdth,wght.ttf') format('truetype');
       font-weight: 100 900;
       font-display: swap;
     }
-    @font-face { font-family: 'Poppins'; src: url('Fontes/Poppins/Poppins-Light.ttf') format('truetype'); font-weight: 300; font-display: swap; }
-    @font-face { font-family: 'Poppins'; src: url('Fontes/Poppins/Poppins-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
-    @font-face { font-family: 'Poppins'; src: url('Fontes/Poppins/Poppins-Medium.ttf') format('truetype'); font-weight: 500; font-display: swap; }
-    @font-face { font-family: 'Poppins'; src: url('Fontes/Poppins/Poppins-SemiBold.ttf') format('truetype'); font-weight: 600; font-display: swap; }
-    @font-face { font-family: 'Poppins'; src: url('Fontes/Poppins/Poppins-Bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+    @font-face { font-family: 'Poppins'; src: url('Assets/Fontes/Poppins/Poppins-Light.ttf') format('truetype'); font-weight: 300; font-display: swap; }
+    @font-face { font-family: 'Poppins'; src: url('Assets/Fontes/Poppins/Poppins-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+    @font-face { font-family: 'Poppins'; src: url('Assets/Fontes/Poppins/Poppins-Medium.ttf') format('truetype'); font-weight: 500; font-display: swap; }
+    @font-face { font-family: 'Poppins'; src: url('Assets/Fontes/Poppins/Poppins-SemiBold.ttf') format('truetype'); font-weight: 600; font-display: swap; }
+    @font-face { font-family: 'Poppins'; src: url('Assets/Fontes/Poppins/Poppins-Bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
 
     /* ─── RESET ─── */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -25,17 +25,16 @@
 
     /* ─── TOKENS ─── */
     :root {
-      --granite:    #3E5746;
-      --granite-2:  #344a3b;
-      --gold:       #C7A86B;
-      --gold-hover: #d4b87a;
-      --terracotta: #BF754A;
-      --tan:        #C7A86B;
-      --smoke:      #FAF8F4;
-      --alabaster:  #D8D9D3;
-      --silver:     #D8D9D3;
-      --carbon:     #2A2E2C;
-      --carbon-2:   #1e2220;
+      --granite:    #414E41;
+      --granite-2:  #364036;
+      --gold:       #B08A3D;
+      --gold-hover: #C9A356;
+      --tan:        #CFAF98;
+      --smoke:      #F5F5F2;
+      --alabaster:  #E6E8E3;
+      --silver:     #C8CFCD;
+      --carbon:     #1C2422;
+      --carbon-2:   #111917;
 
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -54,7 +53,7 @@
       position: absolute;
       pointer-events: none;
       user-select: none;
-      background: url("data:image/svg+xml,%3Csvg width='101' height='88' viewBox='0 0 101 88' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M32.6308 26.7336C33.3553 25.4257 34.5212 24.4184 35.9198 23.8919L99.1616 0.0845897C100.258 -0.328089 101.274 0.849704 100.706 1.87484L68.2378 60.4804C67.5132 61.7883 66.3474 62.7956 64.9488 63.3221L1.707 87.1294C0.61076 87.5421 -0.405195 86.3643 0.162741 85.3391L32.6308 26.7336Z' fill='%23C7A86B'/%3E%3C/svg%3E") no-repeat center / contain;
+      background: url("data:image/svg+xml,%3Csvg width='101' height='88' viewBox='0 0 101 88' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M32.6308 26.7336C33.3553 25.4257 34.5212 24.4184 35.9198 23.8919L99.1616 0.0845897C100.258 -0.328089 101.274 0.849704 100.706 1.87484L68.2378 60.4804C67.5132 61.7883 66.3474 62.7956 64.9488 63.3221L1.707 87.1294C0.61076 87.5421 -0.405195 86.3643 0.162741 85.3391L32.6308 26.7336Z' fill='%23B08A3D'/%3E%3C/svg%3E") no-repeat center / contain;
       animation: vec-float var(--dur, 8s) ease-in-out infinite;
       animation-delay: var(--delay, 0s);
     }
@@ -64,10 +63,6 @@
       50%       { transform: rotate(var(--r, 0deg)) translateY(-10px); }
     }
 
-    /* Hero shapes */
-    .vec--h1 { width: 220px; height: 192px; top: 8%;  right: 6%;  opacity: 0.055; --r: 18deg;  --dur: 9s;  --delay: 0s;   z-index: 1; }
-    .vec--h2 { width: 110px; height: 96px;  top: 55%; right: 14%; opacity: 0.04;  --r: -8deg;  --dur: 11s; --delay: 2s;   z-index: 1; }
-    .vec--h3 { width: 70px;  height: 61px;  top: 30%; right: 2%;  opacity: 0.07;  --r: 35deg;  --dur: 7s;  --delay: 1.5s; z-index: 1; }
 
     /* Promessa shapes */
     .vec--p1 { width: 180px; height: 157px; bottom: -2rem; left: -3rem; opacity: 0.05; --r: -15deg; --dur: 10s; --delay: 1s; z-index: 0; }
@@ -155,7 +150,7 @@
     }
 
     .hero__logo {
-      width: 175px;
+      width: 100px;
       display: block;
       filter: none;
       will-change: opacity, transform;
@@ -185,7 +180,7 @@
       display: block;
       width: 32px;
       height: 1.5px;
-      background: linear-gradient(90deg, var(--gold), rgba(199,168,107,0));
+      background: linear-gradient(90deg, var(--gold), rgba(176,138,61,0));
     }
 
     .eyebrow__label {
@@ -202,7 +197,7 @@
       font-size: clamp(2.1rem, 3.1vw, 3.5rem);
       line-height: 1.09;
       letter-spacing: -0.028em;
-      color: var(--granite);
+      color: var(--carbon);
       margin-bottom: 2.5rem;
     }
 
@@ -227,7 +222,7 @@
       flex: 1;
       height: 1px;
       background: linear-gradient(90deg,
-        rgba(42,46,44,0.15) 0%,
+        rgba(28,36,34,0.15) 0%,
         transparent 100%
       );
     }
@@ -259,7 +254,7 @@
       font-size: 1rem;
       font-weight: 400;
       line-height: 1.75;
-      color: rgba(42,46,44,0.52);
+      color: rgba(28,36,34,0.52);
       max-width: 560px;
     }
 
@@ -298,7 +293,7 @@
     }
 
     .hero__cta:hover {
-      box-shadow: 0 14px 40px rgba(199,168,107,0.5);
+      box-shadow: 0 14px 40px rgba(176,138,61,0.5);
       transform: translateY(-2px);
     }
 
@@ -341,7 +336,7 @@
       align-items: stretch;
       gap: 0;
       padding-top: 2rem;
-      border-top: 1px solid rgba(42,46,44,0.1);
+      border-top: 1px solid rgba(28,36,34,0.1);
       position: relative;
       z-index: 3;
     }
@@ -368,12 +363,12 @@
       font-weight: 400;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(42,46,44,0.38);
+      color: rgba(28,36,34,0.38);
     }
 
     .stat__div {
       width: 1px;
-      background: rgba(42,46,44,0.1);
+      background: rgba(28,36,34,0.1);
       margin: 0 2rem 0 0;
       flex-shrink: 0;
     }
@@ -415,7 +410,7 @@
       background: rgba(18, 26, 24, 0.6);
       backdrop-filter: blur(20px) saturate(1.6);
       -webkit-backdrop-filter: blur(20px) saturate(1.6);
-      border: 1px solid rgba(250,248,244,0.09);
+      border: 1px solid rgba(245,245,242,0.09);
       border-radius: 1.25rem;
       padding: 1.4rem 1.6rem 1.4rem 1.6rem;
       min-width: 210px;
@@ -445,7 +440,7 @@
       width: 38px;
       height: 38px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--gold), rgba(199,168,107,0.5));
+      background: linear-gradient(135deg, var(--gold), rgba(176,138,61,0.5));
       display: flex;
       align-items: center;
       justify-content: center;
@@ -467,13 +462,13 @@
     .card__role {
       font-size: 0.62rem;
       font-weight: 400;
-      color: rgba(216,217,211,0.55);
+      color: rgba(200,207,205,0.55);
       margin-top: 0.15rem;
     }
 
     .card__divider {
       height: 1px;
-      background: rgba(216,217,211,0.1);
+      background: rgba(200,207,205,0.1);
       margin-bottom: 0.9rem;
     }
 
@@ -489,8 +484,8 @@
       letter-spacing: 0.09em;
       text-transform: uppercase;
       color: var(--gold);
-      border: 1px solid rgba(199,168,107,0.28);
-      background: rgba(199,168,107,0.1);
+      border: 1px solid rgba(176,138,61,0.28);
+      background: rgba(176,138,61,0.1);
       border-radius: 100px;
       padding: 0.22rem 0.65rem;
     }
@@ -506,7 +501,7 @@
       font-weight: 500;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: rgba(216,217,211,0.18);
+      color: rgba(200,207,205,0.18);
       white-space: nowrap;
       z-index: 10;
       pointer-events: none;
@@ -556,7 +551,7 @@
       font-weight: 500;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(250,248,244,0.38);
+      color: rgba(245,245,242,0.38);
       flex-shrink: 0;
       white-space: nowrap;
     }
@@ -644,8 +639,8 @@
 
     .dore-row {
       position: relative;
-      background: rgba(250,248,244,0.03);
-      border: 1px solid rgba(216,217,211,0.07);
+      background: rgba(245,245,242,0.03);
+      border: 1px solid rgba(200,207,205,0.07);
       border-radius: 1.25rem;
       padding: 1.75rem 1.6rem 1.6rem;
       cursor: default;
@@ -673,15 +668,15 @@
       position: absolute;
       inset: 0;
       border-radius: 1.25rem;
-      background: radial-gradient(ellipse at 0% 0%, rgba(199,168,107,0.07) 0%, transparent 65%);
+      background: radial-gradient(ellipse at 0% 0%, rgba(176,138,61,0.07) 0%, transparent 65%);
       opacity: 0;
       transition: opacity 0.45s var(--ease-out);
       pointer-events: none;
     }
 
     .dore-row:hover {
-      border-color: rgba(199,168,107,0.22);
-      background: rgba(250,248,244,0.05);
+      border-color: rgba(176,138,61,0.22);
+      background: rgba(245,245,242,0.05);
       box-shadow: 0 8px 32px rgba(0,0,0,0.25);
     }
     .dore-row:hover::before { opacity: 1; }
@@ -694,12 +689,12 @@
       font-size: 1rem;
       font-weight: 400;
       line-height: 1.65;
-      color: rgba(250,248,244,0.78);
+      color: rgba(245,245,242,0.78);
       transition: color 0.35s ease;
       padding-right: 1.5rem; /* avoid overlap with number */
     }
     .dore-text strong { font-weight: 600; }
-    .dore-row:hover .dore-text { color: rgba(250,248,244,0.82); }
+    .dore-row:hover .dore-text { color: rgba(245,245,242,0.82); }
 
     /* ── Parte 3: Callout final ── */
     .dores__close {
@@ -714,7 +709,7 @@
       font-weight: 500;
       letter-spacing: 0.24em;
       text-transform: uppercase;
-      color: rgba(216,217,211,0.25);
+      color: rgba(200,207,205,0.25);
       margin-bottom: 1.5rem;
     }
 
@@ -724,7 +719,7 @@
       display: block;
       width: 36px;
       height: 1px;
-      background: rgba(216,217,211,0.15);
+      background: rgba(200,207,205,0.15);
     }
 
     .dores__callout {
@@ -774,7 +769,7 @@
       transform: translateY(-50%);
       width: 600px;
       height: 600px;
-      background: radial-gradient(circle at center, rgba(199,168,107,0.055) 0%, transparent 65%);
+      background: radial-gradient(circle at center, rgba(176,138,61,0.055) 0%, transparent 65%);
       pointer-events: none;
     }
 
@@ -823,14 +818,14 @@
       font-size: 0.88rem;
       font-weight: 400;
       line-height: 1.75;
-      color: rgba(42,46,44,0.55);
+      color: rgba(28,36,34,0.55);
       max-width: 480px;
       margin-bottom: 2.5rem;
     }
 
     /* "planilha" — riscado em dourado no scroll */
     .promessa__strike {
-      color: rgba(42,46,44,0.28);
+      color: rgba(28,36,34,0.28);
       position: relative;
       display: inline-block;
     }
@@ -869,8 +864,8 @@
       width: 36px;
       height: 36px;
       border-radius: 9px;
-      background: rgba(199,168,107,0.09);
-      border: 1px solid rgba(199,168,107,0.18);
+      background: rgba(176,138,61,0.09);
+      border: 1px solid rgba(176,138,61,0.18);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -879,8 +874,8 @@
     }
 
     .beneficio:hover .beneficio__icon {
-      background: rgba(199,168,107,0.16);
-      border-color: rgba(199,168,107,0.35);
+      background: rgba(176,138,61,0.16);
+      border-color: rgba(176,138,61,0.35);
     }
 
     .beneficio__icon svg {
@@ -893,34 +888,15 @@
       stroke-linejoin: round;
     }
 
-    /* bloco 3 — usa terracotta no lugar do gold */
-    .promessa__strike::after {
-      background: var(--terracotta);
-    }
-
-    .beneficio__icon {
-      background: rgba(191,117,74,0.09);
-      border-color: rgba(191,117,74,0.18);
-    }
-
-    .beneficio:hover .beneficio__icon {
-      background: rgba(191,117,74,0.16);
-      border-color: rgba(191,117,74,0.35);
-    }
-
-    .beneficio__icon svg {
-      stroke: var(--terracotta);
-    }
-
     .beneficio__text {
       font-size: 1rem;
       font-weight: 400;
       line-height: 1.6;
-      color: rgba(42,46,44,0.58);
+      color: rgba(28,36,34,0.58);
       transition: color 0.3s;
     }
 
-    .beneficio:hover .beneficio__text { color: rgba(42,46,44,0.82); }
+    .beneficio:hover .beneficio__text { color: rgba(28,36,34,0.82); }
 
     /* ══════════════════════════════════════════════
        BLOCO 4 — DIFERENCIAL
@@ -998,7 +974,7 @@
       font-size: 0.85rem;
       font-weight: 400;
       line-height: 1.75;
-      color: rgba(216,217,211,0.55);
+      color: rgba(200,207,205,0.55);
       max-width: 360px;
     }
 
@@ -1012,30 +988,39 @@
       display: grid;
       grid-template-columns: 1fr;
       padding: 1.75rem 0 1.75rem 1rem;
-      border-bottom: 1px solid rgba(216,217,211,0.08);
+      border-bottom: 1px solid rgba(200,207,205,0.08);
       position: relative;
       cursor: default;
       transition: background 0.35s;
     }
 
-    .pilar:first-child { border-top: 1px solid rgba(216,217,211,0.08); }
+    .pilar:first-child { border-top: 1px solid rgba(200,207,205,0.08); }
 
     /* gold left accent */
-    .pilar::before { display: none; }
-    .pilar:hover::before { display: none; }
+    .pilar::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: var(--gold);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.4s var(--ease-out);
+    }
+    .pilar:hover::before { transform: scaleY(1); }
 
     .pilar__num {
       font-family: 'Bricolage', sans-serif;
       font-variation-settings: 'wght' 700;
       font-size: 1.4rem;
       line-height: 1;
-      color: rgba(216,217,211,0.1);
+      color: rgba(200,207,205,0.1);
       letter-spacing: -0.04em;
       padding-top: 0.1rem;
       transition: color 0.35s;
       user-select: none;
     }
-    .pilar:hover .pilar__num { color: rgba(199,168,107,0.35); }
+    .pilar:hover .pilar__num { color: rgba(176,138,61,0.35); }
 
     .pilar__vec { display: none; }
 
@@ -1046,7 +1031,7 @@
       font-variation-settings: 'wght' 500;
       font-size: 1.125rem;
       letter-spacing: -0.015em;
-      color: rgba(250,248,244,0.75);
+      color: rgba(245,245,242,0.75);
       margin-bottom: 0.4rem;
       line-height: 1.2;
       transition: color 0.35s;
@@ -1057,10 +1042,10 @@
       font-size: 0.8rem;
       font-weight: 400;
       line-height: 1.6;
-      color: rgba(216,217,211,0.42);
+      color: rgba(200,207,205,0.42);
       transition: color 0.35s;
     }
-    .pilar:hover .pilar__text { color: rgba(216,217,211,0.7); }
+    .pilar:hover .pilar__text { color: rgba(200,207,205,0.7); }
 
     /* ══════════════════════════════════════════════
        BLOCO 5 — CONTEÚDO
@@ -1100,7 +1085,7 @@
       font-size: 0.85rem;
       font-weight: 400;
       line-height: 1.75;
-      color: rgba(42,46,44,0.52);
+      color: rgba(28,36,34,0.52);
       padding-bottom: 0.25rem;
     }
 
@@ -1121,7 +1106,7 @@
     }
 
     .modulo:hover {
-      box-shadow: 0 12px 40px rgba(42,46,44,0.12);
+      box-shadow: 0 12px 40px rgba(28,36,34,0.12);
       transform: translateY(-4px);
     }
 
@@ -1139,7 +1124,7 @@
       object-fit: cover;
       object-position: center top;
       display: block;
-      filter: brightness(0.95) saturate(1.6);
+      filter: brightness(0.95) saturate(1.368);
       transition: transform 0.65s var(--ease-out), filter 0.4s;
     }
 
@@ -1152,7 +1137,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(191,117,74,0.55);
+      background: rgba(65,78,65,0.45);
       opacity: 0;
       transition: opacity 0.4s;
       pointer-events: none;
@@ -1168,7 +1153,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(42,46,44,0.45) 0%, transparent 50%);
+      background: linear-gradient(to top, rgba(28,36,34,0.45) 0%, transparent 50%);
       pointer-events: none;
     }
 
@@ -1182,19 +1167,19 @@
       font-size: 0.55rem;
       font-weight: 600;
       letter-spacing: 0.12em;
-      color: rgba(250,248,244,0.95);
-      background: rgba(199,168,107,0.55);
+      color: rgba(245,245,242,0.95);
+      background: rgba(176,138,61,0.55);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(250,248,244,0.12);
+      border: 1px solid rgba(245,245,242,0.12);
       border-radius: 100px;
       padding: 0.28rem 0.65rem;
       transition: color 0.3s, background 0.3s;
     }
 
     .modulo:hover .modulo__num {
-      color: var(--terracotta);
-      background: rgba(250,248,244,1);
+      color: var(--gold);
+      background: rgba(245,245,242,1);
     }
 
     /* corpo do card */
@@ -1220,17 +1205,17 @@
       font-size: 0.73rem;
       font-weight: 400;
       line-height: 1.55;
-      color: rgba(42,46,44,0.45);
+      color: rgba(28,36,34,0.45);
       transition: color 0.3s;
     }
 
-    .modulo:hover .modulo__desc { color: rgba(42,46,44,0.65); }
+    .modulo:hover .modulo__desc { color: rgba(28,36,34,0.65); }
 
     /* ══════════════════════════════════════════════
        BLOCO 6 — OFERTA
     ══════════════════════════════════════════════ */
     .oferta {
-      background: var(--granite);
+      background: var(--carbon-2);
       padding: 8rem 0;
       position: relative;
       overflow: hidden;
@@ -1249,7 +1234,15 @@
     }
 
     .oferta::after {
-      display: none;
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background: linear-gradient(to top, #404E41 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 1;
     }
 
 
@@ -1263,7 +1256,7 @@
       font-variation-settings: 'wght' 800;
       font-size: 30rem;
       line-height: 1;
-      color: rgba(250,248,244,0.018);
+      color: rgba(245,245,242,0.018);
       pointer-events: none;
       user-select: none;
       letter-spacing: -0.05em;
@@ -1299,7 +1292,7 @@
       font-size: 0.85rem;
       font-weight: 400;
       line-height: 1.7;
-      color: rgba(216,217,211,0.5);
+      color: rgba(200,207,205,0.5);
       margin-bottom: 2.75rem;
       max-width: 400px;
     }
@@ -1315,17 +1308,17 @@
       align-items: center;
       gap: 1rem;
       padding: 0.95rem 0;
-      border-bottom: 1px solid rgba(216,217,211,0.07);
+      border-bottom: 1px solid rgba(200,207,205,0.07);
     }
 
-    .oferta-item:first-child { border-top: 1px solid rgba(216,217,211,0.07); }
+    .oferta-item:first-child { border-top: 1px solid rgba(200,207,205,0.07); }
 
     .oferta-item__check {
       width: 22px;
       height: 22px;
       border-radius: 50%;
-      background: rgba(199,168,107,0.1);
-      border: 1px solid rgba(199,168,107,0.28);
+      background: rgba(176,138,61,0.1);
+      border: 1px solid rgba(176,138,61,0.28);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1346,21 +1339,21 @@
       font-size: 0.85rem;
       font-weight: 400;
       line-height: 1.5;
-      color: rgba(216,217,211,0.65);
+      color: rgba(200,207,205,0.65);
     }
 
     .oferta-item__text strong {
       font-weight: 600;
-      color: rgba(250,248,244,0.85);
+      color: rgba(245,245,242,0.85);
     }
 
     /* ── Card CTA direita ── */
     .oferta__card {
       position: relative;
-      background: rgba(20,28,26,0.45);
+      background: rgba(20,28,26,0.75);
       backdrop-filter: blur(24px) saturate(1.5);
       -webkit-backdrop-filter: blur(24px) saturate(1.5);
-      border: 1px solid rgba(199,168,107,0.22);
+      border: 1px solid rgba(176,138,61,0.22);
       border-radius: 1.5rem;
       padding: 2.75rem 2.25rem;
       display: flex;
@@ -1383,7 +1376,7 @@
       position: absolute;
       inset: 0;
       border-radius: 1.5rem;
-      background: radial-gradient(ellipse at 50% 0%, rgba(199,168,107,0.08) 0%, transparent 70%);
+      background: radial-gradient(ellipse at 50% 0%, rgba(176,138,61,0.08) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -1401,13 +1394,13 @@
       font-size: 1.125rem;
       font-weight: 400;
       line-height: 1.6;
-      color: rgba(216,217,211,0.45);
+      color: rgba(200,207,205,0.45);
       margin-bottom: 2rem;
     }
 
     .oferta__card-divider {
       height: 1px;
-      background: rgba(216,217,211,0.08);
+      background: rgba(200,207,205,0.08);
       margin-bottom: 2rem;
     }
 
@@ -1425,7 +1418,7 @@
       gap: 0.65rem;
       font-size: 0.75rem;
       font-weight: 400;
-      color: rgba(216,217,211,0.5);
+      color: rgba(200,207,205,0.5);
     }
 
     .oferta__card-bullet::before {
@@ -1470,7 +1463,7 @@
     }
 
     .oferta__btn:hover {
-      box-shadow: 0 16px 48px rgba(199,168,107,0.55);
+      box-shadow: 0 16px 48px rgba(176,138,61,0.55);
       transform: translateY(-2px);
     }
 
@@ -1521,13 +1514,13 @@
       margin-top: 1.25rem;
       font-size: 1rem;
       font-weight: 400;
-      color: rgba(216,217,211,0.35);
+      color: rgba(200,207,205,0.35);
     }
 
     .oferta__guarantee svg {
       width: 13px;
       height: 13px;
-      stroke: rgba(216,217,211,0.35);
+      stroke: rgba(200,207,205,0.35);
       fill: none;
       stroke-width: 1.6;
       stroke-linecap: round;
@@ -1539,7 +1532,7 @@
        BLOCO 7 — TRANSFORMAÇÃO
     ══════════════════════════════════════════════ */
     .transformacao {
-      background: var(--terracotta);
+      background: var(--granite);
       display: grid;
       grid-template-columns: 1fr 3fr;
       align-items: center;
@@ -1576,7 +1569,7 @@
       right: 0;
       bottom: 15%;
       width: 1px;
-      background: linear-gradient(to bottom, transparent, rgba(216,217,211,0.15), transparent);
+      background: linear-gradient(to bottom, transparent, rgba(200,207,205,0.15), transparent);
     }
 
     .transformacao__hl {
@@ -1596,7 +1589,7 @@
       font-size: 0.82rem;
       font-weight: 400;
       line-height: 1.7;
-      color: rgba(216,217,211,0.55);
+      color: rgba(200,207,205,0.55);
     }
 
     /* ── Direita: carrossel ── */
@@ -1626,19 +1619,19 @@
     .transf-card {
       width: 260px;
       flex-shrink: 0;
-      background: rgba(122,62,34,0.4);
+      background: var(--granite-2);
       border-radius: 1.25rem;
       padding: 1.75rem 1.6rem 1.75rem;
       position: relative;
       overflow: hidden;
       cursor: default;
       transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
-      border: 1px solid rgba(216,217,211,0.07);
+      border: 1px solid rgba(200,207,205,0.07);
     }
 
     .transf-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 20px 50px rgba(42,46,44,0.18);
+      box-shadow: 0 20px 50px rgba(28,36,34,0.18);
     }
 
     /* grain sobre o card */
@@ -1659,7 +1652,7 @@
       position: absolute;
       top: 0; left: 1.25rem; right: 1.25rem;
       height: 1px;
-      background: linear-gradient(90deg, transparent, var(--smoke), transparent);
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
       opacity: 0.5;
     }
 
@@ -1671,7 +1664,7 @@
       font-size: 1rem;
       line-height: 1.4;
       letter-spacing: -0.015em;
-      color: rgba(250,248,244,0.72);
+      color: rgba(245,245,242,0.72);
     }
 
     .transf-card__text .g {
@@ -1717,7 +1710,7 @@
       font-size: 0.85rem;
       font-weight: 400;
       line-height: 1.75;
-      color: rgba(42,46,44,0.48);
+      color: rgba(28,36,34,0.48);
       padding-bottom: 0.2rem;
     }
 
@@ -1731,7 +1724,7 @@
     /* card */
     .perfil-item {
       background: var(--alabaster);
-      border: 1px solid rgba(42,46,44,0.07);
+      border: 1px solid rgba(28,36,34,0.07);
       border-radius: 1.25rem;
       padding: 1.6rem 1.6rem 1.6rem 1.5rem;
       display: flex;
@@ -1741,8 +1734,8 @@
     }
 
     .perfil-item:hover {
-      border-color: rgba(199,168,107,0.25);
-      box-shadow: 0 6px 24px rgba(42,46,44,0.07);
+      border-color: rgba(176,138,61,0.25);
+      box-shadow: 0 6px 24px rgba(28,36,34,0.07);
     }
 
     /* checkbox */
@@ -1750,7 +1743,7 @@
       width: 26px;
       height: 26px;
       border-radius: 7px;
-      border: 1.5px solid rgba(42,46,44,0.18);
+      border: 1.5px solid rgba(28,36,34,0.18);
       flex-shrink: 0;
       position: relative;
       margin-top: 0.05rem;
@@ -1768,7 +1761,7 @@
 
     .perfil-item__check polyline {
       fill: none;
-      stroke: var(--terracotta);
+      stroke: var(--gold);
       stroke-width: 2.2;
       stroke-linecap: round;
       stroke-linejoin: round;
@@ -1779,8 +1772,8 @@
 
     /* checked state */
     .perfil-item.is-checked .perfil-item__check {
-      border-color: var(--terracotta);
-      background: rgba(191,117,74,0.08);
+      border-color: var(--gold);
+      background: rgba(176,138,61,0.08);
     }
 
     .perfil-item__body {}
@@ -1799,7 +1792,7 @@
       font-size: 0.78rem;
       font-weight: 400;
       line-height: 1.55;
-      color: rgba(42,46,44,0.45);
+      color: rgba(28,36,34,0.45);
     }
 
     /* ══════════════════════════════════════════════
@@ -1895,7 +1888,7 @@
       font-size: 1.125rem;
       font-weight: 400;
       line-height: 1.7;
-      color: rgba(250,248,244,0.85);
+      color: rgba(245,245,242,0.85);
       margin-bottom: 2.25rem;
     }
 
@@ -1922,7 +1915,7 @@
       transition: left 0.55s var(--ease-out);
     }
 
-    .cta-mid__btn:hover { box-shadow: 0 16px 48px rgba(199,168,107,0.55); transform: translateY(-2px); }
+    .cta-mid__btn:hover { box-shadow: 0 16px 48px rgba(176,138,61,0.55); transform: translateY(-2px); }
     .cta-mid__btn:hover::before { left: 130%; }
 
     .cta-mid__btn-text {
@@ -1966,7 +1959,7 @@
       left: -5%;
       width: 48%;
       height: 100%;
-      background-image: url('Fotos pra LP/IMG_3766.JPG');
+      background-image: url('Assets/Fotos pra LP/IMG_3766.JPG');
       background-size: cover;
       background-position: center top;
       -webkit-mask-image: linear-gradient(to right, black 45%, transparent 100%);
@@ -2057,8 +2050,8 @@
       align-items: stretch;
       gap: 0;
       padding: 1.5rem 0;
-      border-top: 1px solid rgba(216,217,211,0.08);
-      border-bottom: 1px solid rgba(216,217,211,0.08);
+      border-top: 1px solid rgba(200,207,205,0.08);
+      border-bottom: 1px solid rgba(200,207,205,0.08);
       margin-bottom: 2rem;
     }
 
@@ -2086,12 +2079,12 @@
       font-weight: 400;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(216,217,211,0.38);
+      color: rgba(200,207,205,0.38);
     }
 
     .sobre__stat-div {
       width: 1px;
-      background: rgba(216,217,211,0.1);
+      background: rgba(200,207,205,0.1);
       margin: 0;
       flex-shrink: 0;
     }
@@ -2120,7 +2113,7 @@
       text-decoration: none;
       font-size: 0.78rem;
       font-weight: 500;
-      color: rgba(216,217,211,0.45);
+      color: rgba(200,207,205,0.45);
       transition: color 0.3s;
     }
 
@@ -2200,15 +2193,15 @@
       font-size: 0.85rem;
       font-weight: 400;
       line-height: 1.75;
-      color: rgba(42,46,44,0.48);
+      color: rgba(28,36,34,0.48);
       padding-bottom: 0.2rem;
     }
 
     /* acordeão */
-    .faq__list { border-top: 1px solid rgba(42,46,44,0.08); }
+    .faq__list { border-top: 1px solid rgba(28,36,34,0.08); }
 
     .faq-item {
-      border-bottom: 1px solid rgba(42,46,44,0.08);
+      border-bottom: 1px solid rgba(28,36,34,0.08);
       position: relative;
     }
 
@@ -2233,7 +2226,7 @@
       font-size: 0.98rem;
       letter-spacing: -0.012em;
       line-height: 1.35;
-      color: rgba(42,46,44,0.72);
+      color: rgba(28,36,34,0.72);
       transition: color 0.3s;
     }
 
@@ -2245,7 +2238,7 @@
       width: 28px;
       height: 28px;
       border-radius: 50%;
-      border: 1px solid rgba(42,46,44,0.14);
+      border: 1px solid rgba(28,36,34,0.14);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -2256,7 +2249,7 @@
     .faq-item__icon svg {
       width: 11px;
       height: 11px;
-      stroke: rgba(42,46,44,0.45);
+      stroke: rgba(28,36,34,0.45);
       stroke-width: 2;
       fill: none;
       stroke-linecap: round;
@@ -2265,7 +2258,7 @@
 
     .faq-item.is-open .faq-item__icon {
       border-color: var(--gold);
-      background: rgba(199,168,107,0.08);
+      background: rgba(176,138,61,0.08);
       transform: rotate(45deg);
     }
 
@@ -2286,7 +2279,7 @@
       font-size: 0.85rem;
       font-weight: 400;
       line-height: 1.75;
-      color: rgba(42,46,44,0.55);
+      color: rgba(28,36,34,0.55);
       padding: 0 0 1.5rem 0;
     }
 
@@ -2369,7 +2362,7 @@
       font-size: 0.88rem;
       font-weight: 400;
       line-height: 1.75;
-      color: rgba(216,217,211,0.42);
+      color: rgba(200,207,205,0.42);
     }
 
     /* links de contato */
@@ -2377,7 +2370,7 @@
       display: flex;
       flex-direction: column;
       gap: 0;
-      border-top: 1px solid rgba(216,217,211,0.07);
+      border-top: 1px solid rgba(200,207,205,0.07);
     }
 
     .contato__link {
@@ -2385,9 +2378,9 @@
       align-items: center;
       gap: 1.1rem;
       padding: 1.3rem 0;
-      border-bottom: 1px solid rgba(216,217,211,0.07);
+      border-bottom: 1px solid rgba(200,207,205,0.07);
       text-decoration: none;
-      color: rgba(216,217,211,0.5);
+      color: rgba(200,207,205,0.5);
       font-size: 0.82rem;
       font-weight: 500;
       letter-spacing: 0.01em;
@@ -2404,7 +2397,7 @@
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      border: 1px solid rgba(216,217,211,0.1);
+      border: 1px solid rgba(200,207,205,0.1);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -2414,7 +2407,7 @@
 
     .contato__link:hover .contato__link-icon {
       border-color: var(--gold);
-      background: rgba(199,168,107,0.1);
+      background: rgba(176,138,61,0.1);
     }
 
     .contato__link-icon svg {
@@ -2431,7 +2424,7 @@
     .contato__link:hover .contato__link-icon svg { stroke: var(--gold); }
 
     .contato__link-info { display: flex; flex-direction: column; gap: 0.15rem; }
-    .contato__link-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(216,217,211,0.25); }
+    .contato__link-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(200,207,205,0.25); }
     .contato__link-value { font-size: 0.9rem; font-weight: 400; }
 
     /* arrow */
@@ -2461,7 +2454,7 @@
     .contato__footer {
       margin-top: 6rem;
       padding: 2rem 0;
-      border-top: 1px solid rgba(216,217,211,0.05);
+      border-top: 1px solid rgba(200,207,205,0.05);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -2475,7 +2468,7 @@
 
     .contato__footer-copy {
       font-size: 0.68rem;
-      color: rgba(216,217,211,0.2);
+      color: rgba(200,207,205,0.2);
       letter-spacing: 0.04em;
     }
 
@@ -2501,7 +2494,7 @@
       }
 
       .hero__logo {
-        width: 125px;
+        width: 72px;
       }
 
       .hero__body {
@@ -2939,16 +2932,12 @@
   <!-- ── LEFT PANEL ── -->
   <div class="hero__left has-grain">
 
-    <!-- vector shapes -->
-    <span class="vec vec--h1" aria-hidden="true"></span>
-    <span class="vec vec--h2" aria-hidden="true"></span>
-    <span class="vec vec--h3" aria-hidden="true"></span>
     <!-- edge line -->
     <div class="hero__edge-line" aria-hidden="true"></div>
 
     <!-- Header -->
     <header class="hero__header" id="j-header">
-      <img src="RAFAEL NOBREGA verde.svg" alt="Euro na Real" class="hero__logo" id="j-logo">
+      <img src="Assets/Logo/LOGO ATUALIZADO.svg" alt="Euro na Real" class="hero__logo" id="j-logo">
     </header>
 
     <!-- Body -->
@@ -2967,7 +2956,6 @@
 
       <div class="hero__rule" id="j-rule">
         <div class="rule__line"></div>
-        <img src="Vector.svg" alt="" class="rule__gem-vec" aria-hidden="true">
       </div>
 
       <div class="hero__sub" id="j-sub">
@@ -2996,7 +2984,7 @@
 
     <div class="photo-frame">
       <img
-        src="Fotos pra LP/IMG_3769.JPG"
+        src="Assets/Fotos pra LP/IMG_3769.JPG"
         alt="Rafael Nobrega, Planejador Financeiro"
         class="hero__img"
         id="j-photo"
@@ -3098,7 +3086,7 @@
   <!-- Foto esquerda -->
   <div class="promessa__photo">
     <img
-      src="Fotos pra LP/IMG_1466.jpg"
+      src="Assets/Fotos pra LP/IMG_1466.jpg"
       alt="Rafael Nobrega em ambiente descontraído"
       class="promessa__img"
       id="p3-photo"
@@ -3196,35 +3184,35 @@
     <div class="diferencial__right" id="d4-pilares">
 
       <div class="pilar">
-        <img src="Vector.svg" class="pilar__vec" aria-hidden="true">
+        <img src="Assets/Vector.svg" class="pilar__vec" aria-hidden="true">
         <div class="pilar__body">
           <p class="pilar__title">Foco na realidade de quem vive na Europa</p>
         </div>
       </div>
 
       <div class="pilar">
-        <img src="Vector.svg" class="pilar__vec" aria-hidden="true">
+        <img src="Assets/Vector.svg" class="pilar__vec" aria-hidden="true">
         <div class="pilar__body">
           <p class="pilar__title">Estrutura prática para organizar, poupar e planejar</p>
         </div>
       </div>
 
       <div class="pilar">
-        <img src="Vector.svg" class="pilar__vec" aria-hidden="true">
+        <img src="Assets/Vector.svg" class="pilar__vec" aria-hidden="true">
         <div class="pilar__body">
           <p class="pilar__title">Baseado em comportamento financeiro, não em fórmulas mágicas</p>
         </div>
       </div>
 
       <div class="pilar">
-        <img src="Vector.svg" class="pilar__vec" aria-hidden="true">
+        <img src="Assets/Vector.svg" class="pilar__vec" aria-hidden="true">
         <div class="pilar__body">
           <p class="pilar__title">Autonomia para tomar decisões com mais segurança</p>
         </div>
       </div>
 
       <div class="pilar">
-        <img src="Vector.svg" class="pilar__vec" aria-hidden="true">
+        <img src="Assets/Vector.svg" class="pilar__vec" aria-hidden="true">
         <div class="pilar__body">
           <p class="pilar__title">Organização financeira sem culpa, obsessão ou complicação</p>
         </div>
@@ -3252,7 +3240,7 @@
 
       <div class="modulo">
         <div class="modulo__img-wrap">
-          <img src="Imagens Modulos/modulo-01.png" alt="Módulo 01" class="modulo__img" style="object-position: 30% 60%;">
+          <img src="Assets/Imagens Modulos/modulo-01.png" alt="Módulo 01" class="modulo__img" style="object-position: 30% 60%;">
           <span class="modulo__num">01</span>
         </div>
         <div class="modulo__body">
@@ -3262,7 +3250,7 @@
 
       <div class="modulo">
         <div class="modulo__img-wrap">
-          <img src="Imagens Modulos/modulo-02.png" alt="Módulo 02" class="modulo__img">
+          <img src="Assets/Imagens Modulos/modulo-02.png" alt="Módulo 02" class="modulo__img">
           <span class="modulo__num">02</span>
         </div>
         <div class="modulo__body">
@@ -3272,7 +3260,7 @@
 
       <div class="modulo">
         <div class="modulo__img-wrap">
-          <img src="Imagens Modulos/modulo-03.png" alt="Módulo 03" class="modulo__img">
+          <img src="Assets/Imagens Modulos/modulo-03.png" alt="Módulo 03" class="modulo__img">
           <span class="modulo__num">03</span>
         </div>
         <div class="modulo__body">
@@ -3282,7 +3270,7 @@
 
       <div class="modulo">
         <div class="modulo__img-wrap">
-          <img src="Imagens Modulos/modulo-04.png" alt="Módulo 04" class="modulo__img">
+          <img src="Assets/Imagens Modulos/modulo-04.png" alt="Módulo 04" class="modulo__img">
           <span class="modulo__num">04</span>
         </div>
         <div class="modulo__body">
@@ -3292,7 +3280,7 @@
 
       <div class="modulo">
         <div class="modulo__img-wrap">
-          <img src="Imagens Modulos/modulo-05.png" alt="Módulo 05" class="modulo__img" style="object-position: center center;">
+          <img src="Assets/Imagens Modulos/modulo-05.png" alt="Módulo 05" class="modulo__img" style="object-position: center center;">
           <span class="modulo__num">05</span>
         </div>
         <div class="modulo__body">
@@ -3302,7 +3290,7 @@
 
       <div class="modulo">
         <div class="modulo__img-wrap">
-          <img src="Imagens Modulos/modulo-06.png" alt="Módulo 06" class="modulo__img">
+          <img src="Assets/Imagens Modulos/modulo-06.png" alt="Módulo 06" class="modulo__img">
           <span class="modulo__num">06</span>
         </div>
         <div class="modulo__body">
@@ -3312,7 +3300,7 @@
 
       <div class="modulo">
         <div class="modulo__img-wrap">
-          <img src="Imagens Modulos/modulo-07.png" alt="Módulo 07" class="modulo__img">
+          <img src="Assets/Imagens Modulos/modulo-07.png" alt="Módulo 07" class="modulo__img">
           <span class="modulo__num">07</span>
         </div>
         <div class="modulo__body">
@@ -3322,7 +3310,7 @@
 
       <div class="modulo">
         <div class="modulo__img-wrap">
-          <img src="Imagens Modulos/modulo-08.png" alt="Módulo 08" class="modulo__img">
+          <img src="Assets/Imagens Modulos/modulo-08.png" alt="Módulo 08" class="modulo__img">
           <span class="modulo__num">08</span>
         </div>
         <div class="modulo__body">
@@ -3601,7 +3589,7 @@
     <div class="cta-mid__card">
 
       <div class="cta-mid__bg">
-        <img src="Fotos pra LP/IMG_3770.JPG" alt="">
+        <img src="Assets/Fotos pra LP/IMG_3770.JPG" alt="">
       </div>
       <div class="cta-mid__overlay"></div>
       <div class="cta-mid__grain"></div>
@@ -3673,9 +3661,9 @@
     <!-- Foto direita -->
     <div class="sobre__photo-wrap" id="s10-photo">
       <div class="sobre__photo">
-        <img src="Fotos pra LP/IMG_3767.JPG" alt="Rafael Nobrega — Planejador Financeiro">
+        <img src="Assets/Fotos pra LP/IMG_3767.JPG" alt="Rafael Nobrega — Planejador Financeiro">
       </div>
-      <img src="Vector.svg" alt="" class="sobre__photo-wrap__vector" aria-hidden="true">
+      <img src="Assets/Vector.svg" alt="" class="sobre__photo-wrap__vector" aria-hidden="true">
     </div>
 
   </div>
@@ -3921,7 +3909,7 @@
 
     <!-- footer -->
     <footer class="contato__footer" id="c12-footer">
-      <img src="RAFAEL NOBREGA verde.svg" alt="Euro na Real" class="contato__footer-logo">
+      <img src="Assets/Logo/logo tipografico.png" alt="Euro na Real" class="contato__footer-logo">
       <span class="contato__footer-copy">© 2026 Rafael Nobrega · Todos os direitos reservados</span>
     </footer>
 
